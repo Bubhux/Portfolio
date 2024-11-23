@@ -36,14 +36,10 @@ export const Home = () => {
     const [visibleSections, setVisibleSections] = useState([]);
     const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
     const intro = useRef();
-    const projectOne = useRef();
-    const projectTwo = useRef();
-    const projectThree = useRef();
-    const details = useRef();
 
     useEffect(() => {
-        const sections = [intro, projectOne, projectTwo, projectThree, details];
-
+        const sections = [intro];  // Observe uniquement intro
+    
         const sectionObserver = new IntersectionObserver(
             (entries, observer) => {
                 entries.forEach(entry => {
@@ -57,25 +53,30 @@ export const Home = () => {
             },
             { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
         );
-
+    
         const indicatorObserver = new IntersectionObserver(
             ([entry]) => {
                 setScrollIndicatorHidden(!entry.isIntersecting);
             },
             { rootMargin: '-100% 0px 0px 0px' }
         );
-
+    
         sections.forEach(section => {
-            sectionObserver.observe(section.current);
+            if (section.current) {  // Vérification que le ref est bien défini
+                sectionObserver.observe(section.current);
+            }
         });
-
-        indicatorObserver.observe(intro.current);
-
+    
+        if (intro.current) {  // Vérification que intro est bien défini
+            indicatorObserver.observe(intro.current);
+        }
+    
         return () => {
             sectionObserver.disconnect();
             indicatorObserver.disconnect();
         };
     }, [visibleSections]);
+    
 
     return (
         <div className={styles.home}>

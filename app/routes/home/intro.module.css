@@ -1,4 +1,8 @@
 /* // app/routes/home/intro.module.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .intro {
     height: 100vh;
     display: flex;
@@ -105,6 +109,24 @@
     }
 }
 
+@keyframes stretchAndRetract {
+    0% {
+        transform: scaleX(0);  /* Commence à 0% de sa taille, étiré depuis la gauche */
+        opacity: 1;
+        transform-origin: left; /* L'animation part de la gauche */
+    }
+    50% {
+        transform: scaleX(1);  /* Étendu complètement à 100% de sa taille */
+        opacity: 1;
+        transform-origin: left; /* Toujours étiré à partir de la gauche */
+    }
+    100% {
+        transform: scaleX(0);  /* Se rétracte complètement vers la droite */
+        opacity: 1;
+        transform-origin: right; /* Rétraction vers la droite */
+    }
+}
+
 .word {
     position: relative;
     display: flex;
@@ -114,24 +136,21 @@
     animation-duration: 1.5s;
     animation-delay: var(--delay);
     animation-fill-mode: forwards;
-    animation-timing-function: var(--bezierFastoutSlowin);
+    animation-timing-function: linear; /* Animation linéaire et constante */
     color: color-mix(in lab, var(--text) 0%, transparent);
-    transition: opacity 0.5s ease var(--durationM);
+    transition: opacity 1s ease var(--durationM);
     isolation: isolate;
 
     &::after {
         content: '';
         background: var(--accent);
-        animation-duration: 1.5s;
-        animation-delay: var(--delay);
-        animation-fill-mode: forwards;
-        animation-timing-function: var(--bezierFastoutSlowin);
-        transform-origin: left;
-        transform: scale3d(0, 1, 1);
+        animation: stretchAndRetract 1.5s linear forwards; /* Timing fonction linéaire */
         position: absolute;
         inset: 0 -0.02em 0 0;
         z-index: var(--zIndex1);
         will-change: transform;
+        transform-origin: left; /* Origine de l'étirement à gauche */
+        width: 120%; /* Longueur de la barre */
     }
 
     &[data-plus='true']::before {
@@ -155,8 +174,8 @@
 
         &::after {
             opacity: 1;
-            transform: scale3d(0, 0, 1);
-            transform-origin: right;
+            animation: stretchAndRetract 1.5s linear forwards; /* Timing constant */
+            transform-origin: left; /* Étirement à gauche, rétraction à droite */
         }
     }
 
@@ -191,11 +210,12 @@
     animation-duration: 0.8s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
-    animation-timing-function: var(--bezierFastoutSlowin);
+    /*animation-timing-function: var(--bezierFastoutSlowin);*/
     transform-origin: left;
     opacity: 0;
     position: relative;
     top: 0.05em;
+    /*animation: stretchAndRetract 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;*/
 
     &[data-status='entering'] {
         &:global {

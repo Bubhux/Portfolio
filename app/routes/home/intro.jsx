@@ -1,3 +1,4 @@
+// app/routes/home/intro.jsx
 import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';

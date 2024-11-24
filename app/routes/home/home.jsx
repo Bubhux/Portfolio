@@ -1,4 +1,4 @@
-// app/routes/home/intro.jsx
+// app/routes/home/home.jsx
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
 import { useEffect, useRef, useState } from 'react';

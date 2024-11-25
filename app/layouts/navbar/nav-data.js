@@ -1,4 +1,4 @@
-// app/layouts/navabar/nav-data.js
+// app/layouts/navbar/nav-data.js
 import config from '~/config.json';
 
 

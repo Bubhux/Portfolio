@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer components {
-  .icon {
-    fill: currentColor;
-  }
+    .icon {
+        fill: currentColor;
+    }
 }

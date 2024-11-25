@@ -1,13 +1,14 @@
 import { useSyncExternalStore } from 'react';
 
+
 function subscribe() {
-  return () => {};
+    return () => { };
 }
 
 export function useHydrated() {
-  return useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false
-  );
+    return useSyncExternalStore(
+        subscribe,
+        () => true,
+        () => false
+    );
 }

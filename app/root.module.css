@@ -1,8 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* app/root.module.css */
 
 @layer layout {
+    section#intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
     .container {
         width: 100%;
         position: relative;

@@ -1,7 +1,4 @@
 /* app/layouts/navabar/theme-module.module.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer layout {
     .toggle {

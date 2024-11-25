@@ -1,7 +1,4 @@
 /* app/layouts/navabar/navbar.module.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer layout {
     .navbar {

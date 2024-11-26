@@ -1,17 +1,15 @@
 {
-    "name": "Hamish Williams",
-    "role": "Designer",
+    "name": "Bubhux Paindépice",
+    "role": "Developer",
     "disciplines": [
-        "Developer",
-        "Prototyper",
-        "Animator",
-        "Illustrator",
-        "Modder"
+        "Back-end",
+        "Frond-end",
+        "Full-stack"
     ],
-    "url": "https://hamishw.com",
-    "twitter": "@hamishMW",
-    "figma": "@Hamish",
-    "github": "HamishMW",
-    "repo": "https://github.com/HamishMW/portfolio",
+    "url": "https://BubhuxPaindepice.com/",
+    "twitter": "@Bubhux",
+    "instagram": "@Bubhux",
+    "github": "Bubhux",
+    "repo": "https://github.com/Bubhux/",
     "ascii": "__  __  __\n\u005C \u005C \u005C \u005C \u005C\u2215\n \u005C \u005C\u2215\u005C \u005C\n  \u005C\u2215  \u005C\u2215\n"
 }

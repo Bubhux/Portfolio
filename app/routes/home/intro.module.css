@@ -206,8 +206,8 @@
     background: color-mix(in lab, var(--text) 30%, transparent);
     width: 120%;
     display: flex;
-    margin-left: 20px;
-    animation-duration: 0.8s;
+    margin-left: 40px;
+    animation-duration: 1.8s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
     /*animation-timing-function: var(--bezierFastoutSlowin);*/

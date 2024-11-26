@@ -28,9 +28,9 @@ export const socialLinks = [
         icon: 'twitter',
     },
     {
-        label: 'Figma',
-        url: `https://www.figma.com/${config.figma}`,
-        icon: 'figma',
+        label: 'Instagram',
+        url: `https://www.instragram.com/${config.instagram}`,
+        icon: 'instagram',
     },
     {
         label: 'Github',

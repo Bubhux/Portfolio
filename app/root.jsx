@@ -69,13 +69,6 @@ export default function App() {
         setTheme(updatedTheme);
     };
 
-    useEffect(() => {
-        console.info(
-            `${config.ascii}\n`,
-            `Taking a peek huh? Check out the source code: ${config.repo}\n\n`
-        );
-    }, []);
-
     return (
         <html lang="en">
             <head>

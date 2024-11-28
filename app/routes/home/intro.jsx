@@ -31,6 +31,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
     const titleId = `${id}-title`;
     const scrollToHash = useScrollToHash();
     const isHydrated = useHydrated();
+    const [isAnimating, setIsAnimating] = useState(false);
 
     useInterval(
         () => {
@@ -51,6 +52,16 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
         event.preventDefault();
         scrollToHash(event.currentTarget.href);
     };
+
+    useEffect(() => {
+        setIsAnimating(true);
+
+        const timer = setTimeout(() => {
+            setIsAnimating(false);
+        }, 5500);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <Section
@@ -105,6 +116,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                                                     data-status={status}
                                                     style={cssProps({ delay: tokens.base.durationL })}
                                                 >
+                                                    <span className={`${styles.bar} ${isAnimating ? styles.animate : ''}`} data-status={status} data-plus="true"></span>
                                                     {item}
                                                 </span>
                                             )}

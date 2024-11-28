@@ -150,7 +150,7 @@
     }
 
     .mobileNav {
-        --backdrop: blur(24px) saturate(120%);
+        --backdrop: blur(24px) saturate(190%);
 
         position: fixed;
         inset: 0;

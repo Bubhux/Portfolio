@@ -4,13 +4,17 @@ import { Transition } from '~/components/transition';
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { useInViewport, useWindowSize } from '~/hooks';
 import { startTransition, useEffect, useRef } from 'react';
-import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, SphereGeometry, UniformsUtils, Vector2, WebGLRenderer } from 'three';
+import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Points, PointsMaterial, BufferGeometry, Float32BufferAttribute, PerspectiveCamera, Scene, TextureLoader, Vector2, WebGLRenderer } from 'three';
 import { media } from '~/utils/style';
 import { throttle } from '~/utils/throttle';
 import { cleanRenderer, cleanScene, removeLights } from '~/utils/three';
 import fragmentShader from './displacement-sphere-fragment.glsl?raw';
 import vertexShader from './displacement-sphere-vertex.glsl?raw';
 import styles from './displacement-sphere.module.css';
+import galaxyTexture from '/static/img/smoke.png';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { shaderMaterial } from '@react-three/drei';
+import * as THREE from 'three';
 
 
 const springConfig = {
@@ -19,7 +23,54 @@ const springConfig = {
     mass: 2,
 };
 
-export const DisplacementSphere = props => {
+const DisplacementParticlesMaterial = shaderMaterial(
+    {
+        time: 0,
+        texture: new THREE.TextureLoader().load(galaxyTexture),
+    },
+    vertexShader,
+    fragmentShader
+);
+
+const DisplacementParticles = () => {
+    const pointsRef = useRef();
+
+    useFrame(({ clock }) => {
+        if (pointsRef.current) {
+            pointsRef.current.material.uniforms.time.value = clock.getElapsedTime();
+        }
+    });
+
+    return (
+        <points ref={pointsRef} material={DisplacementParticlesMaterial}>
+            <bufferGeometry />
+        </points>
+    );
+};
+
+const createCircularTexture = (imageUrl, size) => {
+    return new Promise((resolve, reject) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = size;
+        canvas.height = size;
+
+        const img = new Image();
+        img.src = imageUrl;
+        img.onload = () => {
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img, 0, 0, size, size);
+            resolve(canvas.toDataURL());
+        };
+
+        img.onerror = (error) => reject(error);
+    });
+};
+
+export const GalaxyEffect = (props) => {
     const { theme } = useTheme();
     const start = useRef(Date.now());
     const canvasRef = useRef();
@@ -27,16 +78,14 @@ export const DisplacementSphere = props => {
     const renderer = useRef();
     const camera = useRef();
     const scene = useRef();
-    const lights = useRef();
+    const lights = useRef([]);
     const uniforms = useRef();
-    const material = useRef();
-    const geometry = useRef();
-    const sphere = useRef();
     const reduceMotion = useReducedMotion();
     const isInViewport = useInViewport(canvasRef);
     const windowSize = useWindowSize();
     const rotationX = useSpring(0, springConfig);
     const rotationY = useSpring(0, springConfig);
+    const geometry = useRef();
 
     useEffect(() => {
         const { innerWidth, innerHeight } = window;
@@ -57,25 +106,44 @@ export const DisplacementSphere = props => {
 
         scene.current = new Scene();
 
-        material.current = new MeshPhongMaterial();
-        material.current.onBeforeCompile = shader => {
-            uniforms.current = UniformsUtils.merge([
-                shader.uniforms,
-                { time: { type: 'f', value: 0 } },
-            ]);
+        // Créez la texture circulaire
+        createCircularTexture(galaxyTexture, 256) // Ajuste la taille souhaitée
+            .then((circularTexture) => {
+                // Applique la texture circulaire au matériau de particules
+                const pointMaterial = new PointsMaterial({
+                    size: 1, // Augmente la taille
+                    transparent: true,
+                    opacity: 0.9, // Ajustez si nécessaire
+                    alphaTest: 0.5, // Tester pour la transparence
+                    map: new TextureLoader().load(circularTexture),
+                });
 
-            shader.uniforms = uniforms.current;
-            shader.vertexShader = vertexShader;
-            shader.fragmentShader = fragmentShader;
-        };
+                startTransition(() => {
+                    geometry.current = new BufferGeometry();
+                    const positions = [];
+                    const numParticles = 1000; // Ajuste le nombre de particules
+                    const cloudSize = 30; // Nouvelle taille du nuage
 
-        startTransition(() => {
-            geometry.current = new SphereGeometry(32, 128, 128);
-            sphere.current = new Mesh(geometry.current, material.current);
-            sphere.current.position.z = 0;
-            sphere.current.modifier = Math.random();
-            scene.current.add(sphere.current);
-        });
+                    for (let i = 0; i < numParticles; i++) {
+                        const x = (Math.random() - 0.5) * cloudSize; // Utilise cloudSize pour réduire la taille
+                        const y = (Math.random() - 0.5) * cloudSize;
+                        const z = (Math.random() - 0.5) * cloudSize;
+                        positions.push(x, y, z);
+                    }
+
+                    geometry.current.setAttribute('position', new Float32BufferAttribute(positions, 3));
+
+                    // Utilise Points pour les particules
+                    const particles = new Points(geometry.current, pointMaterial);
+
+                    // Déplace le nuage de particules
+                    particles.position.set(25, 5, 0); 
+                    scene.current.add(particles);
+                });
+            })
+            .catch((error) => {
+                console.error('Erreur lors de la création de la texture circulaire :', error);
+            });
 
         return () => {
             cleanScene(scene.current);
@@ -84,13 +152,11 @@ export const DisplacementSphere = props => {
     }, []);
 
     useEffect(() => {
+        // Configuration des lumières
         const dirLight = new DirectionalLight(0xffffff, theme === 'light' ? 1.8 : 2.0);
         const ambientLight = new AmbientLight(0xffffff, theme === 'light' ? 2.7 : 0.4);
 
-        dirLight.position.z = 200;
-        dirLight.position.x = 100;
-        dirLight.position.y = 100;
-
+        dirLight.position.set(100, 100, 200);
         lights.current = [dirLight, ambientLight];
         lights.current.forEach(light => scene.current.add(light));
 
@@ -101,26 +167,22 @@ export const DisplacementSphere = props => {
 
     useEffect(() => {
         const { width, height } = windowSize;
-
         const adjustedHeight = height + height * 0.3;
+
         renderer.current.setSize(width, adjustedHeight);
         camera.current.aspect = width / adjustedHeight;
         camera.current.updateProjectionMatrix();
 
-        // Render a single frame on resize when not animating
-        if (reduceMotion) {
-            renderer.current.render(scene.current, camera.current);
-        }
-
-        if (width <= media.mobile) {
-            sphere.current.position.x = 14;
-            sphere.current.position.y = 10;
-        } else if (width <= media.tablet) {
-            sphere.current.position.x = 18;
-            sphere.current.position.y = 14;
-        } else {
-            sphere.current.position.x = 22;
-            sphere.current.position.y = 16;
+        // Ajuste la position des particules selon la taille de la fenêtre
+        const particles = scene.current.children.find(child => child instanceof Points);
+        if (particles) {
+            if (width <= media.mobile) {
+                particles.position.set(14, 10, 0);
+            } else if (width <= media.tablet) {
+                particles.position.set(18, 14, 0);
+            } else {
+                particles.position.set(22, 16, 0);
+            }
         }
     }, [reduceMotion, windowSize]);
 
@@ -150,13 +212,17 @@ export const DisplacementSphere = props => {
         const animate = () => {
             animation = requestAnimationFrame(animate);
 
-            if (uniforms.current !== undefined) {
+            if (uniforms.current) {
                 uniforms.current.time.value = 0.00005 * (Date.now() - start.current);
             }
 
-            sphere.current.rotation.z += 0.001;
-            sphere.current.rotation.x = rotationX.get();
-            sphere.current.rotation.y = rotationY.get();
+            // Animation des particules
+            const particles = scene.current.children.find(child => child instanceof Points);
+            if (particles) {
+                particles.rotation.z += 0.001;
+                particles.rotation.x = rotationX.get();
+                particles.rotation.y = rotationY.get();
+            }
 
             renderer.current.render(scene.current, camera.current);
         };
@@ -181,7 +247,13 @@ export const DisplacementSphere = props => {
                     data-visible={visible}
                     ref={nodeRef}
                     {...props}
-                />
+                >
+                    <Canvas>
+                        <ambientLight />
+                        <directionalLight />
+                        <DisplacementParticles />
+                    </Canvas>
+                </canvas>
             )}
         </Transition>
     );

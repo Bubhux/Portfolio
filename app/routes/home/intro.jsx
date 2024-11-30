@@ -16,7 +16,7 @@ import styles from './intro.module.css';
 
 
 const DisplacementSphere = lazy(() =>
-    import('./displacement-sphere').then(module => ({ default: module.GalaxyEffect }))
+    import('./displacement-sphere').then(module => ({ default: module.DisplacementSphere }))
 );
 
 export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {

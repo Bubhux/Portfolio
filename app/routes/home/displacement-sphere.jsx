@@ -11,7 +11,7 @@ import { cleanRenderer, cleanScene, removeLights } from '~/utils/three';
 import fragmentShader from './displacement-sphere-fragment.glsl?raw';
 import vertexShader from './displacement-sphere-vertex.glsl?raw';
 import styles from './displacement-sphere.module.css';
-import galaxyTexture from '/static/img/smoke.png';
+import galaxyTexture from '/static/img/blue-gradient.png';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -111,18 +111,18 @@ export const GalaxyEffect = (props) => {
             .then((circularTexture) => {
                 // Applique la texture circulaire au matériau de particules
                 const pointMaterial = new PointsMaterial({
-                    size: 1, // Augmente la taille
+                    size: 0.8, // Augmente la taille
                     transparent: true,
-                    opacity: 0.9, // Ajustez si nécessaire
-                    alphaTest: 0.5, // Tester pour la transparence
+                    opacity: 0.9, // Ajuste si nécessaire
+                    alphaTest: 0.5, // Teste pour la transparence
                     map: new TextureLoader().load(circularTexture),
                 });
 
                 startTransition(() => {
                     geometry.current = new BufferGeometry();
                     const positions = [];
-                    const numParticles = 1000; // Ajuste le nombre de particules
-                    const cloudSize = 30; // Nouvelle taille du nuage
+                    const numParticles = 500; // Ajuste le nombre de particules
+                    const cloudSize = 20; // Nouvelle taille du nuage
 
                     for (let i = 0; i < numParticles; i++) {
                         const x = (Math.random() - 0.5) * cloudSize; // Utilise cloudSize pour réduire la taille
@@ -137,7 +137,7 @@ export const GalaxyEffect = (props) => {
                     const particles = new Points(geometry.current, pointMaterial);
 
                     // Déplace le nuage de particules
-                    particles.position.set(25, 5, 0); 
+                    particles.position.set(25, 5, 0);
                     scene.current.add(particles);
                 });
             })

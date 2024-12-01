@@ -3,7 +3,7 @@ import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
 import { Transition } from '~/components/transition';
 import styles from './error.module.css';
-import flatlineSkull from './error-flatline.svg';
+import errorBenderSvg from './error-bender.svg';
 
 
 export function Error({ error }) {
@@ -72,10 +72,10 @@ export function Error({ error }) {
                                         level={2}
                                         as="h1"
                                     >
-                                        <svg width="60" height="80" viewBox="0 0 60 80">
-                                            <use href={`${flatlineSkull}#skull`} />
+                                        <svg width="100" height="100" viewBox="0 0 100 100">
+                                            <use href={`${errorBenderSvg}#bender`} />
                                         </svg>
-                                        <DecoderText text="Flatlined" start={visible} delay={300} />
+                                        <DecoderText text="Error" start={visible} delay={300} />
                                     </Heading>
                                 )}
                                 {!flatlined && (

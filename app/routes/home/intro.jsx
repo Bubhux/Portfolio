@@ -15,8 +15,8 @@ import { useHydrated } from '~/hooks/useHydrated';
 import styles from './intro.module.css';
 
 
-const DisplacementSphere = lazy(() =>
-    import('./displacement-sphere').then(module => ({ default: module.DisplacementSphere }))
+const DisplacementParticules = lazy(() =>
+    import('./displacement-particules').then(module => ({ default: module.GalaxyEffect }))
 );
 
 export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
@@ -78,7 +78,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                     <>
                         {isHydrated && (
                             <Suspense>
-                                {/* <DisplacementSphere /> */}
+                                {/* <DisplacementParticules /> */}
                             </Suspense>
                         )}
                         <header className={styles.text}>

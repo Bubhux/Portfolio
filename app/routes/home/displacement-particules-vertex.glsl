@@ -1,4 +1,4 @@
-// app/routes/home/displacement-sphere-vertex.glsl
+// app/routes/home/displacement-particules-vertex.glsl
 #define PHONG
 
 //

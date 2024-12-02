@@ -1,4 +1,4 @@
-// app/routes/home/displacement-sphere-fragment.glsl
+// app/routes/home/displacement-particules-fragment.glsl
 #define PHONG
 
 uniform vec3 diffuse;

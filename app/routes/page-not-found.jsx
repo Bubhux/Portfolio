@@ -1,4 +1,4 @@
-// app/routes/$.jsx
+// app/routes/pageNotFound.jsx.jsx
 import { useRouteError } from '@remix-run/react';
 import { Error } from '~/layouts/error';
 

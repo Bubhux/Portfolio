@@ -29,12 +29,12 @@ export const links = () => [
         type: 'font/woff2',
         crossOrigin: '',
     },
-    { rel: 'manifest', href: '/manifest.json' },
-    { rel: 'icon', href: '/favicon.ico' },
-    { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-    { rel: 'shortcut_icon', href: '/shortcut.png', type: 'image/png', sizes: '64x64' },
-    { rel: 'apple-touch-icon', href: '/icon-256.png', sizes: '256x256' },
-    { rel: 'author', href: '/humans.txt', type: 'text/plain' },
+    { rel: 'manifest', href: '/static/manifest.json' },
+    { rel: 'icon', href: '/static/img/favicon.ico' },
+    { rel: 'icon', href: '/static/img/favicon.svg', type: 'image/svg+xml' },
+    { rel: 'shortcut_icon', href: '/static/img/shortcut.png', type: 'image/png', sizes: '64x64' },
+    { rel: 'apple-touch-icon', href: '/static/img/icon-256.png', sizes: '256x256' },
+    { rel: 'author', href: '/static/humans.txt', type: 'text/plain' },
 ];
 
 export const loader = async ({ request }) => {
@@ -74,7 +74,6 @@ export default function App() {
             <head>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                {/* Theme color doesn't support oklch so I'm hard coding these hexes for now */}
                 <meta name="theme-color" content={theme === 'dark' ? '#111' : '#F2F2F2'} />
                 <meta name="color-scheme" content={theme === 'light' ? 'light dark' : 'dark light'} />
                 <style dangerouslySetInnerHTML={{ __html: themeStyles }} />

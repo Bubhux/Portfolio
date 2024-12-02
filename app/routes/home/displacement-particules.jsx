@@ -1,4 +1,4 @@
-// app/routes/home/displacement-sphere.jsx
+// app/routes/home/displacement-particules.jsx
 import { useTheme } from '~/components/theme-provider';
 import { Transition } from '~/components/transition';
 import { useReducedMotion, useSpring } from 'framer-motion';
@@ -8,9 +8,9 @@ import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Points, PointsMat
 import { media } from '~/utils/style';
 import { throttle } from '~/utils/throttle';
 import { cleanRenderer, cleanScene, removeLights } from '~/utils/three';
-import fragmentShader from './displacement-sphere-fragment.glsl?raw';
-import vertexShader from './displacement-sphere-vertex.glsl?raw';
-import styles from './displacement-sphere.module.css';
+import fragmentShader from './displacement-particules-fragment.glsl?raw';
+import vertexShader from './displacement-particules-vertex.glsl?raw';
+import styles from './displacement-particules.module.css';
 import galaxyTexture from '/static/img/blue-gradient.png';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';

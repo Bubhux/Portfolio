@@ -41,19 +41,6 @@
     }
 }
 
-.bgCircle {
-    width: 100px;
-    height: 100px;
-    background-color: #e9d5ff;
-    border-radius: 50%;
-    position: absolute;
-    top: 1.5rem;
-    left: 42%;
-    transform: translateX(50%);
-    filter: blur(12px);
-    opacity: 0.2;
-}
-
 .divider {
     display: flex;
     justify-content: center;
@@ -75,9 +62,12 @@
     margin: 1.25rem 0;
 }
 
-.skillsTitleWrapper {
-    display: flex;
-    align-items: center;
+.skillItemsWrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Définit 4 colonnes de largeur égale */
+    max-height: calc(4 * 9rem + 3 * 1.5rem);
+    /* Calcule la hauteur maximale pour 4 lignes */
 }
 
 .line {
@@ -108,7 +98,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.5s;
-    margin: 0.75rem 1.25rem;
+    margin: 0.5rem 0.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
 }

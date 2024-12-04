@@ -1,7 +1,9 @@
 // app/routes/home/home.jsx
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
+import { Skills } from './skills';
 import { useEffect, useRef, useState } from 'react';
+
 import config from '~/config.json';
 import styles from './home.module.css';
 
@@ -37,9 +39,10 @@ export const Home = () => {
     const [visibleSections, setVisibleSections] = useState([]);
     const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
     const intro = useRef();
+    const skills = useRef();
 
     useEffect(() => {
-        const sections = [intro];  // Observe uniquement intro
+        const sections = [intro, skills];
     
         const sectionObserver = new IntersectionObserver(
             (entries, observer) => {
@@ -85,6 +88,15 @@ export const Home = () => {
                 id="intro"
                 sectionRef={intro}
                 scrollIndicatorHidden={scrollIndicatorHidden}
+            />
+            <Skills
+                id="skills"
+                sectionRef={skills}
+                visible={visibleSections.includes(skills.current)}
+                index={1}
+                title="Enhancing Skills for the Future"
+                description="Building a toolkit for educators to create effective online learning experiences."
+                buttonText="View skills"
             />
         </div>
     );

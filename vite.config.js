@@ -1,6 +1,8 @@
 // vite.config.js
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import { vitePlugin as remix } from '@remix-run/dev';
+
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
 import remarkFrontmatter from 'remark-frontmatter';
@@ -15,6 +17,12 @@ export default defineConfig({
     assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
     build: {
         assetsInlineLimit: 1024,
+    },
+    resolve: {
+        alias: {
+            '~app': resolve(__dirname, 'app'),
+            '~static': resolve(__dirname, 'static'),
+        },
     },
     plugins: [
         mdx({

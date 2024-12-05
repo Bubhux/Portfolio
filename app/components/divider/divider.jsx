@@ -4,12 +4,12 @@ import styles from './divider.module.css';
 
 
 export const Divider = ({
-    lineWidth,
-    lineHeight,
-    notchWidth,
-    notchHeight,
-    collapseDelay,
-    collapsed,
+    lineWidth = '100%',
+    lineHeight = '2px',
+    notchWidth = '90px',
+    notchHeight = '10px',
+    collapseDelay = 0,
+    collapsed = false,
     className,
     style,
     ...rest
@@ -18,10 +18,10 @@ export const Divider = ({
         className={classes(styles.divider, className)}
         style={cssProps(
             {
-                lineWidth: lineWidth,
-                lineHeight: lineHeight,
-                notchWidth: notchWidth,
-                notchHeight: notchHeight,
+                lineWidth,
+                lineHeight,
+                notchWidth,
+                notchHeight,
                 collapseDelay: numToMs(collapseDelay),
             },
             style
@@ -36,12 +36,3 @@ export const Divider = ({
         />
     </div>
 );
-
-Divider.defaultProps = {
-    lineWidth: '100%',
-    lineHeight: '2px',
-    notchWidth: '90px',
-    notchHeight: '10px',
-    collapsed: false,
-    collapseDelay: 0,
-};

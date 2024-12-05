@@ -19,7 +19,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 export function Skills({
-    id, visible: sectionVisible, sectionRef, index, title, description, buttonText, buttonLink, alternate, ...rest}) {
+    id, visible: sectionVisible, sectionRef, index, title, description, buttonText, buttonLink, alternate, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
@@ -63,12 +63,13 @@ export function Skills({
     }
 
     function skillsDetails(visible) {
+        console.log('Skills Data:', skillsData);
         return (
             <div id={styles.skills} data-visible={visible}>
-    
+
                 <div className={styles.skillItemsWrapper} data-visible={visible}>
                     {skillsData.map((skill, id) => (
-                        <div className={styles.skillItem} key={id}>
+                        <div className={styles.skillItem} key={`${skill}-${index}`}>
                             <div className={styles.skillCard} data-visible={visible}>
                                 <div className={styles.skillContent} data-visible={visible}>
                                     <div className={styles.skillImage}>
@@ -89,7 +90,7 @@ export function Skills({
             </div>
         );
     }
-    
+
     return (
         <Section
             className={styles.summary}

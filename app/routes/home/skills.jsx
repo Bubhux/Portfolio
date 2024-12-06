@@ -63,10 +63,8 @@ export function Skills({
     }
 
     function skillsDetails(visible) {
-        console.log('Skills Data:', skillsData);
         return (
-            <div id={styles.skills} data-visible={visible}>
-
+            <div className={styles.skills} data-visible={visible}>
                 <div className={styles.skillItemsWrapper} data-visible={visible}>
                     {skillsData.map((skill, id) => (
                         <div className={styles.skillItem} key={`${skill}-${index}`}>
@@ -81,7 +79,9 @@ export function Skills({
                                             className={styles.skillImage}
                                         />
                                     </div>
-                                    <span className={styles.skillTitle}>{skill}</span>
+                                    <span className={styles.skillTitle} data-visible={visible}>
+                                        {skill}
+                                    </span>
                                 </div>
                             </div>
                         </div>

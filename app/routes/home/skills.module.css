@@ -6,8 +6,25 @@
 .skills {
     position: relative;
     z-index: 50;
-    border-top: 1px solid #25213b;
+    border: 1px solid #25213b;
+    border-radius: 2%;
     margin: 3rem 0;
+
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-duration: 3s;
+    transition-delay: 0.5s;
+    opacity: 0;
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition-property: transform, opacity;
+        transform: translate3d(800px, 0, 0);
+    }
+
+    &[data-visible='true'] {
+        transform: none;
+        opacity: 1;
+    }
 }
 
 @media (--mediaDesktop) {
@@ -68,6 +85,7 @@
     /* Définit 4 colonnes de largeur égale */
     max-height: calc(4 * 9rem + 3 * 1.5rem);
     /* Calcule la hauteur maximale pour 4 lignes */
+    margin: 0.5rem 0.5rem;
 }
 
 .line {

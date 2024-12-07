@@ -58,21 +58,6 @@
     }
 }
 
-.divider {
-    display: flex;
-    justify-content: center;
-    transform: translateY(-1px);
-}
-
-.dividerInner {
-    width: 75%;
-}
-
-.dividerLine {
-    height: 1px;
-    background: linear-gradient(to right, transparent, #a78bfa, transparent);
-}
-
 .skillsHeader {
     display: flex;
     justify-content: center;
@@ -86,12 +71,6 @@
     max-height: calc(4 * 9rem + 3 * 1.5rem);
     /* Calcule la hauteur maximale pour 4 lignes */
     margin: 0.5rem 0.5rem;
-}
-
-.line {
-    width: 6rem;
-    height: 2px;
-    background-color: #1a1443;
 }
 
 .skillsTitle {
@@ -137,22 +116,6 @@
 
 .skillCard:hover {
     border-color: #a78bfa;
-}
-
-.skillDivider {
-    display: flex;
-    justify-content: center;
-    transform: translateY(-1px);
-}
-
-.skillDividerInner {
-    width: 75%;
-}
-
-.skillDividerLine {
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(to right, transparent, #a78bfa, transparent);
 }
 
 .skillContent {

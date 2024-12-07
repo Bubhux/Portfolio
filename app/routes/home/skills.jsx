@@ -66,13 +66,13 @@ export function Skills({
         return (
             <div className={styles.skills} data-visible={visible}>
                 <div className={styles.skillItemsWrapper} data-visible={visible}>
-                    {skillsData.map((skill, id) => (
+                    {skillsData.map((skill, index) => (
                         <div className={styles.skillItem} key={`${skill}-${index}`}>
                             <div className={styles.skillCard} data-visible={visible}>
                                 <div className={styles.skillContent} data-visible={visible}>
                                     <div className={styles.skillImage}>
                                         <img
-                                            src={skillsImage(skill)?.src}
+                                            src={`/static/svg/skills/${skill}.svg`}
                                             alt={skill}
                                             width={40}
                                             height={40}

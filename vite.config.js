@@ -11,10 +11,11 @@ import rehypeImgSize from 'rehype-img-size';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
 import glsl from 'vite-plugin-glsl';
+import svgr from 'vite-plugin-svgr';
 
 
 export default defineConfig({
-    assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
+    assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl', '**/*.svg'],
     build: {
         assetsInlineLimit: 1024,
     },
@@ -25,6 +26,7 @@ export default defineConfig({
         },
     },
     plugins: [
+        svgr(),
         mdx({
             rehypePlugins: [[rehypeImgSize, { dir: 'app' }], rehypeSlug, rehypePrism],
             remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],

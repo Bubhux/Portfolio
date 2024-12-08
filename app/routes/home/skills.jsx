@@ -8,9 +8,11 @@ import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
 import { useState } from 'react';
 import { media } from '~/utils/style';
+import { Link } from 'react-router-dom';
 
 import { skillsData } from "~/utils/skills";
 import { skillsImage } from "~/utils/skills-image";
+import { skillLinks } from "~/utils/skills-links";
 
 import styles from './skills.module.css';
 import Marquee from "react-fast-marquee";
@@ -66,30 +68,56 @@ export function Skills({
         return (
             <div className={styles.skills} data-visible={visible}>
                 <div className={styles.skillItemsWrapper} data-visible={visible}>
-                    {skillsData.map((skill, index) => (
-                        <div className={styles.skillItem} key={`${skill}-${index}`}>
-                            <div className={styles.skillCard} data-visible={visible}>
-                                <div className={styles.skillContent} data-visible={visible}>
-                                    <div className={styles.skillImage}>
-                                        <img
-                                            src={`/static/svg/skills/${skill}.svg`}
-                                            alt={skill}
-                                            width={40}
-                                            height={40}
-                                            className={styles.skillImage}
-                                        />
+                    {skillsData.map((skill, index) => {
+                        const skillLink = skillLinks[skill];
+                        const isExternal = skillLink ? skillLink.isExternal : false;
+                        const url = skillLink ? skillLink.url : '#';
+
+                        return (
+                            <div className={styles.skillItem} key={`${skill}-${index}`}>
+                                <div className={styles.skillCard} data-visible={visible}>
+                                    <div className={styles.skillContent} data-visible={visible}>
+                                        <div className={styles.skillImage}>
+                                            {isExternal ? (
+                                                <a
+                                                    href={url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={styles.skillImage}
+                                                >
+                                                    <img
+                                                        src={`/static/svg/skills/${skill}.svg`}
+                                                        alt={skill}
+                                                        width={40}
+                                                        height={40}
+                                                        className={styles.skillImage}
+                                                    />
+                                                </a>
+                                            ) : (
+                                                <Link to={url} className={styles.skillImage}>
+                                                    <img
+                                                        src={`/static/svg/skills/${skill}.svg`}
+                                                        alt={skill}
+                                                        width={40}
+                                                        height={40}
+                                                        className={styles.skillImage}
+                                                    />
+                                                </Link>
+                                            )}
+                                        </div>
+                                        <span className={styles.skillTitle} data-visible={visible}>
+                                            {skill}
+                                        </span>
                                     </div>
-                                    <span className={styles.skillTitle} data-visible={visible}>
-                                        {skill}
-                                    </span>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         );
     }
+
 
     return (
         <Section

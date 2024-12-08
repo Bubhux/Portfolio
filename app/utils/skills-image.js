@@ -21,6 +21,7 @@ import deno from '~static/svg/skills/deno.svg';
 import django from '~static/svg/skills/django.svg';
 import docker from '~static/svg/skills/docker.svg';
 import fastify from '~static/svg/skills/fastify.svg';
+import flask from '~static/svg/skills/flask.svg';
 import figma from '~static/svg/skills/figma.svg';
 import firebase from '~static/svg/skills/firebase.svg';
 import flutter from '~static/svg/skills/flutter.svg';
@@ -54,13 +55,17 @@ import photoshop from '~static/svg/skills/photoshop.svg';
 import php from '~static/svg/skills/php.svg';
 import picsart from '~static/svg/skills/picsart.svg';
 import postgresql from '~static/svg/skills/postgresql.svg';
+import postman from '~static/svg/skills/postman.svg';
 import premierepro from '~static/svg/skills/premierepro.svg';
 import python from '~static/svg/skills/python.svg';
 import pytorch from '~static/svg/skills/pytorch.svg';
 import react from '~static/svg/skills/react.svg';
 import ruby from '~static/svg/skills/ruby.svg';
+import sass from '~static/svg/skills/sass.svg';
 import selenium from '~static/svg/skills/selenium.svg';
+import sentry from '~static/svg/skills/sentry.svg';
 import sketch from '~static/svg/skills/sketch.svg';
+import sqlite from '~static/svg/skills/sqlite.svg';
 import strapi from '~static/svg/skills/strapi.svg';
 import svelte from '~static/svg/skills/svelte.svg';
 import swift from '~static/svg/skills/swift.svg';
@@ -69,7 +74,7 @@ import tensorflow from '~static/svg/skills/tensorflow.svg';
 import typescript from '~static/svg/skills/typescript.svg';
 import unity from '~static/svg/skills/unity.svg';
 import vitejs from '~static/svg/skills/vitejs.svg';
-import vue from '~static/svg/skills/vue.svg';
+import vuejs from '~static/svg/skills/vuejs.svg';
 import vuetifyjs from '~static/svg/skills/vuetifyjs.svg';
 import webix from '~static/svg/skills/webix.svg';
 import wolframalpha from '~static/svg/skills/wolframalpha.svg';
@@ -79,6 +84,16 @@ import wordpress from '~static/svg/skills/wordpress.svg';
 export const skillsImage = (skill) => {
     const skillID = skill.toLowerCase();
     switch (skillID) {
+        case 'sqlite':
+            return sqlite;
+        case 'sentry':
+            return sentry;
+        case 'postman':
+            return postman;
+        case 'sass':
+            return sass;
+        case 'flask':
+            return flask;
         case 'gcp':
             return gcp;
         case 'html':
@@ -109,8 +124,8 @@ export const skillsImage = (skill) => {
             return svelte;
         case 'typescript':
             return typescript;
-        case 'vue':
-            return vue;
+        case 'vuejs':
+            return vuejs;
         case 'bootstrap':
             return bootstrap;
         case 'bulma':

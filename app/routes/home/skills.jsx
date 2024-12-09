@@ -16,8 +16,6 @@ import { skillLinks } from "~/utils/skills-links";
 
 import styles from './skills.module.css';
 import Marquee from "react-fast-marquee";
-import pkg from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 export function Skills({
@@ -66,7 +64,7 @@ export function Skills({
 
     function skillsDetails(visible) {
         return (
-            <div className={styles.skills} data-visible={visible}>
+            <div className={styles.skillsItemsList} data-visible={visible}>
                 <div className={styles.skillItemsWrapper} data-visible={visible}>
                     {skillsData.map((skill, index) => {
                         const skillLink = skillLinks[skill];
@@ -86,7 +84,7 @@ export function Skills({
                                                     className={styles.skillImage}
                                                 >
                                                     <img
-                                                        src={`/static/svg/skills/${skill}.svg`}
+                                                        src={skillsImage(skill)}
                                                         alt={skill}
                                                         width={40}
                                                         height={40}
@@ -96,7 +94,7 @@ export function Skills({
                                             ) : (
                                                 <Link to={url} className={styles.skillImage}>
                                                     <img
-                                                        src={`/static/svg/skills/${skill}.svg`}
+                                                        src={skillsImage(skill)}
                                                         alt={skill}
                                                         width={40}
                                                         height={40}
@@ -118,10 +116,9 @@ export function Skills({
         );
     }
 
-
     return (
         <Section
-            className={styles.summary}
+            className={styles.skills}
             data-alternate={alternate}
             data-first={index === 1}
             onFocus={() => setFocused(true)}
@@ -133,7 +130,7 @@ export function Skills({
             tabIndex={-1}
             {...rest}
         >
-            <div className={styles.content}>
+            <div className={styles.skillsContent}>
                 <Transition in={sectionVisible || focused}>
                     {({ visible }) => (
                         <>

@@ -120,6 +120,7 @@
 
             &:hover::after {
                 background: color-mix(in lab, var(--text) 10%, transparent);
+                border-radius: 50%;
             }
         }
 

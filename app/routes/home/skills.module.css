@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.skills {
+.skillsItemsList {
     position: relative;
     z-index: 50;
     border: 1px solid #25213b;
@@ -28,32 +28,32 @@
 }
 
 @media (--mediaDesktop) {
-    .skills {
+    .skillsItemsList {
         margin: 6rem 0;
         max-width: 920px;
     }
 }
 
 @media (--mediaLaptop) {
-    .skills {
+    .skillsItemsList {
         max-width: 780px;
     }
 }
 
 @media (--mediaMobile) {
-    .skills {
+    .skillsItemsList {
         top: calc(var(--space3XL) * -1);
     }
 }
 
 @media (--mediaMobileS) {
-    .skills {
+    .skillsItemsList {
         top: calc(var(--spaceXL) * -1);
     }
 }
 
 @media (max-width: 820px) and (max-height: 420px) {
-    .skills {
+    .skillsItemsList {
         top: calc(var(--spaceM) * -1);
     }
 }
@@ -66,11 +66,30 @@
 
 .skillItemsWrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    /* Définit 4 colonnes de largeur égale */
-    max-height: calc(4 * 9rem + 3 * 1.5rem);
-    /* Calcule la hauteur maximale pour 4 lignes */
-    margin: 0.5rem 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ajustement automatique du nombre de colonnes */
+    gap: 1rem; /* Espace entre les éléments */
+    overflow: hidden; /* Empêche les éléments de dépasser le conteneur */
+    max-width: 100%; /* Limite la largeur maximale à 100% du parent */
+    padding: 1rem;
+}
+
+.skillItem {
+    width: 100%; /* S'assure que chaque item prend toute la largeur de la colonne */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+    /*margin: 0.5rem;*/
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.skillImage img {
+    max-width: 100%; /* Assure que l'image reste à l'intérieur de son conteneur */
+    height: auto; /* Ajuste la hauteur en fonction de la largeur */
+    object-fit: contain; /* Garde les proportions de l'image */
 }
 
 .skillsTitle {
@@ -86,22 +105,8 @@
     margin: 3rem 0;
 }
 
-.skillItem {
-    width: 9rem;
-    min-width: fit-content;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s;
-    margin: 0.5rem 0.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-}
-
 .skillItem:hover {
-    transform: scale(1.15);
+    transform: scale(1.10);
 }
 
 .skillCard {
@@ -127,10 +132,6 @@
     padding: 1.5rem;
 }
 
-.skillImage {
-    height: 2rem;
-}
-
 @media (--mediaDesktop) {
     .skillImage {
         height: 2.5rem;
@@ -148,7 +149,7 @@
     }
 }
 
-.summary {
+.skills {
     height: 100vh;
     width: 100%;
     max-height: 1080px;
@@ -182,7 +183,7 @@
     }
 }
 
-.content {
+.skillsContent {
     --textColumnWidth: 36%;
 
     width: 100%;
@@ -193,7 +194,7 @@
     grid-template-columns: var(--textColumnWidth) 1fr;
     grid-column-gap: var(--space2XL);
 
-    .summary[data-alternate='true'] & {
+    .skillsContent[data-alternate='true'] & {
         grid-template-columns: 1fr var(--textColumnWidth);
     }
 
@@ -202,7 +203,7 @@
     }
 
     @media (--mediaTablet) {
-        .summary[data-alternate='true'] & {
+        .skillsContent[data-alternate='true'] & {
             grid-template-columns: 100%;
         }
 

@@ -10,9 +10,10 @@ import { Link as RouterLink } from '@remix-run/react';
 import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { cssProps } from '~/utils/style';
-import config from '~/config.json';
 import { useHydrated } from '~/hooks/useHydrated';
+
 import styles from './intro.module.css';
+import config from '~/config.json';
 
 
 const DisplacementParticules = lazy(() =>
@@ -55,14 +56,14 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
 
     useEffect(() => {
         setIsAnimating(true);
-
+        console.log('Animation started');
         const timer = setTimeout(() => {
             setIsAnimating(false);
+            console.log('Animation ended');
         }, 5500);
-
         return () => clearTimeout(timer);
     }, []);
-
+    
     return (
         <Section
             className={styles.intro}

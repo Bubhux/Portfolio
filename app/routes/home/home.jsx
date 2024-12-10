@@ -3,6 +3,7 @@ import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
 import { Skills } from './skills';
 import { useEffect, useRef, useState } from 'react';
+import { ProjectSummary } from './project-summary';
 
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -40,10 +41,13 @@ export const Home = () => {
     const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
     const intro = useRef();
     const skills = useRef();
+    const projectOne = useRef();
+    const projectTwo = useRef();
+    const projectThree = useRef();
 
     useEffect(() => {
-        const sections = [intro, skills];
-    
+        const sections = [intro, skills, projectOne, projectTwo, projectThree];
+
         const sectionObserver = new IntersectionObserver(
             (entries, observer) => {
                 entries.forEach(entry => {
@@ -57,30 +61,29 @@ export const Home = () => {
             },
             { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
         );
-    
+
         const indicatorObserver = new IntersectionObserver(
             ([entry]) => {
                 setScrollIndicatorHidden(!entry.isIntersecting);
             },
             { rootMargin: '-100% 0px 0px 0px' }
         );
-    
+
         sections.forEach(section => {
             if (section.current) {  // Vérification que le ref est bien défini
                 sectionObserver.observe(section.current);
             }
         });
-    
+
         if (intro.current) {  // Vérification que intro est bien défini
             indicatorObserver.observe(intro.current);
         }
-    
+
         return () => {
             sectionObserver.disconnect();
             indicatorObserver.disconnect();
         };
     }, [visibleSections]);
-    
 
     return (
         <div className={styles.home}>
@@ -97,6 +100,37 @@ export const Home = () => {
                 title="Enhancing Skills for the Future"
                 description="Building a toolkit for educators to create effective online learning experiences."
                 buttonText="View skills"
+            />
+            <ProjectSummary
+                id="project-1"
+                sectionRef={projectOne}
+                visible={visibleSections.includes(projectOne.current)}
+                index={1}
+                title="Developing a Business CRM"
+                description="Creating a comprehensive CRM system to streamline business operations and enhance customer relationships"
+                buttonText="View project"
+                buttonLink="/projects/crm"
+            />
+            <ProjectSummary
+                id="project-2"
+                alternate
+                sectionRef={projectTwo}
+                visible={visibleSections.includes(projectTwo.current)}
+                index={2}
+                title="Todo List with Calendar Integration"
+                description="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently"
+                buttonText="View project"
+                buttonLink="https://todo-calendar.com"
+            />
+            <ProjectSummary
+                id="project-3"
+                sectionRef={projectThree}
+                visible={visibleSections.includes(projectThree.current)}
+                index={3}
+                title="Creative Portfolio Design"
+                description="Designing a visually engaging and interactive portfolio to showcase creative work and professional projects"
+                buttonText="View project"
+                buttonLink="/projects/portfolio-design"
             />
         </div>
     );

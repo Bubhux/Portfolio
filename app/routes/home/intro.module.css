@@ -152,6 +152,32 @@
     opacity: 1;
 }
 
+.barVariant {
+    position: relative;
+    display: inline-block; /* Assurez-vous que la barre soit en ligne avec le texte */
+    background: var(--accent);
+    height: 4px; /* Ajustez selon vos besoins */
+    width: 100%; /* Par défaut, occuper tout l'espace */
+}
+
+.animateVariant {
+    animation: explode 0.5s ease forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(1.5); /* Élargir la barre */
+        opacity: 0.7; /* Changer l'opacité pour un effet visuel */
+    }
+    100% {
+        transform: scaleX(1); /* Retour à la taille normale */
+        opacity: 1; /* Rétablir l'opacité */
+    }
+}
+
 .word {
     position: relative;
     display: flex;

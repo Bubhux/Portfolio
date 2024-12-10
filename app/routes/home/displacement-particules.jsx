@@ -8,13 +8,15 @@ import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Points, PointsMat
 import { media } from '~/utils/style';
 import { throttle } from '~/utils/throttle';
 import { cleanRenderer, cleanScene, removeLights } from '~/utils/three';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { shaderMaterial } from '@react-three/drei';
+
+import * as THREE from 'three';
+
 import fragmentShader from './displacement-particules-fragment.glsl?raw';
 import vertexShader from './displacement-particules-vertex.glsl?raw';
 import styles from './displacement-particules.module.css';
 import galaxyTexture from '/static/img/blue-gradient.png';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { shaderMaterial } from '@react-three/drei';
-import * as THREE from 'three';
 
 
 const springConfig = {

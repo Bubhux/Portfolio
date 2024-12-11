@@ -1,4 +1,4 @@
-// app/routes/home/skills.jsx
+// app/components/skills.jsx
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';

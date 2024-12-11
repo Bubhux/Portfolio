@@ -1,9 +1,9 @@
 // app/routes/home/home.jsx
+import { ProjectSummary } from '~/components/project-summary';
+import { Skills } from '~/components/skills';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
-import { Skills } from './skills';
 import { useEffect, useRef, useState } from 'react';
-import { ProjectSummary } from './project-summary';
 
 import config from '~/config.json';
 import styles from './home.module.css';

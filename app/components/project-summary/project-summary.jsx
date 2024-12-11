@@ -1,3 +1,4 @@
+// app/components/project-summary.jsx
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
@@ -11,19 +12,8 @@ import { media } from '~/utils/style';
 import styles from './project-summary.module.css';
 
 
-export function ProjectSummary({
-    id,
-    visible: sectionVisible,
-    sectionRef,
-    index,
-    title,
-    description,
-    model,
-    buttonText,
-    buttonLink,
-    alternate,
-    ...rest
-}) {
+export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, description, model, buttonText, buttonLink, alternate, ...rest }) {
+
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
     const titleId = `${id}-title`;

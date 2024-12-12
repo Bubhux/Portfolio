@@ -76,30 +76,33 @@
         &:active,
         &[aria-current='page'] {
             color: var(--textBody);
+            transform: scale(1.2);
         }
 
         &::after {
             content: '';
             position: absolute;
-            inset-inline-start: var(--spaceS);
-            inset-inline-end: var(--spaceS);
-            block-size: 4px;
+            inset-inline-start: 45%; /* Centre horizontalement */
+            inset-block-end: 40px; /* Positionne le point légèrement en dessous */
+            width: 8px; /* Largeur du point */
+            height: 8px; /* Hauteur du point */
             background: var(--accent);
-            transform: scaleY(0) translateZ(0);
-            transform-origin: bottom;
+            border-radius: 50%; /* Crée un cercle */
+            opacity: 0; /* Cache le point par défaut */
+            transform-origin: center;
         }
 
         @media (--mediaUseMotion) {
             &::after {
-                transition: transform var(--durationM) var(--bezierFastoutSlowin);
+                transition: transform var(--durationM) var(--bezierFastoutSlowin), opacity var(--durationM) var(--bezierFastoutSlowin);
             }
         }
 
         &:hover::after,
         &:active::after,
         &[aria-current='page']::after {
-            transform: scaleY(1) translateZ(0);
-            transform-origin: top;
+            transform: scale(1); /* Point visible */
+            opacity: 1; /* Rendre le point visible */
         }
     }
 
@@ -141,6 +144,7 @@
         &:hover,
         &:active {
             color: var(--accent);
+            transform: scale(1.2);
         }
     }
 

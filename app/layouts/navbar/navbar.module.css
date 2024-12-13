@@ -191,13 +191,13 @@
         text-decoration: none;
         color: var(--textBody);
         padding: var(--spaceL);
+        position: relative; /* Position relative pour le positionnement des traits */
+        top: calc(var(--spaceM) * -1);
         opacity: 0;
         transition-property: opacity;
         transition-duration: var(--durationS);
         transition-timing-function: var(--bezierFastoutSlowin);
         transition-delay: var(--transitionDelay);
-        position: relative;
-        top: calc(var(--spaceM) * -1);
 
         @media (--mediaUseMotion) {
             transition-property: transform, opacity;
@@ -213,29 +213,52 @@
             --headerNavFontSize: calc((18 / 16) * 1rem);
         }
 
-        &::after {
+        span {
+            position: relative; /* Pour permettre le z-index sur le texte */
+            z-index: 1; /* Assure que le texte est au-dessus des traits */
+            padding: 0 1rem; /* Espace autour du texte pour éviter que les traits le traversent */
+            transition: font-size var(--durationM) var(--bezierFastoutSlowin);
+        }
+
+        &:hover span { /* Ajouter cette règle */
+            font-size: calc(var(--headerNavFontSize) * 1.2); /* Augmente la taille de police de 10% au survol */
+        }
+
+        & .leftLine,
+        & .rightLine {
             content: '';
             position: absolute;
-            top: 50%;
-            right: var(--space3XL);
-            left: var(--space3XL);
-            height: 4px;
+            top: 50%; /* Positionne le trait au centre verticalement */
+            height: 4px; /* Hauteur du trait */
             background: var(--accent);
-            transform: scaleX(0) translateY(-1px);
-            transform-origin: right;
+            transform: scaleX(0) translateY(-50%); /* Centre verticalement avec translateY */
+            z-index: 0; /* Place le trait derrière le texte */
+            transition: transform var(--durationM) var(--bezierFastoutSlowin); /* Transition pour les traits */
         }
 
-        @media (--mediaUseMotion) {
-            &::after {
-                transition: transform var(--durationM) var(--bezierFastoutSlowin);
-            }
+        & .leftLine {
+            left: 0; /* Commence à gauche */
+            transform-origin: right; /* Change le point d'origine pour la droite */
+            right: 50%; /* S'étend vers la gauche */
+            margin-right: 3rem; /* Espace entre le trait et le texte */
+            margin-left: 2rem; /* Crée un espace à gauche entre le trait et le bord de page */
         }
 
-        &:hover::after,
-        &:active::after,
-        &:focus::after {
-            transform: scaleX(1) translateY(-1px);
-            transform-origin: left;
+        & .rightLine {
+            right: 0; /* Commence à droite */
+            transform-origin: left; /* Change le point d'origine pour la gauche */
+            left: 50%; /* S'étend vers la droite */
+            margin-left: 3rem; /* Espace entre le trait et le texte */
+            margin-right: 2rem; /* Crée un espace à droite entre le trait et le bord de page */
+        }
+
+        &:hover .leftLine,
+        &:active .leftLine,
+        &:focus .leftLine,
+        &:hover .rightLine,
+        &:active .rightLine,
+        &:focus .rightLine {
+            transform: scaleX(1) translateY(-50%); /* Les traits s'étendent au survol */
         }
 
         &[data-visible='true'] {

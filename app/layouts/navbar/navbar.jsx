@@ -194,7 +194,9 @@ export const Navbar = () => {
                                     ),
                                 })}
                             >
-                                {label}
+                                <span className={styles.leftLine}></span>
+                                <span>{label}</span>
+                                <span className={styles.rightLine}></span>
                             </RouterLink>
                         ))}
                         <NavbarIcons />

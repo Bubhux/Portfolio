@@ -1,3 +1,4 @@
+// app/components/section/section.jsx
 import { forwardRef } from 'react';
 import { classes } from '~/utils/style';
 import styles from './section.module.css';

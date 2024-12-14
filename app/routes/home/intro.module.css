@@ -139,7 +139,7 @@
 }
 
 .bar {
-    margin-right: 10px;
+    margin-right: 12px;
 
     &[data-plus='true']::before {
         content: '|';    
@@ -148,15 +148,15 @@
 }
 
 .animate {
-    animation: slideInFromLeft 4.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    animation: slideInFromLeft 3.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
     opacity: 1;
 }
 
 .barVariant {
     position: relative;
-    display: inline-block; /* Assurez-vous que la barre soit en ligne avec le texte */
+    display: inline-block;
     background: var(--accent);
-    height: 4px; /* Ajustez selon vos besoins */
+    height: 4px;
     width: 100%; /* Par défaut, occuper tout l'espace */
 }
 
@@ -201,7 +201,7 @@
         z-index: var(--zIndex1);
         will-change: transform;
         transform-origin: left; /* Origine de l'étirement à gauche */
-        width: 120%; /* Longueur de la barre */
+        width: 110%; /* Longueur de la barre */
     }
 
     &[data-status='entering'] {

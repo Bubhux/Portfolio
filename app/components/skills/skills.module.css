@@ -5,10 +5,10 @@
 
 .skillsItemsList {
     position: relative;
-    z-index: 50;
-    border: 1px solid #25213b;
+    z-index: var(--zIndex1);
+    /*border: 1px solid var(--primary);*/
     border-radius: 2%;
-    margin: 3rem 0;
+    /*margin: 3rem 0;*/
 
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -113,14 +113,14 @@
     height: 100%;
     width: 100%;
     border-radius: 0.5rem;
-    border: 1px solid #1f223c;
-    background-color: #11152c;
+    border: 1px solid oklch(65.55% 0.006 205.48);
+    background-color: var(--primary);
     box-shadow: none;
     transition: all 0.5s;
 }
 
 .skillCard:hover {
-    border-color: #a78bfa;
+    border-color: oklch(38.31% 0.006 205.48);
 }
 
 .skillContent {
@@ -193,6 +193,7 @@
     display: grid;
     grid-template-columns: var(--textColumnWidth) 1fr;
     grid-column-gap: var(--space2XL);
+    max-height: 80vh; /* Limite la hauteur à 80% de la fenêtre */
 
     .skillsContent[data-alternate='true'] & {
         grid-template-columns: 1fr var(--textColumnWidth);

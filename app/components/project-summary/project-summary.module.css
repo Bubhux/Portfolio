@@ -219,7 +219,7 @@
     }
 
     &[data-visible='true'] {
-        transform: translateX(0);
+        transform: translateX(85px);
         opacity: 1;
     }
 }

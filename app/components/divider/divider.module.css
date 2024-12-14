@@ -17,7 +17,7 @@
         transition-timing-function: var(--bezierFastoutSlowin);
         transition-delay: var(--collapseDelay);
         transform-origin: left center;
-        transform: scaleX(1);
+        transform: scaleX(2);
 
         @media (--mediaUseMotion) {
             transition-property: transform, opacity;

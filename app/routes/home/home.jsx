@@ -96,7 +96,7 @@ export const Home = () => {
                 id="skills"
                 sectionRef={skills}
                 visible={visibleSections.includes(skills.current)}
-                index={1}
+                //index={1}
                 title="Enhancing Skills for the Future"
                 description="Building a toolkit for educators to create effective online learning experiences."
                 buttonText="View skills"

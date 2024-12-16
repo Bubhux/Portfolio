@@ -7,12 +7,11 @@ import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
 import { useState } from 'react';
 import { media } from '~/utils/style';
-import { Card } from 'react-bootstrap';
-import { Button } from '~/components/button';
 import { Link } from 'react-router-dom';
 
-import { CgWebsite } from 'react-icons/cg';
-import { BsGithub } from 'react-icons/bs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './cards.module.css';
 
@@ -57,23 +56,22 @@ export function Cards({
                     <Text className={styles.cardText} data-visible={visible} as="p">
                         {description}
                     </Text>
-                    <div className={styles.buttonContainer}>
-                        <Button href={ghLink} target="_blank">
-                            <BsGithub />
+                    <div className={styles.buttonContainer} data-visible={visible}>
+                        <a href={ghLink} target="_blank" className={styles.button} data-visible={visible}>
+                            <FontAwesomeIcon icon={faGithub} />
                             GitHub
-                        </Button>
+                        </a>
                         {!isBlog && demoLink && (
-                            <Button href={demoLink} target="_blank">
-                                <CgWebsite />
+                            <a href={demoLink} target="_blank" className={styles.button} data-visible={visible}>
+                                <FontAwesomeIcon icon={faLink} />
                                 Demo
-                            </Button>
+                            </a>
                         )}
                     </div>
                 </div>
             </div>
         );
     }
-       
 
     return (
         <Section

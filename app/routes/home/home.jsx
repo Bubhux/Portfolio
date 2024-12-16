@@ -3,6 +3,7 @@ import { ProjectSummary } from '~/components/project-summary';
 import { Skills } from '~/components/skills';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
+import { Projects } from '~/components/cards/projects';
 import { useEffect, useRef, useState } from 'react';
 
 import config from '~/config.json';
@@ -111,17 +112,19 @@ export const Home = () => {
                 buttonText="View project"
                 buttonLink="/projects/crm"
             />
-            <ProjectSummary
-                id="project-2"
-                //alternate
-                sectionRef={projectTwo}
-                visible={visibleSections.includes(projectTwo.current)}
-                index={2}
-                title="Todo List with Calendar Integration"
-                description="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently"
-                buttonText="View project"
-                buttonLink="https://todo-calendar.com"
-            />
+            <div className={styles.projectSection}>
+                <ProjectSummary
+                    id="project-2"
+                    sectionRef={projectTwo}
+                    visible={visibleSections.includes(projectTwo.current)}
+                    index={2}
+                    title="Todo List with Calendar Integration"
+                    description="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently"
+                    buttonText="View project"
+                    buttonLink="https://todo-calendar.com"
+                />
+                <Projects />
+            </div>
             <ProjectSummary
                 id="project-3"
                 sectionRef={projectThree}

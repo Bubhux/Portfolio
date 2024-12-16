@@ -36,7 +36,7 @@
 
 .projectCards {
     /*transition-property: opacity;*/
-    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    /*transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);*/
     /*transition-duration: 3s;*/
     /*transition-delay: 0.5s;*/
     /*opacity: 0;*/
@@ -52,16 +52,16 @@
     flex-direction: column;
     align-items: center;
     /*box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459);*/
-    color: white;
-    background-color: transparent;
+    /*color: white;*/
+    /*background-color: transparent;*/
     opacity: 0.9;
     /*transition: all 0.5s ease;*/
     height: 750px; /* Ajuste la hauteur pour obtenir une forme de carte verticale */
     width: 500px; /* Ajuste pour contrôler la largeur */
-    border: 2px solid #ddd;
-    overflow: hidden;
+    border: 2px solid #383838;
+    /*overflow: hidden;*/
     border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; /* Transition fluide pour transform, box-shadow et opacity */
+    /*transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; /* Transition fluide pour transform, box-shadow et opacity */
 
     &[data-visible='true'] {
         transform: none;
@@ -70,8 +70,9 @@
 }
 
 .projectCardView:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561);
+    /*transform: scale(1.02);*/
+    box-shadow: 0 2px 2px 4px oklch(35.55% 0.006 205.48);
+    transition: font-size 0.2s ease;
 }
 
 .cardImgTop {
@@ -106,3 +107,41 @@
     font-weight: bold;
     padding-top: 150px;
 }
+
+.button svg {
+    margin-right: 8px;
+    font-size: 1.2rem; /* Taille initiale des icônes */
+    transition: transform 0.2s ease; /* Transition fluide pour la transformation */
+}
+
+.button:hover svg {
+    transform: scale(1.1); /* Agrandissement des icônes au survol */
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: oklch(65.55% 0.006 205.48); /* Couleur spécifiée */
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s ease; /* Ajout de la transition pour transform */
+}
+
+.button:hover {
+    background-color: oklch(65.55% 0.006 205.48); /* Conserve la même couleur */
+    transform: scale(1.05); /* Agrandissement du bouton lui-même */
+    border-radius: 5px;
+}
+
+.button svg {
+    margin-right: 8px;
+    font-size: 1.2rem; /* Augmente la taille des icônes */
+    transition: transform 0.2s ease; /* Transition douce lors du survol */
+}
+
+/*.button:hover svg {
+    font-size: 1.3rem;
+}*/

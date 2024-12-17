@@ -51,4 +51,8 @@
             clip-path: polygon(0 -1px, 0 -1px, 10px 100%, 10px 100%);
         }
     }
+
+    .hidden {
+        display: none;
+    }    
 }

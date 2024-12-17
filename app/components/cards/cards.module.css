@@ -3,24 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.projectTwoContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px; /* espace entre la carte du projet et la section */
-    margin-top: 30px;
-
-    @media (prefers-reduced-motion: no-preference) {
-        transition-property: transform, opacity;
-        transform: translate3d(800px, 0, 0);
-    }
-
-    &[data-visible='true'] {
-        transform: none;
-        opacity: 1;
-    }
-}
-
 .projectSection {
     display: flex;
     justify-content: space-between; /* Espacement entre les deux éléments */
@@ -28,10 +10,7 @@
     margin-top: 30px;
     align-items: flex-start; /* Aligne les éléments sur le même axe */
 
-    &[data-visible='true'] {
-        transform: none;
-        opacity: 1;
-    }
+
 }
 
 .projectCards {
@@ -62,11 +41,11 @@
     /*overflow: hidden;*/
     border-radius: 10px;
     /*transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; /* Transition fluide pour transform, box-shadow et opacity */
+    margin-left: 1300px;
+    margin-top: -940px;
+    /*transform: translate(1300px, -940px);*/
 
-    &[data-visible='true'] {
-        transform: none;
-        opacity: 1;
-    }
+
 }
 
 .projectCardView:hover {

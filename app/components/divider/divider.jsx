@@ -10,6 +10,7 @@ export const Divider = ({
     notchHeight = '10px',
     collapseDelay = 0,
     collapsed = false,
+    hideLine = false,
     className,
     style,
     ...rest
@@ -28,7 +29,7 @@ export const Divider = ({
         )}
         {...rest}
     >
-        <div className={styles.line} data-collapsed={collapsed} />
+        <div className={classes(styles.line, hideLine && styles.hidden)} data-collapsed={collapsed} />
         <div
             className={styles.notch}
             data-collapsed={collapsed}

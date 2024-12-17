@@ -17,11 +17,10 @@ import styles from './cards.module.css';
 
 
 export function Cards({
-    id, visible: sectionVisible, sectionRef, index, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {
+    visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
-    const titleId = `${id}-title`;
     const isMobile = width <= media.tablet;
 
     function renderDetails(visible) {
@@ -30,9 +29,10 @@ export function Cards({
                 <div aria-hidden className={styles.index}>
                     <Divider
                         notchWidth="64px"
-                        notchHeight="8px"
+                        notchHeight="0px"
                         collapsed={!visible}
                         collapseDelay={1000}
+                        hideLine={true}
                     />
                 </div>
             </div>
@@ -74,38 +74,27 @@ export function Cards({
     }
 
     return (
-        <Section
-            className={styles.projectCards}
-            data-alternate={alternate}
-            data-first={index === 1}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            as="section"
-            ref={sectionRef}
-            id={id}
-            tabIndex={-1}
-            {...rest}
-        >
-            <div className={styles.projectCardsContent}>
-                <Transition in={sectionVisible || focused}>
-                    {({ visible }) => (
-                        <>
-                            {!alternate && !isMobile && (
-                                <>
-                                    {renderDetails(visible)}
-                                    {ProjectCards(visible)}
-                                </>
-                            )}
-                            {(alternate || isMobile) && (
-                                <>
-                                    {renderDetails(visible)}
-                                    {ProjectCards(visible)}
-                                </>
-                            )}
-                        </>
-                    )}
-                </Transition>
-            </div>
-        </Section>
+        <div className={styles.projectCardsContent}>
+            <Transition in={sectionVisible || focused}>
+                {({ visible }) => (
+                    <>
+                        {!alternate && !isMobile && (
+                            <>
+                                {renderDetails(visible)}
+                                {ProjectCards(visible)}
+                            </>
+                        )}
+                        {(alternate || isMobile) && (
+                            <>
+                                {renderDetails(visible)}
+                                {ProjectCards(visible)}
+                            </>
+                        )}
+                    </>
+                )}
+            </Transition>
+        </div>
     );
 }
+
+export default Cards;

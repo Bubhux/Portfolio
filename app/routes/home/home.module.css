@@ -4,5 +4,17 @@
 @tailwind utilities;
 
 .home {
-    overflow-x: hidden;
+    overflow-x: hidden;      /* Empêche le débordement horizontal */
+}
+
+.projectSection {
+    display: flex;                  /* Conteneur flex pour les projets */
+    justify-content: center;        /* Aligne les éléments enfants horizontalement */
+    gap: 100px;                     /* Espacement entre les éléments */
+    margin-top: 10px;               /* Espace au-dessus des projets */
+    align-items: flex-start;        /* Aligne les éléments au sommet */
+    max-width: 3200px;              /* Largeur maximale de la section */
+    width: 100%;                    /* Prend toute la largeur de la page */
+    flex-wrap: wrap;
+    flex-direction: column;
 }

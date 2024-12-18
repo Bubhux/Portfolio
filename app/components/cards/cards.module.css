@@ -3,61 +3,52 @@
 @tailwind components;
 @tailwind utilities;
 
-.projectSection {
-    display: flex;
-    justify-content: space-between; /* Espacement entre les deux éléments */
-    gap: 20px; /* Espacement spécifique entre project-2 et la carte */
-    margin-top: 30px;
-    align-items: flex-start; /* Aligne les éléments sur le même axe */
-
-
-}
-
-.projectCards {
-    /*transition-property: opacity;*/
-    /*transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);*/
-    /*transition-duration: 3s;*/
-    /*transition-delay: 0.5s;*/
-    /*opacity: 0;*/
-
-    &[data-visible='true'] {
-        transform: none;
-        opacity: 1;
-    }
-}
 
 .projectCardView {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.459);*/
-    /*color: white;*/
-    /*background-color: transparent;*/
     opacity: 0.9;
-    /*transition: all 0.5s ease;*/
-    height: 750px; /* Ajuste la hauteur pour obtenir une forme de carte verticale */
-    width: 500px; /* Ajuste pour contrôler la largeur */
+    height: 750px;
+    width: 500px;
     border: 2px solid #383838;
-    /*overflow: hidden;*/
     border-radius: 10px;
-    /*transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; /* Transition fluide pour transform, box-shadow et opacity */
-    margin-left: 1300px;
-    margin-top: -940px;
-    /*transform: translate(1300px, -940px);*/
+    /*margin-left: 1300px;*/
+    /*margin-top: -940px;*/
+    transform: translate(1500px, -1080px);
 
+    @media (--mediaDesktop) {
+        margin: var(--space2XL) 0;
+    }
 
-}
+    @media (--mediaTablet) {
+        height: auto;
+        margin: var(--space3XL) 0;
+    }
 
-.projectCardView:hover {
-    /*transform: scale(1.02);*/
-    box-shadow: 0 2px 2px 4px oklch(35.55% 0.006 205.48);
-    transition: font-size 0.2s ease;
+    @media (--mediaMobile) {
+        padding-bottom: var(--space4XL);
+        margin-bottom: 0;
+    }
+
+    &[data-first='true'] {
+        margin-top: 0;
+
+        @media (--mediaTablet) {
+            margin-top: 0;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 2px 2px 4px oklch(35.55% 0.006 205.48);
+        transition: font-size 0.2s ease;
+    }
 }
 
 .cardImgTop {
     width: 100%;
-    height: 150px; /* Contrôle la hauteur de l'image */
-    object-fit: cover; /* Ajuste l'image pour couvrir sans déformer */
+    height: 150px;
+    object-fit: cover;
 }
 
 .cardBody {
@@ -66,12 +57,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    flex-grow: 1; /* Permet au contenu de remplir l'espace disponible */
+    flex-grow: 1;
 }
 
 .cardText {
-    padding: 5px 5px; /* Ajoute un espace pour éviter que le texte touche les bords */
-    /*text-align: justify;*/
+    padding: 5px 5px;
 }
 
 .buttonContainer {
@@ -87,40 +77,30 @@
     padding-top: 150px;
 }
 
-.button svg {
-    margin-right: 8px;
-    font-size: 1.2rem; /* Taille initiale des icônes */
-    transition: transform 0.2s ease; /* Transition fluide pour la transformation */
-}
-
-.button:hover svg {
-    transform: scale(1.1); /* Agrandissement des icônes au survol */
-}
-
 .button {
     display: inline-flex;
     align-items: center;
     padding: 10px 20px;
     text-decoration: none;
-    background-color: oklch(65.55% 0.006 205.48); /* Couleur spécifiée */
+    background-color: oklch(65.55% 0.006 205.48);
     color: white;
     border-radius: 5px;
     font-size: 14px;
-    transition: background-color 0.3s, transform 0.2s ease; /* Ajout de la transition pour transform */
-}
+    transition: background-color 0.3s, transform 0.2s ease;
 
-.button:hover {
-    background-color: oklch(65.55% 0.006 205.48); /* Conserve la même couleur */
-    transform: scale(1.05); /* Agrandissement du bouton lui-même */
-    border-radius: 5px;
-}
+    svg {
+        margin-right: 8px;
+        font-size: 1.2rem;
+        transition: transform 0.2s ease;
+    }
 
-.button svg {
-    margin-right: 8px;
-    font-size: 1.2rem; /* Augmente la taille des icônes */
-    transition: transform 0.2s ease; /* Transition douce lors du survol */
-}
+    &:hover {
+        background-color: oklch(65.55% 0.006 205.48);
+        transform: scale(1.05);
+        border-radius: 5px;
 
-/*.button:hover svg {
-    font-size: 1.3rem;
-}*/
+        svg {
+            transform: scale(1.1);
+        }
+    }
+}

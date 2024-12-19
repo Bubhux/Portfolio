@@ -5,7 +5,6 @@ import { ProjectSummary } from '~/components/project-summary';
 import { Skills } from '~/components/skills';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
-import { Projects } from '~/components/cards/projects';
 
 import laptopTodo from '~/assets/img-projects/laptop-todo.png';
 import laptopCRM from '~/assets/img-projects/laptop-crm.png';
@@ -49,11 +48,9 @@ export const Home = () => {
     const projectOne = useRef();
     const projectTwo = useRef();
     const projectThree = useRef();
-    const projectCardOne = useRef();
-    const projectCardTwo = useRef();
 
     useEffect(() => {
-        const sections = [intro, skills, projectOne, projectTwo, projectThree, projectCardOne, projectCardTwo];
+        const sections = [intro, skills, projectOne, projectTwo, projectThree];
 
         const sectionObserver = new IntersectionObserver(
             (entries, observer) => {
@@ -108,46 +105,37 @@ export const Home = () => {
                 description="Building a toolkit for educators to create effective online learning experiences."
                 buttonText="View skills"
             />
-            <div className={styles.projectSection}>
-                <ProjectSummary
-                    id="project-1"
-                    sectionRef={projectOne}
-                    visible={visibleSections.includes(projectOne.current)}
-                    index={1}
-                    title="Developing a Business CRM"
-                    description="Creating a comprehensive CRM system to streamline business operations and enhance customer relationships"
-                    buttonText="View project"
-                    buttonLink="/projects/crm"
-                />
-                <Projects
-                    imgPath={laptopCRM}
-                    title="CRM Application"
-                    description="Building a customer relationship management system to manage client interactions, track sales, and automate workflows."
-                    ghLink="https://github.com/Bubhux/CRM-App"
-                    demoLink="https://bubhux.github.io/CRM-Demo/"
-                    visible={visibleSections.includes(projectOne.current)}
-                />
-            </div>
-            <div className={styles.projectSection}>
-                <ProjectSummary
-                    id="project-2"
-                    sectionRef={projectTwo}
-                    visible={visibleSections.includes(projectTwo.current)}
-                    index={2}
-                    title="Todo List with Calendar Integration"
-                    description="Designing and developing a todo list app."
-                    buttonText="View project"
-                    buttonLink="https://todo-calendar.com"
-                />
-                <Projects
-                    imgPath={laptopTodo}
-                    title="Todo List with Calendar Integration"
-                    description="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently."
-                    ghLink="https://github.com/Bubhux/App-TodoListCalendar"
-                    demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
-                    visible={visibleSections.includes(projectTwo.current)}
-                />
-            </div>
+            <ProjectSummary
+                id="project-1"
+                sectionRef={projectOne}
+                visible={visibleSections.includes(projectOne.current)}
+                index={1}
+                title="Developing a Business CRM"
+                description="Creating a comprehensive CRM system to streamline business operations and enhance customer relationships"
+                buttonText="View project"
+                buttonLink="/projects/crm"
+
+                cardTitle="CRM Application"
+                imgPath={laptopCRM}
+                cardDescription="Building a customer relationship management system to manage client interactions, track sales, and automate workflows."
+                ghLink="https://github.com/Bubhux/CRM-App"
+            />
+            <ProjectSummary
+                id="project-2"
+                sectionRef={projectTwo}
+                visible={visibleSections.includes(projectTwo.current)}
+                index={2}
+                title="Todo List with Calendar Integration"
+                description="Designing and developing a todo list app."
+                buttonText="View project"
+                buttonLink="https://todo-calendar.com"
+
+                cardTitle="Todo List with Calendar Application"
+                imgPath={laptopTodo}
+                cardDescription="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently."
+                ghLink="https://github.com/Bubhux/App-TodoListCalendar"
+                demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
+            />
             <ProjectSummary
                 id="project-3"
                 sectionRef={projectThree}

@@ -1,6 +1,6 @@
-// app/components/cards/projects.jsx
+// app/components/cards/project-card.jsx
 import React, { useState } from "react";
-import { Cards } from './project-cards';
+import { ProjectDisplayCard } from './project-display-card';
 
 import styles from './cards.module.css';
 import { Transition } from '~/components/transition';
@@ -10,31 +10,15 @@ import { Divider } from '~/components/divider';
 import { Section } from '~/components/section';
 
 
-export function Projects({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {
+export function ProjectCard({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
     const isMobile = width <= media.tablet;
 
-    function renderDetails(visible) {
-        return (
-            <div className={styles.details} data-visible={visible}>
-                <div aria-hidden className={styles.index}>
-                    <Divider
-                        notchWidth="64px"
-                        notchHeight="0px"
-                        collapsed={!visible}
-                        collapseDelay={1000}
-                        hideLine={true}
-                    />
-                </div>
-            </div>
-        );
-    }
-
     function renderProjectCard(visible) {
         return (
-            <Cards
+            <ProjectDisplayCard
                 imgPath={imgPath}
                 title={title}
                 description={description}
@@ -46,19 +30,23 @@ export function Projects({ id, visible: sectionVisible, title, description, imgP
     }
 
     return (
-        <div className={styles.projectCardsContainer}>
+        <div
+            className={styles.projectCardsContainer}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            tabIndex={-1}
+            {...rest}
+        >
             <Transition in={sectionVisible || focused}>
                 {({ visible }) => (
                     <>
                         {!alternate && !isMobile && (
                             <>
-                                {renderDetails(visible)}
                                 {renderProjectCard(visible)}
                             </>
                         )}
                         {(alternate || isMobile) && (
                             <>
-                                {renderDetails(visible)}
                                 {renderProjectCard(visible)}
                             </>
                         )}
@@ -69,4 +57,4 @@ export function Projects({ id, visible: sectionVisible, title, description, imgP
     );
 }
 
-export default Projects;
+export default ProjectCard;

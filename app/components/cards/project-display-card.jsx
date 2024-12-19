@@ -1,4 +1,4 @@
-// app/components/cards/project-cards.jsx
+// app/components/cards/project-display-card.jsx
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
@@ -16,30 +16,14 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import styles from './cards.module.css';
 
 
-export function Cards({
+export function ProjectDisplayCard({
     visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
     const isMobile = width <= media.tablet;
 
-    function renderDetails(visible) {
-        return (
-            <div className={styles.details} data-visible={visible}>
-                <div aria-hidden className={styles.index}>
-                    <Divider
-                        notchWidth="64px"
-                        notchHeight="0px"
-                        collapsed={!visible}
-                        collapseDelay={1000}
-                        hideLine={true}
-                    />
-                </div>
-            </div>
-        );
-    }
-
-    function ProjectCards(visible) {
+    function renderDetailsProjectCard(visible) {
         return (
             <div className={styles.projectCardView} data-visible={visible}>
                 <div className={styles.cardImgTop} data-visible={visible}>
@@ -74,20 +58,24 @@ export function Cards({
     }
 
     return (
-        <div className={styles.projectCardsContent}>
+        <div
+            className={styles.projectCardsContent}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            tabIndex={-1}
+            {...rest}
+        >
             <Transition in={sectionVisible || focused}>
                 {({ visible }) => (
                     <>
                         {!alternate && !isMobile && (
                             <>
-                                {renderDetails(visible)}
-                                {ProjectCards(visible)}
+                                {renderDetailsProjectCard(visible)}
                             </>
                         )}
                         {(alternate || isMobile) && (
                             <>
-                                {renderDetails(visible)}
-                                {ProjectCards(visible)}
+                                {renderDetailsProjectCard(visible)}
                             </>
                         )}
                     </>
@@ -97,4 +85,4 @@ export function Cards({
     );
 }
 
-export default Cards;
+export default ProjectDisplayCard;

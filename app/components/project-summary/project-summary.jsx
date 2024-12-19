@@ -8,11 +8,12 @@ import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
 import { useState } from 'react';
 import { media } from '~/utils/style';
+import { ProjectCard } from '~/components/cards/project-card';
 
 import styles from './project-summary.module.css';
 
 
-export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, description, model, buttonText, buttonLink, alternate, ...rest }) {
+export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, cardTitle, description, cardDescription, buttonText, buttonLink, imgPath, ghLink, demoLink, alternate, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
@@ -55,6 +56,24 @@ export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index,
         );
     }
 
+    function renderProjectCard(visible) {
+
+        if (!cardTitle || !imgPath || !cardDescription) {
+            return null;
+        }
+
+        return (
+            <ProjectCard
+                imgPath={imgPath}
+                title={cardTitle}
+                description={cardDescription}
+                ghLink={ghLink}
+                demoLink={demoLink}
+                visible={visible}
+            />
+        );
+    }
+
     return (
         <Section
             className={styles.summary}
@@ -76,11 +95,13 @@ export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index,
                             {!alternate && !isMobile && (
                                 <>
                                     {renderDetails(visible)}
+                                    {renderProjectCard(visible)}
                                 </>
                             )}
                             {(alternate || isMobile) && (
                                 <>
                                     {renderDetails(visible)}
+                                    {renderProjectCard(visible)}
                                 </>
                             )}
                         </>

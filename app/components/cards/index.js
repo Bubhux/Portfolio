@@ -1,2 +1,2 @@
 // app/components/cards/index.js
-export { Cards } from './project-cards';
+export { ProjectDisplayCard } from './project-display-card';

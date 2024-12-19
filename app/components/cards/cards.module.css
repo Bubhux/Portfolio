@@ -3,19 +3,46 @@
 @tailwind components;
 @tailwind utilities;
 
+.projectCardsContainer {
+    border: 2px solid red;
+    padding: 16px;
+    margin: 8px;
+    display: flex;            /* Flexbox pour permettre l'étirement */
+    flex-direction: column;   /* Aligne les éléments en colonne */
+    align-items: center;      /* Centre les éléments horizontalement */
+    justify-content: center;  /* Centre les éléments verticalement */
+    width: 100%;              /* S'étend sur toute la largeur disponible */
+    box-sizing: border-box;   /* Inclut la bordure dans les dimensions de l'élément */
+}
+
+.projectCardsContent {
+    border: 2px solid blue;
+    padding: 16px;
+    margin: 8px;
+    display: flex;            /* Flexbox pour permettre l'étirement */
+    flex-direction: column;   /* Aligne les éléments en colonne */
+    align-items: center;      /* Centre les éléments horizontalement */
+    justify-content: center;  /* Centre les éléments verticalement */
+    width: 100%;              /* S'étend sur toute la largeur disponible */
+    box-sizing: border-box;   /* Inclut la bordure dans les dimensions de l'élément */
+}
 
 .projectCardView {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;           /* Aligne les éléments côte à côte (horizontalement) */
+    align-items: center;           /* Centre verticalement les éléments dans le conteneur */
     opacity: 0.9;
-    height: 750px;
-    width: 500px;
+    width: 100%;                   /* Prend toute la largeur disponible */
+    max-width: 1000px;             /* Largeur maximale de 1000px */
+    height: 500px;                 /* Hauteur fixe pour maintenir la forme rectangulaire */
     border: 2px solid #383838;
     border-radius: 10px;
+    box-sizing: border-box;        /* Inclut les bordures dans les dimensions de l'élément */
+    margin: 0 auto;                /* Centre l'élément horizontalement */
+    padding: 16px;
     /*margin-left: 1300px;*/
     /*margin-top: -940px;*/
-    transform: translate(1500px, -1080px);
+    /*transform: translate(1500px, -1080px);*/
 
     @media (--mediaDesktop) {
         margin: var(--space2XL) 0;
@@ -46,22 +73,27 @@
 }
 
 .cardImgTop {
-    width: 100%;
-    height: 150px;
+    width: 50%;
+    height: auto;
     object-fit: cover;
 }
 
 .cardBody {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;          /* Garde l'alignement vertical des éléments dans cardBody */
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    flex-grow: 1;
+    padding: 5px;
+    flex-grow: 1;                    /* Permet à cardBody de s'étirer si nécessaire */
+    width: 60%;                      /* Prend l'autre moitié de la largeur disponible */
 }
 
 .cardText {
-    padding: 5px 5px;
+    padding: 15px 25px;     /* Réduire les espacements horizontaux pour plus d'espace */
+    width: 100%;            /* Laisse le texte occuper une plus grande largeur */
+    line-height: 1.6;       /* Augmente l'espacement entre les lignes pour une meilleure lisibilité */
+    box-sizing: border-box; /* S'assurer que le padding est inclus dans la largeur totale */
+    word-wrap: break-word;  /* Permet de couper les mots longs pour éviter le dépassement de ligne */
 }
 
 .buttonContainer {
@@ -74,7 +106,7 @@
 .cardTitle {
     text-align: center;
     font-weight: bold;
-    padding-top: 150px;
+    padding-top: 10px;
 }
 
 .button {

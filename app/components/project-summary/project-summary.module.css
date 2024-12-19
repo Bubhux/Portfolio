@@ -41,7 +41,7 @@
     --textColumnWidth: 36%;
 
     width: 100%;
-    max-width: var(--maxWidthL);
+    max-width: var(--maxWidthXL);
     align-items: center;
     justify-content: center;
     display: grid;

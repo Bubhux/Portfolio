@@ -1,6 +1,6 @@
 import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
-import { StoryContainer } from '../../../.storybook/story-container';
+
 
 export default {
     title: 'DecoderText',
@@ -10,9 +10,7 @@ export default {
 };
 
 export const Text = ({ text }) => (
-    <StoryContainer>
-        <Heading level={3}>
-            <DecoderText delay={0} text={text} />
-        </Heading>
-    </StoryContainer>
+    <Heading level={3}>
+        <DecoderText delay={0} text={text} />
+    </Heading>
 );

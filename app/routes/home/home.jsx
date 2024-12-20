@@ -6,8 +6,13 @@ import { Skills } from '~/components/skills';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
 
-import laptopTodo from '~/assets/img-projects/laptop-todo.png';
-import laptopCRM from '~/assets/img-projects/laptop-crm.png';
+//import laptopCRM from '~/assets/img-projects/laptop-crm.png';
+//import laptopTodo from '~/assets/img-projects/laptop-todo.png';
+//import laptopGlobe from '~/assets/img-projects/laptop-globe.png';
+
+import laptopCRM from '~/assets/img-projects/laptop-crm.svg';
+import laptopTodo from '~/assets/img-projects/laptop-todo.svg';
+import laptopGlobe from '~/assets/img-projects/laptop-globe.svg';
 
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -130,7 +135,7 @@ export const Home = () => {
                 buttonText="View project"
                 buttonLink="https://todo-calendar.com"
 
-                cardTitle="Todo List with Calendar Application"
+                cardTitle="Todo List Calendar Application"
                 imgPath={laptopTodo}
                 cardDescription="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently."
                 ghLink="https://github.com/Bubhux/App-TodoListCalendar"
@@ -141,10 +146,16 @@ export const Home = () => {
                 sectionRef={projectThree}
                 visible={visibleSections.includes(projectThree.current)}
                 index={3}
-                title="Creative Portfolio Design"
-                description="Designing a visually engaging and interactive portfolio to showcase creative work and professional projects"
+                title="Create an interactive 3D globe"
+                description="Design a visually appealing, interactive 3D globe to add to your creative work and professional projects."
                 buttonText="View project"
                 buttonLink="/projects/portfolio-design"
+
+                cardTitle="3D Globe Application"
+                imgPath={laptopGlobe}
+                cardDescription="Create a visually captivating and highly interactive 3D globe that enhances the aesthetics and functionality of your creative work."
+                ghLink="https://github.com/Bubhux/3d-globe"
+                demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
             />
         </div>
     );

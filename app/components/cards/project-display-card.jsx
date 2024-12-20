@@ -1,11 +1,13 @@
 // app/components/cards/project-display-card.jsx
+import { useState } from 'react';
+
+import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
-import { useState } from 'react';
 import { media } from '~/utils/style';
 import { Link } from 'react-router-dom';
 
@@ -34,8 +36,10 @@ export function ProjectDisplayCard({
                     />
                 </div>
                 <div className={styles.cardBody} data-visible={visible}>
-                    <Text className={styles.cardTitle} data-visible={visible} as="p">
-                        {title}
+                    <Text className={styles.cardTitle} data-visible={visible} as="div">
+                        <Heading level={4} as="h2" className={styles.heading}>
+                            <DecoderText text={title} start={visible} delay={3000} />
+                        </Heading>
                     </Text>
                     <Text className={styles.cardText} data-visible={visible} as="p">
                         {description}

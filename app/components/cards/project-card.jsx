@@ -1,13 +1,14 @@
 // app/components/cards/project-card.jsx
 import React, { useState } from "react";
-import { ProjectDisplayCard } from './project-display-card';
 
-import styles from './cards.module.css';
 import { Transition } from '~/components/transition';
 import { media } from '~/utils/style';
 import { useWindowSize } from '~/hooks';
+import { ProjectDisplayCard } from './project-display-card';
 import { Divider } from '~/components/divider';
 import { Section } from '~/components/section';
+
+import styles from './cards.module.css';
 
 
 export function ProjectCard({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {

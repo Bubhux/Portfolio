@@ -1,3 +1,4 @@
+// app/components/decoder-text/decoder-text.jsx
 import { VisuallyHidden } from '~/components/visually-hidden';
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { memo, useEffect, useRef } from 'react';
@@ -8,21 +9,9 @@ import styles from './decoder-text.module.css';
 
 // prettier-ignore
 const glyphs = [
-    'ア', 'イ', 'ウ', 'エ', 'オ',
-    'カ', 'キ', 'ク', 'ケ', 'コ',
-    'サ', 'シ', 'ス', 'セ', 'ソ',
-    'タ', 'チ', 'ツ', 'テ', 'ト',
-    'ナ', 'ニ', 'ヌ', 'ネ', 'ノ',
-    'ハ', 'ヒ', 'フ', 'ヘ', 'ホ',
-    'マ', 'ミ', 'ム', 'メ', 'モ',
-    'ヤ', 'ユ', 'ヨ', 'ー',
-    'ラ', 'リ', 'ル', 'レ', 'ロ',
-    'ワ', 'ヰ', 'ヱ', 'ヲ', 'ン',
-    'ガ', 'ギ', 'グ', 'ゲ', 'ゴ',
-    'ザ', 'ジ', 'ズ', 'ゼ', 'ゾ',
-    'ダ', 'ヂ', 'ヅ', 'デ', 'ド',
-    'バ', 'ビ', 'ブ', 'ベ', 'ボ',
-    'パ', 'ピ', 'プ', 'ペ', 'ポ',
+    '⠁', '⠃', '⠉', '⠙', '⠑', '⠋', '⠛', '⠓', '⠊', '⠚',
+    '⠅', '⠇', '⠍', '⠝', '⠕', '⠏', '⠟', '⠗', '⠎', '⠞',
+    '⠥', '⠧', '⠺', '⠭', '⠽', '⠵'
 ];
 
 const CharType = {
@@ -72,7 +61,13 @@ export const DecoderText = memo(
 
             const startSpring = async () => {
                 await delay(startDelay);
-                decoderSpring.set(content.length);
+                const interval = 10;
+
+                content.forEach((_, index) => {
+                    setTimeout(() => {
+                        decoderSpring.set(index + 1);
+                    }, index * interval);
+                });
             };
 
             if (start && !animation && !reduceMotion) {

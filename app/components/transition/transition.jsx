@@ -36,19 +36,7 @@ export const Transition = ({ children, in: show, unmount, initial = true, ...pro
     );
 };
 
-const TransitionContent = ({
-    children,
-    timeout = 0,
-    enterTimeout,
-    exitTimeout,
-    onEnter,
-    onEntered,
-    onExit,
-    onExited,
-    initial,
-    nodeRef: defaultNodeRef,
-    in: show,
-}) => {
+const TransitionContent = ({ children, timeout = 0, enterTimeout, exitTimeout, onEnter, onEntered, onExit, onExited, initial, nodeRef: defaultNodeRef, in: show }) => {
     const [status, setStatus] = useState(initial ? 'exited' : 'entered');
     const [isPresent, safeToRemove] = usePresence();
     const [hasEntered, setHasEntered] = useState(initial ? false : true);

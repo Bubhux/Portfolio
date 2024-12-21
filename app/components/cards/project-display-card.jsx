@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
-import styles from './cards.module.css';
+import styles from './project-card.module.css';
 
 
 export function ProjectDisplayCard({
@@ -29,11 +29,12 @@ export function ProjectDisplayCard({
         return (
             <div className={styles.projectCardView} data-visible={visible}>
                 <div className={styles.cardImgTop} data-visible={visible}>
-                    <img
-                        src={imgPath}
-                        alt="Project card view"
-                        style={{ width: '100%', height: 'auto', maxWidth: '500px' }}
-                    />
+                <object
+                    type="image/svg+xml"
+                    data={imgPath}
+                    aria-label="Project animation"
+                    style={{ width: 'auto', height: '100%', maxWidth: '700px' }}
+                />
                 </div>
                 <div className={styles.cardBody} data-visible={visible}>
                     <Text className={styles.cardTitle} data-visible={visible} as="div">

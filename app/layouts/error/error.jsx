@@ -2,6 +2,7 @@
 import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
 import { Transition } from '~/components/transition';
+
 import styles from './error.module.css';
 import errorBenderSvg from './error-bender.svg';
 

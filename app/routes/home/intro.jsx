@@ -1,4 +1,6 @@
 // app/routes/home/intro.jsx
+import { Suspense, lazy, useEffect, useState } from 'react';
+
 import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
@@ -8,7 +10,6 @@ import { Transition } from '~/components/transition';
 import { VisuallyHidden } from '~/components/visually-hidden';
 import { Link as RouterLink } from '@remix-run/react';
 import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
-import { Suspense, lazy, useEffect, useState } from 'react';
 import { cssProps } from '~/utils/style';
 import { useHydrated } from '~/hooks/useHydrated';
 

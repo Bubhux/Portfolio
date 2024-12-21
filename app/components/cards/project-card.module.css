@@ -1,4 +1,4 @@
-/* // app/components/cards/cards.module.css */
+/* // app/components/cards/project-card.module.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -29,12 +29,11 @@
 
 .projectCardView {
     display: flex;
-    flex-direction: row;           /* Aligne les éléments côte à côte (horizontalement) */
-    align-items: center;           /* Centre verticalement les éléments dans le conteneur */
+    align-items: stretch;
     opacity: 0.9;
     width: 100%;                   /* Prend toute la largeur disponible */
-    max-width: 1000px;             /* Largeur maximale de 1000px */
-    height: 500px;                 /* Hauteur fixe pour maintenir la forme rectangulaire */
+    max-width: 1200px;
+    height: auto;                 /* Hauteur fixe pour maintenir la forme rectangulaire */
     border: 2px solid #383838;
     border-radius: 10px;
     box-sizing: border-box;        /* Inclut les bordures dans les dimensions de l'élément */
@@ -88,27 +87,37 @@
 }
 
 .cardImgTop {
-    width: 50%;
-    height: auto;
-    object-fit: cover;
+    border-radius: 10px;
+    object-fit: contain;
+    width: 100%;           /* Assurez-vous que l'image occupe toute la largeur du conteneur */
+    max-width: 100%;       /* S'assure que l'image ne dépasse pas la largeur du conteneur */
+    max-height: 100%;      /* Permet à l'image de conserver ses proportions sans dépasser la hauteur */
+    overflow: hidden;
 }
+
+.cardImgTop svg {
+    width: 100%;
+    height: auto; /* Laisser la hauteur s'ajuster pour garder les proportions de l'image */
+}
+
 
 .cardBody {
     display: flex;
-    flex-direction: column;          /* Garde l'alignement vertical des éléments dans cardBody */
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    flex-grow: 1;                    /* Permet à cardBody de s'étirer si nécessaire */
-    width: 60%;                      /* Prend l'autre moitié de la largeur disponible */
+    flex-grow: 1;                     /* Permet à cardBody de s'étirer si nécessaire */
+    width: 100%;                      /* Prend l'autre moitié de la largeur disponible */
+    margin: 0px 25px 0px 25px;
 }
 
 .cardText {
-    padding: 15px 25px;     /* Réduire les espacements horizontaux pour plus d'espace */
-    width: 100%;            /* Laisse le texte occuper une plus grande largeur */
-    line-height: 1.6;       /* Augmente l'espacement entre les lignes pour une meilleure lisibilité */
-    box-sizing: border-box; /* S'assurer que le padding est inclus dans la largeur totale */
-    word-wrap: break-word;  /* Permet de couper les mots longs pour éviter le dépassement de ligne */
+    padding: 15px 25px;        /* Réduire les espacements horizontaux pour plus d'espace */
+    width: 100%;               /* Laisse le texte occuper une plus grande largeur */
+    line-height: 1.6;          /* Augmente l'espacement entre les lignes pour une meilleure lisibilité */
+    box-sizing: border-box;    /* S'assurer que le padding est inclus dans la largeur totale */
+    word-wrap: break-word;     /* Permet de couper les mots longs pour éviter le dépassement de ligne */
 }
 
 .buttonContainer {
@@ -134,12 +143,6 @@
     border-radius: 5px;
     font-size: 14px;
     transition: background-color 0.3s, transform 0.2s ease;
-
-    svg {
-        margin-right: 8px;
-        font-size: 1.2rem;
-        transition: transform 0.2s ease;
-    }
 
     &:hover {
         background-color: oklch(65.55% 0.006 205.48);

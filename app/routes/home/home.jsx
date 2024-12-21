@@ -10,9 +10,9 @@ import { Intro } from './intro';
 //import laptopTodo from '~/assets/img-projects/laptop-todo.png';
 //import laptopGlobe from '~/assets/img-projects/laptop-globe.png';
 
-import laptopCRM from '~/assets/img-projects/laptop-crm.svg';
-import laptopTodo from '~/assets/img-projects/laptop-todo.svg';
-import laptopGlobe from '~/assets/img-projects/laptop-globe.svg';
+import laptopCRM from '~/assets/img-projects/laptop-screen-crm-animate-11-fixed.svg';
+import laptopTodo from '~/assets/img-projects/laptop-screen-todo-animate-1-fixed.svg';
+//import laptopGlobe from '~/assets/img-projects/laptop-globe.svg';
 
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -139,7 +139,7 @@ export const Home = () => {
                 imgPath={laptopTodo}
                 cardDescription="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently."
                 ghLink="https://github.com/Bubhux/App-TodoListCalendar"
-                demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
+                demoLink="https://bubhux.github.io/App-TodoListCalendar/"
             />
             <ProjectSummary
                 id="project-3"
@@ -152,7 +152,7 @@ export const Home = () => {
                 buttonLink="/projects/portfolio-design"
 
                 cardTitle="3D Globe Application"
-                imgPath={laptopGlobe}
+                //imgPath={laptopGlobe}
                 cardDescription="Create a visually captivating and highly interactive 3D globe that enhances the aesthetics and functionality of your creative work."
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"

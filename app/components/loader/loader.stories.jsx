@@ -1,12 +1,13 @@
 import { Loader } from '~/components/loader';
 import { StoryContainer } from '../../../.storybook/story-container';
 
+
 export default {
-  title: 'Loader',
+    title: 'Loader',
 };
 
 export const Default = () => (
-  <StoryContainer>
-    <Loader width={48} />
-  </StoryContainer>
+    <StoryContainer>
+        <Loader width={48} />
+    </StoryContainer>
 );

@@ -1,18 +1,11 @@
 // app/components/heading/heading.jsx
 import { Fragment } from 'react';
 import { classes } from '~/utils/style';
+
 import styles from './heading.module.css';
 
 
-export const Heading = ({
-    children,
-    level = 1,
-    as,
-    align = 'auto',
-    weight = 'medium',
-    className,
-    ...rest
-}) => {
+export const Heading = ({ children, level = 1, as, align = 'auto', weight = 'medium', className, ...rest }) => {
     const clampedLevel = Math.min(Math.max(level, 0), 5);
     const Component = as || `h${Math.max(clampedLevel, 1)}`;
 

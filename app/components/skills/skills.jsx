@@ -1,4 +1,7 @@
 // app/components/skills.jsx
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
@@ -6,9 +9,7 @@ import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
-import { useState } from 'react';
 import { media } from '~/utils/style';
-import { Link } from 'react-router-dom';
 
 import { skillsData } from "~/utils/skills";
 import { skillsImage } from "~/utils/skills-image";

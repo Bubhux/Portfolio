@@ -1,7 +1,9 @@
-import { classes } from '~/utils/style';
-import styles from './icon.module.css';
 import { forwardRef } from 'react';
+
+import { classes } from '~/utils/style';
+
 import sprites from './icons.svg';
+import styles from './icon.module.css';
 
 
 export const Icon = forwardRef(({ icon, className, size, ...rest }, ref) => {

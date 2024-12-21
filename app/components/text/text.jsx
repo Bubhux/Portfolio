@@ -2,16 +2,7 @@ import { classes } from '~/utils/style';
 import styles from './text.module.css';
 
 
-export const Text = ({
-    children,
-    size = 'm',
-    as: Component = 'span',
-    align = 'auto',
-    weight = 'auto',
-    secondary,
-    className,
-    ...rest
-}) => {
+export const Text = ({ children, size = 'm', as: Component = 'span', align = 'auto', weight = 'auto', secondary, className, ...rest }) => {
     return (
         <Component
             className={classes(styles.text, className)}

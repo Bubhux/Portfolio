@@ -8,7 +8,7 @@ import { ProjectDisplayCard } from './project-display-card';
 import { Divider } from '~/components/divider';
 import { Section } from '~/components/section';
 
-import styles from './cards.module.css';
+import styles from './project-card.module.css';
 
 
 export function ProjectCard({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {

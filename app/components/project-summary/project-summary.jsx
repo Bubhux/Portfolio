@@ -1,4 +1,6 @@
 // app/components/project-summary.jsx
+import { useState } from 'react';
+
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
@@ -6,7 +8,6 @@ import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
-import { useState } from 'react';
 import { media } from '~/utils/style';
 import { ProjectCard } from '~/components/cards/project-card';
 

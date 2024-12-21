@@ -1,6 +1,7 @@
 // app/components//progress/progress.jsx
 import { useNavigation } from '@remix-run/react';
 import { useRef, useEffect, useState } from 'react';
+
 import styles from './progress.module.css';
 
 

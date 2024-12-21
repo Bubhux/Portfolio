@@ -46,7 +46,7 @@
     justify-content: center;
     display: grid;
     grid-template-columns: var(--textColumnWidth) 1fr;
-    grid-column-gap: var(--space2XL);
+    grid-column-gap: var(--space5XL);
 
     .summary[data-alternate='true'] & {
         grid-template-columns: 1fr var(--textColumnWidth);

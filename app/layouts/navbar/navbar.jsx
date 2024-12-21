@@ -1,4 +1,6 @@
 // app/layouts/navabar/navbar.jsx
+import { useEffect, useRef, useState } from 'react';
+
 import { Icon } from '~/components/icon';
 import { Monogram } from '~/components/monogram';
 import { useTheme } from '~/components/theme-provider';
@@ -6,7 +8,6 @@ import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { useScrollToHash, useWindowSize } from '~/hooks';
 import { Link as RouterLink, useLocation } from '@remix-run/react';
-import { useEffect, useRef, useState } from 'react';
 import { cssProps, media, msToNum, numToMs } from '~/utils/style';
 import { NavToggle } from './nav-toggle';
 import { ThemeToggle } from './theme-toggle';

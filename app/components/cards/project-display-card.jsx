@@ -32,8 +32,8 @@ export function ProjectDisplayCard({
                 <object
                     type="image/svg+xml"
                     data={imgPath}
-                    aria-label="Project animation"
-                    style={{ width: 'auto', height: '100%', maxWidth: '700px' }}
+                    aria-label="Project laptop animation"
+                    //style={{ width: 'auto', height: '100%', maxWidth: '700px' }}
                 />
                 </div>
                 <div className={styles.cardBody} data-visible={visible}>

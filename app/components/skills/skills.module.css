@@ -192,7 +192,7 @@
     justify-content: center;
     display: grid;
     grid-template-columns: var(--textColumnWidth) 1fr;
-    grid-column-gap: var(--space2XL);
+    grid-column-gap: var(--space5XL);
     max-height: 80vh; /* Limite la hauteur à 80% de la fenêtre */
 
     .skillsContent[data-alternate='true'] & {

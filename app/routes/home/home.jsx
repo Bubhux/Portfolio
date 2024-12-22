@@ -10,9 +10,9 @@ import { Intro } from './intro';
 //import laptopTodo from '~/assets/img-projects/laptop-todo.png';
 //import laptopGlobe from '~/assets/img-projects/laptop-globe.png';
 
-import laptopCRM from '~/assets/img-projects/laptop-screen-crm-animate-11-fixed.svg';
-import laptopTodo from '~/assets/img-projects/laptop-screen-todo-animate-1-fixed.svg';
-//import laptopGlobe from '~/assets/img-projects/laptop-globe.svg';
+import laptopCRM from '~/assets/img-projects/laptop-crm-grey.svg';
+import laptopTodo from '~/assets/img-projects/laptop-todo-grey.svg';
+import laptopGlobe from '~/assets/img-projects/laptop-globe-grey.svg';
 
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -152,7 +152,7 @@ export const Home = () => {
                 buttonLink="/projects/portfolio-design"
 
                 cardTitle="3D Globe Application"
-                //imgPath={laptopGlobe}
+                imgPath={laptopGlobe}
                 cardDescription="Create a visually captivating and highly interactive 3D globe that enhances the aesthetics and functionality of your creative work."
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"

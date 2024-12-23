@@ -17,10 +17,15 @@ import styles from './project-summary.module.css';
 export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, cardTitle, description, cardDescription, buttonText, buttonLink, imgPath, ghLink, demoLink, alternate, ...rest }) {
 
     const [focused, setFocused] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
     const { width } = useWindowSize();
     const titleId = `${id}-title`;
     const isMobile = width <= media.tablet;
     const indexText = index < 10 ? `0${index}` : index;
+
+    function handleButtonClick() {
+        setShowDetails(prevState => !prevState);
+    }
 
     function renderDetails(visible) {
         return (
@@ -49,7 +54,7 @@ export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index,
                     {description}
                 </Text>
                 <div className={styles.button} data-visible={visible}>
-                    <Button iconHoverShift href={buttonLink} iconEnd="arrow-right">
+                    <Button onClick={handleButtonClick} iconHoverShift iconEnd="arrow-right">
                         {buttonText}
                     </Button>
                 </div>
@@ -58,7 +63,6 @@ export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index,
     }
 
     function renderProjectCard(visible) {
-
         if (!cardTitle || !imgPath || !cardDescription) {
             return null;
         }
@@ -71,6 +75,7 @@ export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index,
                 ghLink={ghLink}
                 demoLink={demoLink}
                 visible={visible}
+                showDetails={showDetails}
             />
         );
     }

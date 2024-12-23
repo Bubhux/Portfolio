@@ -11,7 +11,7 @@ import { Section } from '~/components/section';
 import styles from './project-card.module.css';
 
 
-export function ProjectCard({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, ...rest }) {
+export function ProjectCard({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, showDetails, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
@@ -26,6 +26,7 @@ export function ProjectCard({ id, visible: sectionVisible, title, description, i
                 ghLink={ghLink}
                 demoLink={demoLink}
                 visible={visible}
+                showDetails={showDetails}
             />
         );
     }

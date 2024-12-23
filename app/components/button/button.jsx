@@ -5,6 +5,7 @@ import { Transition } from '~/components/transition';
 import { Link } from '@remix-run/react';
 import { forwardRef } from 'react';
 import { classes } from '~/utils/style';
+
 import styles from './button.module.css';
 
 
@@ -12,17 +13,32 @@ function isExternalLink(href) {
     return href?.includes('://');
 }
 
-export const Button = forwardRef(({ href, ...rest }, ref) => {
-    if (isExternalLink(href) || !href) {
-        return <ButtonContent href={href} ref={ref} {...rest} />;
+export const Button = forwardRef(({ href, onClick, as, ...rest }, ref) => {
+    const isExternal = href && isExternalLink(href);
+
+    // Si `href` est défini et n'est pas un lien externe, utilise `Link`.
+    if (href && !isExternal && !as) {
+        return (
+            <ButtonContent
+                as={Link}
+                to={href}
+                data-unstable-view-transition
+                prefetch="intent"
+                ref={ref}
+                {...rest}
+            />
+        );
     }
+
+    const defaultComponent = href ? 'a' : 'button';
+    const Component = as || defaultComponent;
 
     return (
         <ButtonContent
-            data-unstable-view-transition
-            as={Link}
-            prefetch="intent"
-            to={href}
+            as={Component}
+            href={href}
+            onClick={onClick}
+            isExternal={isExternal}
             ref={ref}
             {...rest}
         />
@@ -30,29 +46,7 @@ export const Button = forwardRef(({ href, ...rest }, ref) => {
 });
 
 const ButtonContent = forwardRef(
-    (
-        {
-            className,
-            as,
-            secondary,
-            loading,
-            loadingText = 'loading',
-            icon,
-            iconEnd,
-            iconHoverShift,
-            iconOnly,
-            children,
-            rel,
-            target,
-            href,
-            disabled,
-            ...rest
-        },
-        ref
-    ) => {
-        const isExternal = isExternalLink(href);
-        const defaultComponent = href ? 'a' : 'button';
-        const Component = as || defaultComponent;
+    ({ className, as: Component = 'button', secondary, loading, loadingText = 'loading', icon, iconEnd, iconHoverShift, iconOnly, children, rel, target, href, onClick, isExternal, disabled, ...rest }, ref) => {
 
         return (
             <Component
@@ -62,8 +56,9 @@ const ButtonContent = forwardRef(
                 data-secondary={secondary}
                 data-icon={icon}
                 href={href}
-                rel={rel || isExternal ? 'noopener noreferrer' : undefined}
-                target={target || isExternal ? '_blank' : undefined}
+                onClick={onClick}
+                rel={rel || (isExternal ? 'noopener noreferrer' : undefined)}
+                target={target || (isExternal ? '_blank' : undefined)}
                 disabled={disabled}
                 ref={ref}
                 {...rest}

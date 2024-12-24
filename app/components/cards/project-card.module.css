@@ -34,15 +34,12 @@
     opacity: 0.9;
     width: 100%;                   /* Prend toute la largeur disponible */
     max-width: 1200px;
-    height: auto;                 /* Hauteur fixe pour maintenir la forme rectangulaire */
+    height: auto;                  /* Hauteur fixe pour maintenir la forme rectangulaire */
     border: 2px solid #383838;
     border-radius: 10px;
     box-sizing: border-box;        /* Inclut les bordures dans les dimensions de l'élément */
     margin: 0 auto;                /* Centre l'élément horizontalement */
     padding: 16px;
-    /*margin-left: 1300px;*/
-    /*margin-top: -940px;*/
-    /*transform: translate(1500px, -1080px);*/
 
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -113,11 +110,13 @@
 }
 
 .cardText {
-    padding: 45px 0px;         /* Réduire les espacements horizontaux pour plus d'espace */
-    width: 100%;               /* Laisse le texte occuper une plus grande largeur */
-    line-height: 1.6;          /* Augmente l'espacement entre les lignes pour une meilleure lisibilité */
-    box-sizing: border-box;    /* S'assure que le padding est inclus dans la largeur totale */
-    word-wrap: break-word;     /* Permet de couper les mots longs pour éviter le dépassement de ligne */
+    padding: 45px 0px;                                /* Réduire les espacements horizontaux pour plus d'espace */
+    width: 100%;                                      /* Laisse le texte occuper une plus grande largeur */
+    line-height: 1.6;                                 /* Augmente l'espacement entre les lignes pour une meilleure lisibilité */
+    box-sizing: border-box;                           /* S'assure que le padding est inclus dans la largeur totale */
+    word-wrap: break-word;                            /* Permet de couper les mots longs pour éviter le dépassement de ligne */
+    opacity: 0;                                       /* Initialement invisible */
+    animation: fadeIn 0.8s ease-in-out forwards;
 }
 
 .buttonContainer {
@@ -125,6 +124,8 @@
     align-items: center;
     gap: 10px;
     justify-content: center;
+    opacity: 0;                                       /* Initialement invisible */
+    animation: fadeIn 0.8s ease-in-out forwards;
 }
 
 .cardTitle {
@@ -160,5 +161,28 @@
         svg {
             transform: scale(1.1);
         }
+    }
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cardText, .buttonContainer {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px); /* Le texte monte doucement */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

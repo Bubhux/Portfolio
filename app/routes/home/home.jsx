@@ -1,10 +1,11 @@
 // app/routes/home/home.jsx
 import { useEffect, useRef, useState } from 'react';
 
+import { Intro } from './intro';
 import { ProjectSummary } from '~/components/project-summary';
 import { Skills } from '~/components/skills';
 import { baseMeta } from '~/utils/meta';
-import { Intro } from './intro';
+import { Footer } from '~/components/footer';
 
 //import laptopCRM from '~/assets/img-projects/laptop-crm.png';
 //import laptopTodo from '~/assets/img-projects/laptop-todo.png';
@@ -157,6 +158,7 @@ export const Home = () => {
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
             />
+            <Footer />
         </div>
     );
 };

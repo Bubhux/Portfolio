@@ -1,0 +1,10 @@
+/* // app/components/input/text-area.module.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .textarea {
+    resize: var(--resize);
+  }
+}

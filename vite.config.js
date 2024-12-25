@@ -1,7 +1,7 @@
 // vite.config.js
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import { vitePlugin as remix } from '@remix-run/dev';
+import { vitePlugin as remix, cloudflareDevProxyVitePlugin as remixCloudflareDevProxy } from '@remix-run/dev';
 
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
@@ -32,6 +32,7 @@ export default defineConfig({
             remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
             providerImportSource: '@mdx-js/react',
         }),
+        remixCloudflareDevProxy(),
         remix({
             routes(defineRoutes) {
                 return defineRoutes(route => {

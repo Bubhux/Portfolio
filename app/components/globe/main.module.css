@@ -1,0 +1,65 @@
+/* //app/components/globe/main.module.css */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(0, 0, 0);
+    height: 100%; /* Assure que le body et html prennent toute la hauteur */
+    overflow: hidden; /* Évite les barres de défilement */
+}
+
+canvas {
+    display: block; /* Évite les espaces en bas du canvas */
+    width: 100vw; /* Prend toute la largeur de la fenêtre */
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    max-width: 100%; /* Assure que la largeur ne dépasse pas 100% */
+    max-height: 100%; /* Assure que la hauteur ne dépasse pas 100% */
+}
+
+.dg.a {
+    margin-top: 10px;
+    min-width: 300px;
+}
+
+.app-wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    /*width: 100%; /* Assure que .app-wrapper couvre toute la largeur */
+    /*height: 100%; /* Assure que .app-wrapper couvre toute la hauteur */
+}
+
+.markers {
+    position: relative;
+    padding: 0;
+    list-style-type: none;
+}
+
+.marker {
+    color: white;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.marker:before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top: -50%;
+}
+
+.margin-left {
+    margin-left: 20px;
+}

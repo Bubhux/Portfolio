@@ -40,7 +40,7 @@ class App extends Component {
 
     initRenderer = () => {
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
-        this.renderer.setClearColor(0x000000, 1.0);
+        this.renderer.setClearColor(0x000000, 0);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio * 1.5);
         this.renderer.shadowMap.enabled = true;

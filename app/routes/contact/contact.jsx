@@ -1,5 +1,5 @@
 // app/routes/contact/contact.jsx
-import { useRef } from 'react';
+import React, { Suspense, lazy, useEffect, useState, useRef } from 'react';
 
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
@@ -23,6 +23,8 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 import styles from './contact.module.css';
 
+
+const Main = lazy(() => import('~/components/globe/main'));
 
 export const meta = () => {
     return baseMeta({
@@ -107,9 +109,20 @@ export const Contact = () => {
     const actionData = useActionData();
     const { state } = useNavigation();
     const sending = state === 'submitting';
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     return (
         <Section className={styles.contact}>
+            {isClient && (
+                <Suspense fallback={null}>
+                    <Main />
+                </Suspense>
+            )}
+
             <Transition unmount in={!actionData?.success} timeout={1600}>
                 {({ status, nodeRef }) => (
                     <Form

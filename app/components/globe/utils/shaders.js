@@ -84,7 +84,7 @@ shaders.atmosphere.fragmentShader = `
 
 	void main() {
 		// Calcul de l'intensité pour un effet de halo atmosphérique
-		float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 0.2)), 9.0);
+		float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 0.16)), 6.5);
 		intensity = max(0.0, intensity);
 
 		// Ajout d'un effet de vagues pour simuler un mouvement dynamique

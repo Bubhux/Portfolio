@@ -15,7 +15,7 @@ import connectionsData from '~/components/globe/data/connections';
 
 import { getCountries } from '~/components/globe/data/processing';
 import { config, elements, groups, animations } from '~/components/globe/utils/config';
-import "./main.module.css"
+import styles from './main.module.css';
 
 
 const Main = () => {
@@ -48,11 +48,13 @@ const Main = () => {
             };
 
             setData(loadedData);
+            setIsLoading(false);
             return true;
         } catch (error) {
             setData({ error });
+            setIsLoading(false);
             return false;
-        }//
+        }
     };
 
     const setup = (app) => {
@@ -249,15 +251,19 @@ const Main = () => {
     }
 
     return (
-        <div className="app-wrapper">
-            {/* {isLoading && <div>Loading main.jsx...</div>} */}
-            {isLoading}
-            <Globe
-                scene={appRef.current?.scene}
-                setIsLoading={setIsLoading}
-                loader={new THREE.TextureLoader()}
-            />
-            <ul className="markers"></ul>
+        <div className={styles['app-wrapper']}>
+            {isLoading && (
+                <div className={styles.loaderWrapper}>
+                    <div className={styles.loader}></div>
+                </div>
+            )}
+            <div id="threejs-container" className={styles['threejs-container']}>
+                <Globe
+                    scene={appRef.current?.scene}
+                    setIsLoading={setIsLoading}
+                    loader={new THREE.TextureLoader()}
+                />
+            </div>
         </div>
     );
 };

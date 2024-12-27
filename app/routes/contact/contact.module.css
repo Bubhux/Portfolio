@@ -6,18 +6,27 @@
 .contact {
     --formHeight: 530px;
 
-    display: grid;
-    grid-template-rows: 1fr auto;
-    grid-template-columns: 100%;
-    /*justify-items: center;*/
-    /*justify-content: center;*/
-    align-items: center;
+    justify-items: start;
+    justify-content: center;
     min-height: 100vh;
     width: 100%;
+    align-content: center;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-items: center;
 
     @media (--mediaMobile) {
         padding-top: 0;
     }
+}
+
+.formWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-right: 150px;
 }
 
 .form {
@@ -25,11 +34,31 @@
     max-width: var(--maxWidthS);
     width: 100%;
     padding: var(--space2XL) 0;
-    margin: 100px;
+    margin: 10px;
+    margin-left: 200px;
+
+    opacity: 0;
+    animation: formSlideIn 5s ease-out forwards;
+    animation-delay: 1s;
 
     @media (--mediaMobile) {
         padding: var(--space5XL) 0 var(--space2XL);
         align-self: flex-start;
+    }
+}
+
+@keyframes formSlideIn {
+    0% {
+        transform: translateX(0%);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%);
+        opacity: 1;
     }
 }
 

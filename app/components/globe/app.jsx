@@ -41,11 +41,17 @@ class App extends Component {
     initRenderer = () => {
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setClearColor(0x000000, 0);
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.setSize(1500, 1000);
         this.renderer.setPixelRatio(window.devicePixelRatio * 1.5);
         this.renderer.shadowMap.enabled = true;
         this.renderer.antialias = true;
-        document.body.appendChild(this.renderer.domElement);
+
+        const container = document.getElementById('threejs-container');
+        if (container) {
+            container.appendChild(this.renderer.domElement);
+        } else {
+            console.error("Container for Three.js not found.");
+        }
     }
 
     initCamera = () => {
@@ -143,17 +149,17 @@ class App extends Component {
     }
 
     handleResize = () => {
-        const aspectRatio = window.innerWidth / window.innerHeight;
+        const container = document.getElementById('threejs-container');
+        if (container) {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
 
-        // Met à jour la caméra
-        this.camera.aspect = aspectRatio;
-        this.camera.updateProjectionMatrix();
+            this.camera.aspect = width / height;
+            this.camera.updateProjectionMatrix();
 
-        // Met à jour la taille du renderer avec le ratio dynamique
-        const newWidth = window.innerWidth;
-        const newHeight = window.innerHeight * 1.0;
-        this.renderer.setSize(newWidth, newHeight);
-    }
+            this.renderer.setSize(width, height);
+        }
+    };
 
     componentWillUnmount() {
         // Supprime les écouteurs d'événements pour éviter les fuites mémoire

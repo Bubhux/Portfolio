@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.0"
+   width="121.08734pt"
+   height="411.36304pt"
+   viewBox="0 0 121.08734 411.36304"
+   preserveAspectRatio="xMidYMid"
+   id="svg17"
+   sodipodi:docname="Totoro-en-katakana-japonais-Nippon-names.svg"
+   inkscape:export-filename="Totoro-en-katakana-japonais-Nippon-names-test-1.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs17" />
+  <symbol id="katakana-profile" viewBox="0 0 136 766">
+  <sodipodi:namedview
+     id="namedview17"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt"
+     showgrid="false"
+     showguides="true">
+    <inkscape:grid
+       id="grid17"
+       units="pt"
+       originx="-393.39514"
+       originy="18.463098"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="false" />
+    <sodipodi:guide
+       position="55.162523,221.26535"
+       orientation="1,0"
+       id="guide17"
+       inkscape:locked="false" />
+    <inkscape:page
+       x="-2.0106629e-12"
+       y="5.7712888e-14"
+       width="121.08733"
+       height="411.36307"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <g
+     transform="matrix(0.1,0,0,-0.1,-393.39516,318.4631)"
+     fill="var(--textTitle)">
+     stroke="none"
+     id="g17">
+    <path
+       d="m 4076.0441,3161.4817 c -35,-14 -63,-31 -63,-38 0,-7 22,-21 49,-33 33,-14 54,-31 65,-51 38,-74 44,-610 9,-877 -17,-135 -14,-203 15,-268 24,-54 57,-78 115,-84 36,-4 48,-1 73,20 33,29 32,-4 25,510 -2,142 0,261 3,264 18,19 175,-120 243,-214 67,-94 104,-123 159,-123 104,0 147,71 114,191 -28,100 -209,194 -412,214 -111,11 -108,9 -108,63 1,84 19,191 40,231 42,83 21,125 -94,183 -84,43 -152,46 -233,12 z"
+       id="path2" />
+    <path
+       d="m 4122,1642 c -35,-14 -63,-30 -63,-37 0,-7 22,-21 49,-33 73,-31 79,-49 92,-272 12,-201 -1,-581.00002 -22,-691.00002 -23,-116 8,-258 65,-295 15,-10 46,-20 69,-22 36,-4 48,-1 73,20 33,29 32,-4 25,510 -2,142 -1,261.00002 3,264.00002 19,20 187,-131.00002 253,-228.00002 18,-25 48,-60 68,-77 30,-27 44,-32 86,-32 45,0 55,4 85,34 30,30 34,40 34,85 0,29 -6,66 -14,84 C 4885,1046 4732,1125 4539,1150 c -149,19 -134,5 -126,121 4,56 14,119 22,142 9,23 22,57 29,75 9,25 10,41 2,58 -22,48 -169,123 -242,122 -22,0 -68,-11 -102,-26 z"
+       id="path3" />
+    <path
+       d="M 4823,75 C 4756,30 4724,23 4500,0 l -219,-22 -50,35 c -66,47 -131,68 -213,68 -99,0 -104,-8 -49,-70 39,-43 48,-62 61,-123 24,-112.00001 46,-366.00001 46,-540.00001 0,-139 2,-163 20,-198 22,-43 71,-79 107,-79 35,0 75,41 82,86 l 6,39 75,7 c 97,10 446,14 573,8 95,-5 99,-4 118,19 29,36 25,96 -8,127 -14,13 -37,27 -50,30 -13,4 -23,10 -23,14 0,5 15,64 34,132 19,67 39,143 46,168 6,26 28,64 51,90 C 5169,-139 5158,-99 5050,-1 c -67,62 -134,102 -170,102 -11,0 -36,-12 -57,-26 z m -4,-197 c 7,-18 -9,-178.00001 -34,-342.00001 -11,-77 -22,-140 -23,-141 -4,-3 -469,-44 -471,-42 -6,8 -12,508.00001 -5,508.00001 4,0 21,-5 39,-11 25,-9 59,-7 164,10 205,33 322,39 330,18 z"
+       id="path4" />
+  </g>
+  </symbol>
+</svg>

@@ -2,10 +2,11 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Intro } from './intro';
-import { ProjectSummary } from '~/components/project-summary';
+import { Profile } from './profile';
 import { Skills } from '~/components/skills';
-import { baseMeta } from '~/utils/meta';
+import { ProjectSummary } from '~/components/project-summary';
 import { Footer } from '~/components/footer';
+import { baseMeta } from '~/utils/meta';
 
 //import laptopCRM from '~/assets/img-projects/laptop-crm.png';
 //import laptopTodo from '~/assets/img-projects/laptop-todo.png';
@@ -54,9 +55,10 @@ export const Home = () => {
     const projectOne = useRef();
     const projectTwo = useRef();
     const projectThree = useRef();
+    const details = useRef();
 
     useEffect(() => {
-        const sections = [intro, skills, projectOne, projectTwo, projectThree];
+        const sections = [intro, skills, projectOne, projectTwo, projectThree, details];
 
         const sectionObserver = new IntersectionObserver(
             (entries, observer) => {
@@ -157,6 +159,11 @@ export const Home = () => {
                 cardDescription="Create a visually captivating and highly interactive 3D globe that enhances the aesthetics and functionality of your creative work."
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
+            />
+            <Profile
+                sectionRef={details}
+                visible={visibleSections.includes(details.current)}
+                id="details"
             />
             <Footer />
         </div>

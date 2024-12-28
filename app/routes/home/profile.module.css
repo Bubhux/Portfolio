@@ -124,7 +124,7 @@
 
 .svg {
     position: absolute;
-    right: 0;
+    right: -70px;
     bottom: 0;
     transform: translate3d(50%, -20%, 0);
     height: 100%;

@@ -16,7 +16,7 @@ import { useFormInput } from '~/hooks';
 
 import { baseMeta } from '~/utils/meta';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
-import { Form, useActionData, useNavigation } from '@remix-run/react';
+import { Form, useActionData } from '@remix-run/react';
 import emailjs from 'emailjs-com';
 
 import styles from './contact.module.css';
@@ -150,7 +150,7 @@ export const Contact = () => {
                                     as="h1"
                                     style={getDelay(tokens.base.durationXS, initDelay, 0.3)}
                                 >
-                                    <DecoderText text="Say hello" start={status !== 'exited'} delay={1000} />
+                                    <DecoderText text="Shoot a quick hello" start={status !== 'exited'} delay={1000} />
                                 </Heading>
                                 <Divider
                                     lineWidth="60%"

@@ -15,6 +15,7 @@ import connectionsData from '~/components/globe/data/connections';
 
 import { getCountries } from '~/components/globe/data/processing';
 import { config, elements, groups, animations } from '~/components/globe/utils/config';
+
 import styles from './main.module.css';
 
 

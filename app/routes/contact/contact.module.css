@@ -341,7 +341,7 @@
 }
 
 .footer {
-    opacity: 0;
+    opacity: 1;
 
     &:global {
         animation: fade-in var(--durationL) ease var(--durationXL) forwards;

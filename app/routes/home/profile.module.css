@@ -12,6 +12,7 @@
     padding-bottom: 40px;
     display: flex;
     justify-content: center;
+    align-items: center;
 
     @media (--mediaTablet) {
         padding-top: 50px;

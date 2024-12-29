@@ -8,10 +8,6 @@ import { ProjectSummary } from '~/components/project-summary';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 
-//import laptopCRM from '~/assets/img-projects/laptop-crm.png';
-//import laptopTodo from '~/assets/img-projects/laptop-todo.png';
-//import laptopGlobe from '~/assets/img-projects/laptop-globe.png';
-
 import laptopCRM from '~/assets/img-projects/laptop-crm-grey.svg';
 import laptopTodo from '~/assets/img-projects/laptop-todo-grey.svg';
 import laptopGlobe from '~/assets/img-projects/laptop-globe-grey.svg';

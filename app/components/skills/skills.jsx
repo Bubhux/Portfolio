@@ -2,15 +2,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Text } from '~/components/text';
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
-import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
-import { media } from '~/utils/style';
 
+import { media } from '~/utils/style';
 import { skillsData } from "~/utils/skills";
 import { skillsImage } from "~/utils/skills-image";
 import { skillLinks } from "~/utils/skills-links";

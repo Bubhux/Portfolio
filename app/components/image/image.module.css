@@ -104,6 +104,7 @@
         &[data-loaded='true'] {
             opacity: 1;
             border-radius: 5px;
+            border: 3px solid oklch(17.76% 0 0);
         }
     }
 

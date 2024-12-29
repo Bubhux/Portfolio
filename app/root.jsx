@@ -1,15 +1,18 @@
 // app/root.jsx
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, useNavigation, useRouteError } from '@remix-run/react';
-import { ThemeProvider, themeStyles } from '~/components/theme-provider';
-import GothamBook from '~/assets/fonts/gotham-book.woff2';
-import GothamMedium from '~/assets/fonts/gotham-medium.woff2';
 import { useEffect, useState } from 'react';
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, useNavigation, useRouteError } from '@remix-run/react';
+
 import { Error } from '~/layouts/error';
-import { VisuallyHidden } from '~/components/visually-hidden';
 import { Navbar } from '~/layouts/navbar';
 import { Progress } from '~/components/progress';
+import { VisuallyHidden } from '~/components/visually-hidden';
+import { ThemeProvider, themeStyles } from '~/components/theme-provider';
+
+import GothamBook from '~/assets/fonts/gotham-book.woff2';
+import GothamMedium from '~/assets/fonts/gotham-medium.woff2';
 import config from '~/config.json';
 import styles from './root.module.css';
+
 import './reset.module.css';
 import './global.module.css';
 

@@ -14,6 +14,7 @@ import { media } from '~/utils/style';
 import { skillsData } from "~/utils/skills";
 import { skillsImage } from "~/utils/skills-image";
 import { skillLinks } from "~/utils/skills-links";
+import { ParticlesBackground } from './particles';
 
 import styles from './skills.module.css';
 import Marquee from "react-fast-marquee";
@@ -131,6 +132,7 @@ export function Skills({
             tabIndex={-1}
             {...rest}
         >
+            <ParticlesBackground />
             <div className={styles.skillsContent}>
                 <Transition in={sectionVisible || focused}>
                     {({ visible }) => (

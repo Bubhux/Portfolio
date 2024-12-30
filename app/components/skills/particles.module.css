@@ -1,0 +1,14 @@
+/* // app/components/skills/particles.module.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.skillsBackground {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /*background-color: rgba(208, 14, 14, 0.1);*/
+}

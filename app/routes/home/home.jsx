@@ -106,8 +106,8 @@ export const Home = () => {
                 visible={visibleSections.includes(skills.current)}
                 //index={1}
                 title="Enhancing Skills for the Future"
-                description="Building a toolkit for educators to create effective online learning experiences."
-                buttonText="View skills"
+                description="My most frequently used tools for development, which help me stay productive and efficient in the field of software development and beyond."
+                buttonText="View official documentation"
             />
             <ProjectSummary
                 id="project-1"

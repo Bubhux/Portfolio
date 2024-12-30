@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@csstools/postcss-global-data": "^3.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
@@ -29,6 +30,8 @@
     "fabric": "^4.5.1",
     "framer-motion": "^11.11.11",
     "isbot": "^4.1.0",
+    "particles.js": "^2.0.0",
+    "particlesjs": "^2.2.3",
     "postcss-custom-media": "^11.0.2",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",

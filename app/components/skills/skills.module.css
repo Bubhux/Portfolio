@@ -15,6 +15,7 @@
     transition-duration: 3s;
     transition-delay: 0.5s;
     opacity: 0;
+    left: 200px;
 
     @media (prefers-reduced-motion: no-preference) {
         transition-property: transform, opacity;
@@ -22,6 +23,7 @@
     }
 
     &[data-visible='true'] {
+        left: 200px;
         transform: none;
         opacity: 1;
     }
@@ -116,11 +118,13 @@
     border: 1px solid oklch(65.55% 0.006 205.48);
     background-color: var(--primary);
     box-shadow: none;
-    transition: all 0.5s;
+    transition: border-width 0.5s ease, border-color 2s ease;
+    box-sizing: border-box;
 }
 
 .skillCard:hover {
-    border-color: oklch(38.31% 0.006 205.48);
+    border-width: 4px;
+    border-color: oklch(34.46% 0 0);
 }
 
 .skillContent {
@@ -331,4 +335,13 @@
         transform: none;
         opacity: 1;
     }
+}
+
+.skillsBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }

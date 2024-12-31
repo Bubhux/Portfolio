@@ -8,13 +8,13 @@ import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
 import { Transition } from '~/components/transition';
+import { ParticlesBackground } from '~/components/particles';
 import { useWindowSize } from '~/hooks';
 
 import { media } from '~/utils/style';
 import { skillsData } from "~/utils/skills";
 import { skillsImage } from "~/utils/skills-image";
 import { skillLinks } from "~/utils/skills-links";
-import { ParticlesBackground } from './particles';
 
 import styles from './skills.module.css';
 import Marquee from "react-fast-marquee";

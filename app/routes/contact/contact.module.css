@@ -21,6 +21,12 @@
     }
 }
 
+.formContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .formWrapper {
     display: flex;
     justify-content: flex-start;

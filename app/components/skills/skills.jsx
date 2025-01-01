@@ -17,7 +17,6 @@ import { skillsImage } from "~/utils/skills-image";
 import { skillLinks } from "~/utils/skills-links";
 
 import styles from './skills.module.css';
-import Marquee from "react-fast-marquee";
 
 
 export function Skills({

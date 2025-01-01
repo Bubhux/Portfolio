@@ -5,10 +5,20 @@
 
 .skillsBackground {
     position: absolute;
+    /*position: fixed;*/
     top: 0;
     left: 150px;
     width: 100%;
     height: 100%;
     z-index: -1;
     /*background-color: rgba(208, 14, 14, 0.1);*/
+
+    opacity: 0;
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    transform: translateY(20px);
+
+    &[data-visible='true'] {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

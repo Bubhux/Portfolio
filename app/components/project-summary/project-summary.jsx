@@ -1,20 +1,23 @@
 // app/components/project-summary.jsx
 import { useState } from 'react';
 
+import { Text } from '~/components/text';
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
-import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
+import { ProjectCard } from '~/components/cards/project-card';
+import { ParticlesBackground } from '~/components/particles';
+
 import { useWindowSize } from '~/hooks';
 import { media } from '~/utils/style';
-import { ProjectCard } from '~/components/cards/project-card';
+
 
 import styles from './project-summary.module.css';
 
 
-export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, cardTitle, description, cardDescription, buttonText, buttonLink, imgPath, ghLink, demoLink, alternate, ...rest }) {
+export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, cardTitle, description, cardDescription, buttonText, buttonLink, imgPath, ghLink, demoLink, alternate, particlesActive = false, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
@@ -94,6 +97,7 @@ export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index,
             tabIndex={-1}
             {...rest}
         >
+            <ParticlesBackground isActive={particlesActive} sectionId={id} />
             <div className={styles.content}>
                 <Transition in={sectionVisible || focused}>
                     {({ visible }) => (

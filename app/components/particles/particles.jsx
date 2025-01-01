@@ -1,15 +1,17 @@
 // app/components/particles.jsx
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { Particles } from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
 import styles from "./particles.module.css";
 
 
-export function ParticlesBackground() {
+export function ParticlesBackground({ isActive = false, sectionId }) {
     const [isClient, setIsClient] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isAutoClicking, setIsAutoClicking] = useState(false);
+    const particlesRef = useRef();
+    const containerRef = useRef();
 
     const particlesInit = useCallback(async (engine) => {
         await loadFull(engine);
@@ -20,11 +22,13 @@ export function ParticlesBackground() {
     }, []);
 
     useEffect(() => {
+        if (!isActive) return;
+
         setIsClient(typeof window !== "undefined");
 
         const handleScroll = () => {
-            const skillsSection = document.getElementById('skills');
-            const rect = skillsSection.getBoundingClientRect();
+            const section = document.getElementById(sectionId);
+            const rect = section.getBoundingClientRect();
             const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
             setIsVisible(isInViewport);
 
@@ -43,18 +47,18 @@ export function ParticlesBackground() {
                 window.removeEventListener('scroll', handleScroll);
             };
         }
-    }, [isClient]);
+    }, [isClient, isActive, sectionId]);
 
     useEffect(() => {
-        if (isAutoClicking) {
+        if (isAutoClicking && containerRef.current) {
             const interval = setInterval(() => {
                 const clickEvent = new MouseEvent('click', {
                     bubbles: true,
                     cancelable: true,
                     view: window
                 });
-                document.getElementById('tsparticles')?.dispatchEvent(clickEvent);
-            }, 1000);
+                containerRef.current.dispatchEvent(clickEvent);
+            }, 3000);
 
             return () => clearInterval(interval);
         }
@@ -66,13 +70,15 @@ export function ParticlesBackground() {
 
     return (
         <div
+            ref={containerRef}
             className={styles.skillsBackground}
             data-visible={isVisible ? 'true' : 'false'}
         >
             <Particles
-                id="tsparticles"
+                id={`tsparticles-${sectionId}`}
                 init={particlesInit}
                 loaded={particlesLoaded}
+                ref={particlesRef}
                 options={{
                     fpsLimit: 60,                                                                                         // Limite du nombre de frames par seconde
                     interactivity: {

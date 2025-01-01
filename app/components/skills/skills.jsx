@@ -131,7 +131,7 @@ export function Skills({
             tabIndex={-1}
             {...rest}
         >
-            <ParticlesBackground />
+            <ParticlesBackground isActive={sectionVisible || focused} sectionId={id} />
             <div className={styles.skillsContent}>
                 <Transition in={sectionVisible || focused}>
                     {({ visible }) => (

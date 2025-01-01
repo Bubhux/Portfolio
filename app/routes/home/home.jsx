@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Intro } from './intro';
 import { Profile } from './profile';
 import { Skills } from '~/components/skills';
-import { ProjectSummary } from '~/components/project-summary';
 import { Footer } from '~/components/footer';
+import { ProjectSummary } from '~/components/project-summary';
 import { baseMeta } from '~/utils/meta';
 
 import laptopCRM from '~/assets/img-projects/laptop-crm-grey.svg';
@@ -123,6 +123,7 @@ export const Home = () => {
                 imgPath={laptopCRM}
                 cardDescription="Building a customer relationship management system to manage client interactions, track sales, and automate workflows."
                 ghLink="https://github.com/Bubhux/CRM-App"
+                particlesActive={true}
             />
             <ProjectSummary
                 id="project-2"
@@ -139,6 +140,7 @@ export const Home = () => {
                 cardDescription="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently."
                 ghLink="https://github.com/Bubhux/App-TodoListCalendar"
                 demoLink="https://bubhux.github.io/App-TodoListCalendar/"
+                particlesActive={true}
             />
             <ProjectSummary
                 id="project-3"
@@ -155,6 +157,7 @@ export const Home = () => {
                 cardDescription="Create a visually captivating and highly interactive 3D globe that enhances the aesthetics and functionality of your creative work."
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
+                particlesActive={true}
             />
             <Profile
                 sectionRef={details}

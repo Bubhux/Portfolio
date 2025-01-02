@@ -13,6 +13,10 @@
     justify-content: center;
     width: 100%;
     box-sizing: border-box;
+
+    @media (--mediaDesktop) {
+        margin: 0px;
+    }
 }
 
 .projectCardsContent {
@@ -25,6 +29,10 @@
     justify-content: center;
     width: 100%;
     box-sizing: border-box;
+
+    @media (--mediaDesktop) {
+        margin: -100px;
+    }
 }
 
 .projectCardView {
@@ -38,7 +46,7 @@
     border: 2px solid #383838;
     border-radius: 10px;
     box-sizing: border-box;
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 16px;
 
     transition-property: opacity, transform, box-shadow;
@@ -60,10 +68,12 @@
     @media (--mediaDesktop) {
         margin: 6rem 0;
         max-width: 920px;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     @media (--mediaLaptop) {
-         max-width: 780px;
+        max-width: 780px;
     }
 
     @media (--mediaMobile) {
@@ -76,6 +86,16 @@
 
     @media (max-width: 820px) and (max-height: 420px) {
         top: calc(var(--spaceM) * -1);
+    }
+
+    @media (--mediaDesktop),
+            (--mediaLaptop),
+            (--mediaMobile),
+            (--mediaMobileS),
+            (max-width: 820px) and (max-height: 420px) {
+        &:hover {
+            transform: scale(1.15) !important;
+        }
     }
 
     &:hover {
@@ -104,9 +124,12 @@
 }
 
 @keyframes pulseShadow {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 10px oklch(35.55% 0.006 205.48);
     }
+
     50% {
         box-shadow: 0 0 25px oklch(35.55% 0.02 205.48);
     }
@@ -208,7 +231,9 @@
     transition: opacity 0.3s ease;
 }
 
-.cardText, .buttonContainer, .svgBadgeContainer {
+.cardText,
+.buttonContainer,
+.svgBadgeContainer {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -219,6 +244,7 @@
         opacity: 0;
         transform: translateY(50px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -230,6 +256,7 @@
         opacity: 0;
         transform: translateX(500px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

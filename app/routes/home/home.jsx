@@ -111,7 +111,6 @@ export const Home = () => {
                 id="skills"
                 sectionRef={skills}
                 visible={visibleSections.includes(skills.current)}
-                //index={1}
                 title="Enhancing Skills for the Future"
                 description="My most frequently used tools for development, which help me stay productive and efficient in the field of software development and beyond."
                 buttonText="View official documentation"

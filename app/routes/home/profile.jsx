@@ -90,7 +90,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                                     width={960}
                                     height={1280}
                                     sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                                    alt="totoro is the best pillow in the world !"
+                                    alt="Totoro is the best pillow in the world !"
                                 />
                                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                                     <use href={`${totoroKatakana}#katakana-profile`} />

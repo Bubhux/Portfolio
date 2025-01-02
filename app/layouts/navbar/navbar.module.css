@@ -1,4 +1,7 @@
 /* app/layouts/navabar/navbar.module.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer layout {
     .navbar {
@@ -82,13 +85,13 @@
         &::after {
             content: '';
             position: absolute;
-            inset-inline-start: 45%; /* Centre horizontalement */
-            inset-block-end: 40px; /* Positionne le point légèrement en dessous */
-            width: 8px; /* Largeur du point */
-            height: 8px; /* Hauteur du point */
+            inset-inline-start: 45%;
+            inset-block-end: 40px;
+            width: 8px;
+            height: 8px;
             background: var(--accent);
-            border-radius: 50%; /* Crée un cercle */
-            opacity: 0; /* Cache le point par défaut */
+            border-radius: 50%;
+            opacity: 0;
             transform-origin: center;
         }
 
@@ -101,8 +104,8 @@
         &:hover::after,
         &:active::after,
         &[aria-current='page']::after {
-            transform: scale(1); /* Point visible */
-            opacity: 1; /* Rendre le point visible */
+            transform: scale(1);
+            opacity: 1;
         }
     }
 
@@ -191,7 +194,7 @@
         text-decoration: none;
         color: var(--textBody);
         padding: var(--spaceL);
-        position: relative; /* Position relative pour le positionnement des traits */
+        position: relative;
         top: calc(var(--spaceM) * -1);
         opacity: 0;
         transition-property: opacity;
@@ -214,42 +217,42 @@
         }
 
         span {
-            position: relative; /* Pour permettre le z-index sur le texte */
-            z-index: 1; /* Assure que le texte est au-dessus des traits */
-            padding: 0 1rem; /* Espace autour du texte pour éviter que les traits le traversent */
+            position: relative;
+            z-index: 1;
+            padding: 0 1rem;
             transition: font-size var(--durationM) var(--bezierFastoutSlowin);
         }
 
-        &:hover span { /* Ajouter cette règle */
-            font-size: calc(var(--headerNavFontSize) * 1.2); /* Augmente la taille de police de 10% au survol */
+        &:hover span {
+            font-size: calc(var(--headerNavFontSize) * 1.2);
         }
 
         & .leftLine,
         & .rightLine {
             content: '';
             position: absolute;
-            top: 50%; /* Positionne le trait au centre verticalement */
-            height: 4px; /* Hauteur du trait */
+            top: 50%;
+            height: 1px;
             background: var(--accent);
-            transform: scaleX(0) translateY(-50%); /* Centre verticalement avec translateY */
-            z-index: 0; /* Place le trait derrière le texte */
-            transition: transform var(--durationM) var(--bezierFastoutSlowin); /* Transition pour les traits */
+            transform: scaleX(0) translateY(-50%);
+            z-index: 0;
+            transition: transform var(--durationM) var(--bezierFastoutSlowin);
         }
 
         & .leftLine {
-            left: 0; /* Commence à gauche */
-            transform-origin: right; /* Change le point d'origine pour la droite */
-            right: 50%; /* S'étend vers la gauche */
-            margin-right: 3rem; /* Espace entre le trait et le texte */
-            margin-left: 2rem; /* Crée un espace à gauche entre le trait et le bord de page */
+            left: 0;
+            transform-origin: right;
+            right: 50%;
+            margin-right: 3rem;
+            margin-left: 2rem;
         }
 
         & .rightLine {
-            right: 0; /* Commence à droite */
-            transform-origin: left; /* Change le point d'origine pour la gauche */
-            left: 50%; /* S'étend vers la droite */
-            margin-left: 3rem; /* Espace entre le trait et le texte */
-            margin-right: 2rem; /* Crée un espace à droite entre le trait et le bord de page */
+            right: 0;
+            transform-origin: left;
+            left: 50%;
+            margin-left: 3rem;
+            margin-right: 2rem;
         }
 
         &:hover .leftLine,
@@ -258,7 +261,7 @@
         &:hover .rightLine,
         &:active .rightLine,
         &:focus .rightLine {
-            transform: scaleX(1) translateY(-50%); /* Les traits s'étendent au survol */
+            transform: scaleX(1) translateY(-50%);
         }
 
         &[data-visible='true'] {

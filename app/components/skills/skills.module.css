@@ -68,15 +68,15 @@
 
 .skillItemsWrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ajustement automatique du nombre de colonnes */
-    gap: 1rem; /* Espace entre les éléments */
-    overflow: hidden; /* Empêche les éléments de dépasser le conteneur */
-    max-width: 100%; /* Limite la largeur maximale à 100% du parent */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    overflow: hidden;
+    max-width: 100%;
     padding: 1rem;
 }
 
 .skillItem {
-    width: 100%; /* S'assure que chaque item prend toute la largeur de la colonne */
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -89,9 +89,9 @@
 }
 
 .skillImage img {
-    max-width: 100%; /* Assure que l'image reste à l'intérieur de son conteneur */
-    height: auto; /* Ajuste la hauteur en fonction de la largeur */
-    object-fit: contain; /* Garde les proportions de l'image */
+    max-width: 100%; 
+    height: auto;
+    object-fit: contain; 
 }
 
 .skillsTitle {
@@ -197,7 +197,7 @@
     display: grid;
     grid-template-columns: var(--textColumnWidth) 1fr;
     grid-column-gap: var(--space5XL);
-    max-height: 80vh; /* Limite la hauteur à 80% de la fenêtre */
+    max-height: 80vh;
 
     .skillsContent[data-alternate='true'] & {
         grid-template-columns: 1fr var(--textColumnWidth);

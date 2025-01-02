@@ -2,14 +2,11 @@
 import { useState } from 'react';
 
 import { DecoderText } from '~/components/decoder-text';
-import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
-import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { useWindowSize } from '~/hooks';
 import { media } from '~/utils/style';
-import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -19,7 +16,7 @@ import styles from './project-card.module.css';
 
 
 export function ProjectDisplayCard({
-    visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, showDetails, isVisible, ...rest }) {
+    visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, showDetails, isVisible, svgBadge, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
@@ -33,7 +30,6 @@ export function ProjectDisplayCard({
                         type="image/svg+xml"
                         data={imgPath}
                         aria-label="Project laptop animation"
-                        //style={{ width: 'auto', height: '100%', maxWidth: '700px' }}
                     />
                 </div>
                 <div className={styles.cardBody} data-visible={visible}>
@@ -47,6 +43,11 @@ export function ProjectDisplayCard({
                             <Text className={`${styles.cardText} ${!isVisible ? styles.hidden : ''}`} data-visible={visible} as="p">
                                 {description}
                             </Text>
+                            {svgBadge && (
+                                <div className={`${styles.svgBadgeContainer} ${!isVisible ? styles.hidden : ''}`} data-visible={visible}>
+                                    {svgBadge}
+                                </div>
+                            )}
                             <div className={`${styles.buttonContainer} ${!isVisible ? styles.hidden : ''}`} data-visible={visible}>
                                 <a href={ghLink} target="_blank" className={styles.button} data-visible={visible}>
                                     <FontAwesomeIcon icon={faGithub} />

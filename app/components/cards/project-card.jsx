@@ -5,13 +5,11 @@ import { Transition } from '~/components/transition';
 import { media } from '~/utils/style';
 import { useWindowSize } from '~/hooks';
 import { ProjectDisplayCard } from './project-display-card';
-import { Divider } from '~/components/divider';
-import { Section } from '~/components/section';
 
 import styles from './project-card.module.css';
 
 
-export function ProjectCard({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, showDetails, ...rest }) {
+export function ProjectCard({ id, visible: sectionVisible, title, description, imgPath, ghLink, demoLink, isBlog, alternate, showDetails, svgBadge, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
@@ -27,6 +25,7 @@ export function ProjectCard({ id, visible: sectionVisible, title, description, i
                 demoLink={demoLink}
                 visible={visible}
                 showDetails={showDetails}
+                svgBadge={svgBadge}
             />
         );
     }

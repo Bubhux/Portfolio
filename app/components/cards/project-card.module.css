@@ -6,25 +6,25 @@
 .projectCardsContainer {
     /*border: 2px solid red;*/
     padding: 16px;
-    margin: 8px;
-    display: flex;            /* Flexbox pour permettre l'étirement */
-    flex-direction: column;   /* Aligne les éléments en colonne */
-    align-items: center;      /* Centre les éléments horizontalement */
-    justify-content: center;  /* Centre les éléments verticalement */
-    width: 100%;              /* S'étend sur toute la largeur disponible */
-    box-sizing: border-box;   /* Inclut la bordure dans les dimensions de l'élément */
+    margin: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .projectCardsContent {
     /*border: 2px solid blue;*/
     padding: 16px;
     margin: 8px;
-    display: flex;            /* Flexbox pour permettre l'étirement */
-    flex-direction: column;   /* Aligne les éléments en colonne */
-    align-items: center;      /* Centre les éléments horizontalement */
-    justify-content: center;  /* Centre les éléments verticalement */
-    width: 100%;              /* S'étend sur toute la largeur disponible */
-    box-sizing: border-box;   /* Inclut la bordure dans les dimensions de l'élément */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .projectCardView {
@@ -32,16 +32,16 @@
     flex-direction: row;
     align-items: center;
     opacity: 0.9;
-    width: 100%;                   /* Prend toute la largeur disponible */
+    width: 100%;
     max-width: 1200px;
-    height: auto;                  /* Hauteur fixe pour maintenir la forme rectangulaire */
+    height: auto;
     border: 2px solid #383838;
     border-radius: 10px;
-    box-sizing: border-box;        /* Inclut les bordures dans les dimensions de l'élément */
-    margin: 0 auto;                /* Centre l'élément horizontalement */
+    box-sizing: border-box;
+    margin: 0 auto; 
     padding: 16px;
 
-    transition-property: opacity;
+    transition-property: opacity, transform, box-shadow;
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
     transition-duration: 3s;
     transition-delay: 0.5s;
@@ -79,44 +79,82 @@
     }
 
     &:hover {
-        box-shadow: 0 2px 2px 4px oklch(35.55% 0.006 205.48);
-        transition: font-size 0.2s ease;
+        /*box-shadow: 0 4px 12px oklch(35.55% 0.006 205.48);*/
+        /*box-shadow: 2px 2px 5px oklch(35.55% 0.000 200.28), -2px -2px 5px oklch(35.55% 0.006 205.48);*/
+        /*box-shadow: 0 6px 15px oklch(35.55% 0.006 205.48);*/
+        box-shadow: 0 0 10px oklch(35.55% 0.006 205.48);
+        transform: scale(1.55);
+        transition-duration: 0.8s;
+    }
+}
+
+.projectCardView:hover {
+    &:nth-child(2) {
+        transform: translateY(-10px);
+    }
+
+    &:nth-child(3) {
+        border-color: oklch(55% 0.05 130);
+        box-shadow: 0 4px 20px oklch(55% 0.05 130);
+    }
+
+    &:nth-child(4) {
+        animation: pulseShadow 1.5s infinite;
+    }
+}
+
+@keyframes pulseShadow {
+    0%, 100% {
+        box-shadow: 0 0 10px oklch(35.55% 0.006 205.48);
+    }
+    50% {
+        box-shadow: 0 0 25px oklch(35.55% 0.02 205.48);
     }
 }
 
 .cardImgTop {
     border-radius: 10px;
     object-fit: contain;
-    width: 100%;           /* Assure que l'image occupe toute la largeur du conteneur */
-    max-width: 100%;       /* S'assure que l'image ne dépasse pas la largeur du conteneur */
-    max-height: 100%;      /* Permet à l'image de conserver ses proportions sans dépasser la hauteur */
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
     overflow: hidden;
 }
 
 .cardImgTop svg {
     width: 100%;
-    height: auto;          /* Laisse la hauteur s'ajuster pour garder les proportions de l'image */
+    height: auto;
 }
-
 
 .cardBody {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 5px;
-    flex-grow: 1;                     /* Permet à cardBody de s'étirer si nécessaire */
-    /*width: 100%;*/                  /* Prend l'autre moitié de la largeur disponible */
+    flex-grow: 1;
+    /*width: 100%;*/
     margin: 0px 25px 0px 25px;
 }
 
 .cardText {
-    padding: 45px 0px;                                /* Réduire les espacements horizontaux pour plus d'espace */
-    width: 100%;                                      /* Laisse le texte occuper une plus grande largeur */
-    line-height: 1.6;                                 /* Augmente l'espacement entre les lignes pour une meilleure lisibilité */
-    box-sizing: border-box;                           /* S'assure que le padding est inclus dans la largeur totale */
-    word-wrap: break-word;                            /* Permet de couper les mots longs pour éviter le dépassement de ligne */
-    opacity: 0;                                       /* Initialement invisible */
+    padding: 35px 0px;
+    width: 100%;
+    line-height: 1.6;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    opacity: 0;
     animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.svgBadgeContainer {
+    display: flex;
+    width: 100%;
+    height: 20px;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeInRight 1.8s ease-in-out forwards;
 }
 
 .buttonContainer {
@@ -124,7 +162,7 @@
     align-items: center;
     gap: 10px;
     justify-content: center;
-    opacity: 0;                                       /* Initialement invisible */
+    opacity: 0;
     animation: fadeIn 0.8s ease-in-out forwards;
 }
 
@@ -170,7 +208,7 @@
     transition: opacity 0.3s ease;
 }
 
-.cardText, .buttonContainer {
+.cardText, .buttonContainer, .svgBadgeContainer {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -179,7 +217,18 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(50px); /* Le texte monte doucement */
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(500px);
     }
     to {
         opacity: 1;

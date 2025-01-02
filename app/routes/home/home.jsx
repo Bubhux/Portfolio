@@ -11,6 +11,13 @@ import { baseMeta } from '~/utils/meta';
 import laptopCRM from '~/assets/img-projects/laptop-crm-grey.svg';
 import laptopTodo from '~/assets/img-projects/laptop-todo-grey.svg';
 import laptopGlobe from '~/assets/img-projects/laptop-globe-grey.svg';
+import svgPython from '~/assets/img-cards/Python.svg';
+import svgMySQL from '~/assets/img-cards/MySQL.svg';
+import svgDjango from '~/assets/img-cards/Django.svg';
+import svgReact from '~/assets/img-cards/React.svg';
+import svgBootstrap from '~/assets/img-cards/Bootstrap.svg';
+import svgSASS from '~/assets/img-cards/SASS.svg';
+import svgThree from '~/assets/img-cards/Three.js.svg';
 
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -122,8 +129,15 @@ export const Home = () => {
                 cardTitle="CRM Application"
                 imgPath={laptopCRM}
                 cardDescription="Building a customer relationship management system to manage client interactions, track sales, and automate workflows."
+                svgBadge={
+                    <>
+                        <img src={svgPython} alt="Python Logo" />
+                        <img src={svgMySQL} alt="MySQL Logo" />
+                        <img src={svgDjango} alt="Django Logo" />
+                    </>
+                }
                 ghLink="https://github.com/Bubhux/CRM-App"
-                particlesActive={true}
+                particlesActive={false}
             />
             <ProjectSummary
                 id="project-2"
@@ -138,9 +152,16 @@ export const Home = () => {
                 cardTitle="Todo List Calendar Application"
                 imgPath={laptopTodo}
                 cardDescription="Designing and developing a todo list app with integrated calendar features to help users organize tasks and schedule events efficiently."
+                svgBadge={
+                    <>
+                        <img src={svgReact} alt="React Logo" />
+                        <img src={svgBootstrap} alt="Bootstrap Logo" />
+                        <img src={svgSASS} alt="SASS Logo" />
+                    </>
+                }
                 ghLink="https://github.com/Bubhux/App-TodoListCalendar"
                 demoLink="https://bubhux.github.io/App-TodoListCalendar/"
-                particlesActive={true}
+                particlesActive={false}
             />
             <ProjectSummary
                 id="project-3"
@@ -155,9 +176,15 @@ export const Home = () => {
                 cardTitle="3D Globe Application"
                 imgPath={laptopGlobe}
                 cardDescription="Create a visually captivating and highly interactive 3D globe that enhances the aesthetics and functionality of your creative work."
+                svgBadge={
+                    <>
+                        <img src={svgReact} alt="React Logo" />
+                        <img src={svgThree} alt="Three.js Logo" />
+                    </>
+                }
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
-                particlesActive={true}
+                particlesActive={false}
             />
             <Profile
                 sectionRef={details}

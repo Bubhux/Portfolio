@@ -17,7 +17,7 @@ import { media } from '~/utils/style';
 import styles from './project-summary.module.css';
 
 
-export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, cardTitle, description, cardDescription, buttonText, buttonLink, imgPath, ghLink, demoLink, alternate, particlesActive = false, ...rest }) {
+export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index, title, cardTitle, description, cardDescription, svgBadge, buttonText, buttonLink, imgPath, ghLink, demoLink, alternate, particlesActive = false, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
@@ -75,6 +75,7 @@ export function ProjectSummary({ id, visible: sectionVisible, sectionRef, index,
                 imgPath={imgPath}
                 title={cardTitle}
                 description={cardDescription}
+                svgBadge={svgBadge}
                 ghLink={ghLink}
                 demoLink={demoLink}
                 visible={visible}

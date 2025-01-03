@@ -11,6 +11,7 @@ import { VisuallyHidden } from '~/components/visually-hidden';
 import { Link as RouterLink } from '@remix-run/react';
 import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
 import { cssProps } from '~/utils/style';
+import { motion } from 'framer-motion';
 import { useHydrated } from '~/hooks/useHydrated';
 
 import styles from './intro.module.css';
@@ -40,7 +41,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
             const index = (disciplineIndex + 1) % disciplines.length;
             setDisciplineIndex(index);
         },
-        5000,
+        6000,
         theme
     );
 
@@ -64,7 +65,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
         }, 5500);
         return () => clearTimeout(timer);
     }, []);
-    
+
     return (
         <Section
             className={styles.intro}
@@ -106,21 +107,31 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                                         <Transition
                                             unmount
                                             in={item === currentDiscipline}
-                                            timeout={{ enter: 1500, exit: 1000 }}
+                                            //timeout={{ enter: 3000, exit: 2000 }}
+                                            timeout={{ enter: 2000, exit: 1000 }}
                                             key={item}
                                         >
                                             {({ status, nodeRef }) => (
-                                                <span
+                                                <motion.span
                                                     aria-hidden
                                                     ref={nodeRef}
                                                     className={styles.word}
                                                     data-plus={true}
                                                     data-status={status}
                                                     style={cssProps({ delay: tokens.base.durationL })}
+                                                    initial={{ opacity: 0, scale: 0 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0 }}
+                                                    transition={{ duration: 0.8 }}
                                                 >
+                                                    <motion.span
+                                                        className={`${styles.bar} ${isAnimating ? styles.animate : ''}`}
+                                                        data-status={status}
+                                                        transition={{ duration: 0.5 }}
+                                                    />
                                                     <span className={`${styles.bar} ${isAnimating ? styles.animate : ''}`} data-status={status} data-plus="true"></span>
                                                     {item}
-                                                </span>
+                                                </motion.span>
                                             )}
                                         </Transition>
                                     ))}

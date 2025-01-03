@@ -256,6 +256,7 @@ const Main = () => {
             {isLoading && (
                 <div className={styles.loaderWrapper}>
                     <div className={styles.loader}></div>
+                    <p className={styles.loaderMessage}>Loading ...</p>
                 </div>
             )}
             <div id="threejs-container" className={styles['threejs-container']}>

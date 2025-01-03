@@ -1,5 +1,5 @@
 // app/routes/contact/contact.jsx
-import React, { Suspense, lazy, useEffect, useState, useRef } from 'react';
+import React, { Suspense, lazy, useEffect, useState, useRef, startTransition } from 'react';
 
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
@@ -53,11 +53,11 @@ export const Contact = () => {
     useEffect(() => {
         setIsClient(true);
 
-        const timer = setTimeout(() => {
-            setShowMain(true);
-        }, 3000);
-
-        return () => clearTimeout(timer);
+        startTransition(() => {
+            import('~/components/globe/main').then(() => {
+                setShowMain(true);
+            });
+        });
     }, []);
 
     const handleSubmit = async (e) => {

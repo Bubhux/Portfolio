@@ -69,10 +69,12 @@
 
 .loaderWrapper {
     position: absolute;
-    top: 50%;
+    top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    display: flex;
+    align-items: center;
 }
 
 .loader {
@@ -82,12 +84,20 @@
     border-top: 5px solid #555;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    margin-right: 20px;
+}
+
+.loaderMessage {
+    font-size: 1rem;
+    color: #cccccc;
+    white-space: nowrap;
 }
 
 @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }

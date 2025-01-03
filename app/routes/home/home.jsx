@@ -136,7 +136,7 @@ export const Home = () => {
                     </>
                 }
                 ghLink="https://github.com/Bubhux/CRM-App"
-                particlesActive={false}
+                particlesActive={true}
             />
             <ProjectSummary
                 id="project-2"
@@ -160,7 +160,7 @@ export const Home = () => {
                 }
                 ghLink="https://github.com/Bubhux/App-TodoListCalendar"
                 demoLink="https://bubhux.github.io/App-TodoListCalendar/"
-                particlesActive={false}
+                particlesActive={true}
             />
             <ProjectSummary
                 id="project-3"
@@ -183,7 +183,7 @@ export const Home = () => {
                 }
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
-                particlesActive={false}
+                particlesActive={true}
             />
             <Profile
                 sectionRef={details}

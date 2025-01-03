@@ -58,7 +58,7 @@ export function ParticlesBackground({ isActive = false, sectionId }) {
                     view: window
                 });
                 containerRef.current.dispatchEvent(clickEvent);
-            }, 3000);
+            }, 10000);
 
             return () => clearInterval(interval);
         }

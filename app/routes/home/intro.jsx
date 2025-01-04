@@ -81,7 +81,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                     <>
                         {isHydrated && (
                             <Suspense>
-                                {/* <DisplacementParticules /> */}
+                                <DisplacementParticules />
                             </Suspense>
                         )}
                         <header className={styles.text}>

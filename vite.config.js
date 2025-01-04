@@ -22,7 +22,6 @@ export default defineConfig({
     resolve: {
         alias: {
             '~app': resolve(__dirname, 'app'),
-            '~static': resolve(__dirname, 'static'),
         },
     },
     plugins: [

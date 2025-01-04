@@ -182,7 +182,7 @@ export const Home = () => {
                     </>
                 }
                 ghLink="https://github.com/Bubhux/3d-globe"
-                demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
+                demoLink="https://globe-7xi.pages.dev/"
                 particlesActive={false}
             />
             <Profile

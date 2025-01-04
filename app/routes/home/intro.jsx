@@ -10,16 +10,16 @@ import { Transition } from '~/components/transition';
 import { VisuallyHidden } from '~/components/visually-hidden';
 import { Link as RouterLink } from '@remix-run/react';
 import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
-import { cssProps } from '~/utils/style';
 import { motion } from 'framer-motion';
+import { cssProps } from '~/utils/style';
 import { useHydrated } from '~/hooks/useHydrated';
 
-import styles from './intro.module.css';
 import config from '~/config.json';
+import styles from './intro.module.css';
 
 
-const DisplacementParticules = lazy(() =>
-    import('./displacement-particules').then(module => ({ default: module.GalaxyEffect }))
+const DisplacementParticles = lazy(() =>
+    import('./displacement-particules').then(module => ({ default: module.DisplacementParticles }))
 );
 
 export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
@@ -58,10 +58,8 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
 
     useEffect(() => {
         setIsAnimating(true);
-        console.log('Animation started');
         const timer = setTimeout(() => {
             setIsAnimating(false);
-            console.log('Animation ended');
         }, 5500);
         return () => clearTimeout(timer);
     }, []);
@@ -81,7 +79,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                     <>
                         {isHydrated && (
                             <Suspense>
-                                <DisplacementParticules />
+                                <DisplacementParticles />
                             </Suspense>
                         )}
                         <header className={styles.text}>

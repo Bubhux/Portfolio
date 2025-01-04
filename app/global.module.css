@@ -13,7 +13,9 @@
 @custom-media --mediaReduceMotion (prefers-reduced-motion: reduce);
 @custom-media --mediaTouch (pointer: coarse);
 @custom-media --mediaNoTouch (pointer: fine);
-@custom-media --mediaSpecificScreen (min-width: 2681px) and (min-height: 1131px);
+@custom-media --mediaSpecificScreen1 (min-width: 2732px);
+@custom-media --mediaSpecificScreen2 (max-width: 2732px);
+@custom-media --mediaSpecificScreen3 (max-width: 1518px);
 
 
 @layer base {

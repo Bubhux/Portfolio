@@ -1,0 +1,32 @@
+
+The humans.txt file explains the team, technology,
+and graphic assets behind this site humanstxt.org.
+
+_______________________________________________________________________________
+
+TEAM
+
+Bubhux Paindépice  
+Developer Full-stack Junior  
+GitHub: https://github.com/Bubhux  
+
+_______________________________________________________________________________
+
+THANKS
+
+Special thanks to the original project designer.  
+Inspired and based on the project by Hamish Williams:  
+GitHub: https://github.com/hamishmw  
+
+_______________________________________________________________________________
+
+TECHNOLOGIES
+
+Frontend: React, Vite.js  
+Frameworks: Remix, Three.js, Framer Motion  
+
+_______________________________________________________________________________
+
+CONTACT
+
+Email: bubhuxpaindepice@gmail.com

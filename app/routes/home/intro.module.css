@@ -92,15 +92,21 @@
 }
 
 .bar {
-    margin-right: 5px;
-
     &[data-plus='true']::before {
         content: '|';
         opacity: 0.4;
     }
 
-    @media (--mediaSpecificScreen) {
+    @media (--mediaSpecificScreen1) {
             margin-right: 6px;
+    }
+
+    @media (--mediaSpecificScreen2) {
+        margin-right: 5px;
+    }
+
+    @media (--mediaSpecificScreen3) {
+        margin-right: 4px;
     }
 }
 

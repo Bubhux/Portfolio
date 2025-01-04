@@ -16,7 +16,7 @@ import * as THREE from 'three';
 import fragmentShader from './displacement-particules-fragment.glsl?raw';
 import vertexShader from './displacement-particules-vertex.glsl?raw';
 import styles from './displacement-particules.module.css';
-import galaxyTexture from '/static/img/blue-gradient.png';
+import galaxyTexture from '/static/img/grey-gradient.png';
 
 
 const springConfig = {

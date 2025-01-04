@@ -28,14 +28,14 @@ export const links = () => {
     return [
         {
             rel: 'prefetch',
-            href: '/static/draco/draco_wasm_wrapper.js',
+            href: '/draco/draco_wasm_wrapper.js',
             as: 'script',
             type: 'text/javascript',
             importance: 'low',
         },
         {
             rel: 'prefetch',
-            href: '/static/draco/draco_decoder.wasm',
+            href: '/draco/draco_decoder.wasm',
             as: 'fetch',
             type: 'application/wasm',
             importance: 'low',
@@ -136,7 +136,7 @@ export const Home = () => {
                     </>
                 }
                 ghLink="https://github.com/Bubhux/CRM-App"
-                particlesActive={true}
+                particlesActive={false}
             />
             <ProjectSummary
                 id="project-2"
@@ -160,7 +160,7 @@ export const Home = () => {
                 }
                 ghLink="https://github.com/Bubhux/App-TodoListCalendar"
                 demoLink="https://bubhux.github.io/App-TodoListCalendar/"
-                particlesActive={true}
+                particlesActive={false}
             />
             <ProjectSummary
                 id="project-3"
@@ -183,7 +183,7 @@ export const Home = () => {
                 }
                 ghLink="https://github.com/Bubhux/3d-globe"
                 demoLink="https://bubhux.github.io/Projet-Web-HTML-CSS/"
-                particlesActive={true}
+                particlesActive={false}
             />
             <Profile
                 sectionRef={details}

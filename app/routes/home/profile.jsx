@@ -1,6 +1,7 @@
 // app/routes/home/profile.jsx
-import profileImgLarge from '~/assets/img-profile/profile-large.png';
 import profileImg from '~/assets/img-profile/profile.png';
+import profileImgLarge from '~/assets/img-profile/profile-large.png';
+import profileImgPlaceholder from '~/assets/img-profile/profile-placeholder.png';
 
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
@@ -86,6 +87,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                                 <Image
                                     reveal
                                     delay={100}
+                                    placeholder={profileImgPlaceholder}
                                     srcSet={`${profileImg} 480w, ${profileImgLarge} 960w`}
                                     width={960}
                                     height={1280}

@@ -61,8 +61,13 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
     const rotationY = useSpring(0, springConfig);
     const [isReady, setIsReady] = useState(false);
 
+    useEffect(() => {
+        if (!texture) {
+            console.error('Texture not loaded');
+        }
+    }, [texture]);
+
     if (!texture) {
-        console.error('Texture not loaded');
         return null;
     }
 

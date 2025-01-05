@@ -1,8 +1,8 @@
 // app/components/skills.jsx
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { Text } from '~/components/text';
+import { Link } from '~/components/link';
 import { Button } from '~/components/button';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';

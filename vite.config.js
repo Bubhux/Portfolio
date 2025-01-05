@@ -1,7 +1,7 @@
 // vite.config.js
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import { vitePlugin as remix, cloudflareDevProxyVitePlugin as remixCloudflareDevProxy } from '@remix-run/dev';
+import { vitePlugin as remix } from '@remix-run/dev';
 
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
@@ -17,9 +17,7 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
     assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl', '**/*.svg'],
     build: {
-        assetsInlineLimit: 4096,
-        manifest: true,
-        outDir: "build/client",
+        assetsInlineLimit: 1024,
     },
     resolve: {
         alias: {
@@ -33,7 +31,6 @@ export default defineConfig({
             remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
             providerImportSource: '@mdx-js/react',
         }),
-        remixCloudflareDevProxy(),
         remix({
             routes(defineRoutes) {
                 return defineRoutes(route => {

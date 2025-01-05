@@ -1,6 +1,6 @@
 // app/components/globe/main.jsx
 import * as THREE from 'three';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import App from './app';
 import Globe from './globe';

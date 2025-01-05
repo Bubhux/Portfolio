@@ -60,13 +60,6 @@
     }
 }
 
-@media (--mediaMobile), (--mediaMobileLS) {
-    .skillsItemsList {
-        padding-right: 40px;
-        padding-left: 40px;
-    }
-}
-
 .skillsHeader {
     display: flex;
     justify-content: center;

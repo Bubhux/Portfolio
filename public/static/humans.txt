@@ -24,7 +24,8 @@ TECHNOLOGIES
 
 Frontend: React, Vite.js  
 Frameworks: Remix, Three.js, Framer Motion  
-
+Inkscape
+SVGator
 _______________________________________________________________________________
 
 CONTACT

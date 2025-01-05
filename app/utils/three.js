@@ -1,3 +1,4 @@
+// app/utils/three.js
 import { Cache, TextureLoader } from 'three';
 import { DRACOLoader, GLTFLoader } from 'three-stdlib';
 
@@ -23,13 +24,19 @@ export const cleanScene = scene => {
     scene?.traverse(object => {
         if (!object.isMesh) return;
 
-        object.geometry.dispose();
+        // Dispose geometry only if it's available
+        if (object.geometry) {
+            object.geometry.dispose();
+        }
 
-        if (object.material.isMaterial) {
-            cleanMaterial(object.material);
-        } else {
-            for (const material of object.material) {
-                cleanMaterial(material);
+        if (object.material) {
+            if (object.material.isMaterial) {
+                cleanMaterial(object.material);
+            } else {
+                // If it's an array of materials
+                for (const material of object.material) {
+                    cleanMaterial(material);
+                }
             }
         }
     });
@@ -39,15 +46,34 @@ export const cleanScene = scene => {
  * Clean up and dispose of a material
  */
 export const cleanMaterial = material => {
-    material.dispose();
+    if (material) {
+        material.dispose();
 
-    for (const key of Object.keys(material)) {
-        const value = material[key];
-        if (value && typeof value === 'object' && 'minFilter' in value) {
-            value.dispose();
+        if (material.map) {
+            material.map.dispose();
+        }
+        if (material.bumpMap) {
+            material.bumpMap.dispose();
+        }
+        if (material.normalMap) {
+            material.normalMap.dispose();
+        }
+        if (material.emissiveMap) {
+            material.emissiveMap.dispose();
+        }
+        if (material.specularMap) {
+            material.specularMap.dispose();
+        }
 
-            // Close GLTF bitmap textures
-            value.source?.data?.close?.();
+        // Dispose textures associated with the material
+        for (const key of Object.keys(material)) {
+            const value = material[key];
+            if (value && typeof value === 'object' && 'minFilter' in value) {
+                value.dispose();
+
+                // Close GLTF bitmap textures
+                value.source?.data?.close?.();
+            }
         }
     }
 };
@@ -65,7 +91,9 @@ export const cleanRenderer = renderer => {
  */
 export const removeLights = lights => {
     for (const light of lights) {
-        light.parent.remove(light);
+        if (light && light.parent) {
+            light.parent.remove(light);
+        }
     }
 };
 

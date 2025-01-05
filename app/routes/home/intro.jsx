@@ -13,6 +13,7 @@ import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
 import { motion } from 'framer-motion';
 import { cssProps } from '~/utils/style';
 import { useHydrated } from '~/hooks/useHydrated';
+import { preloadDisplacementParticlesResources } from './displacement-particules';
 
 import config from '~/config.json';
 import styles from './intro.module.css';
@@ -35,6 +36,17 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
     const scrollToHash = useScrollToHash();
     const isHydrated = useHydrated();
     const [isAnimating, setIsAnimating] = useState(false);
+    const [isReady, setIsReady] = useState(false);
+    const [preloadedResources, setPreloadedResources] = useState(null);
+
+    useEffect(() => {
+        preloadDisplacementParticlesResources()
+            .then((resources) => {
+                setPreloadedResources(resources);
+                setIsReady(true);
+            })
+            .catch((error) => console.error('Failed to preload resources:', error));
+    }, []);
 
     useInterval(
         () => {
@@ -77,9 +89,9 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
             <Transition in key={theme} timeout={3000}>
                 {({ visible, status }) => (
                     <>
-                        {isHydrated && (
-                            <Suspense>
-                                {/* <DisplacementParticles /> */}
+                        {isHydrated && isReady && preloadedResources && (
+                            <Suspense fallback={null}>
+                                <DisplacementParticles preloadedResources={preloadedResources} />
                             </Suspense>
                         )}
                         <header className={styles.text}>

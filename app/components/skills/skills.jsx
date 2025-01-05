@@ -20,7 +20,7 @@ import styles from './skills.module.css';
 
 
 export function Skills({
-    id, visible: sectionVisible, sectionRef, index, title, description, buttonText, buttonLink, alternate, ...rest }) {
+    id, visible: sectionVisible, sectionRef, index, title, description, buttonText, buttonLink, alternate, particlesActive = false, ...rest }) {
 
     const [focused, setFocused] = useState(false);
     const { width } = useWindowSize();
@@ -131,7 +131,7 @@ export function Skills({
             tabIndex={-1}
             {...rest}
         >
-            <ParticlesBackground isActive={sectionVisible || focused} sectionId={id} />
+            <ParticlesBackground isActive={particlesActive} sectionId={id} />
             <div className={styles.skillsContent}>
                 <Transition in={sectionVisible || focused}>
                     {({ visible }) => (

@@ -1,8 +1,9 @@
+// app/utils/meta.js
 import config from '~/config.json';
 
 
 const { name, url, twitter } = config;
-const defaultOgImage = `${url}/social-image.png`;
+const defaultOgImage = `${url}/static/img/social-image.png`;
 
 export function baseMeta({
     title,

@@ -30,24 +30,49 @@ export function ParticlesBackground({ isActive = false, sectionId }) {
             const section = document.getElementById(sectionId);
             const rect = section.getBoundingClientRect();
             const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
-            setIsVisible(isInViewport);
 
             if (isInViewport) {
-                setIsAutoClicking(true);
+                setIsVisible(true);
+            } else if (!isInViewport && !isMobileOrLandscape()) {
+                setIsVisible(false);
+            }
+        };
+
+        const isMobileOrLandscape = () => {
+            const isMobile = window.matchMedia("(max-width: 696px)").matches;
+            const isLandscape = window.matchMedia("(max-height: 696px)").matches;
+            return isMobile || isLandscape;
+        };
+
+        const handleScreenSize = () => {
+            if (isMobileOrLandscape()) {
+                setIsVisible(true);
             } else {
-                setIsAutoClicking(false);
+                setIsVisible(false);
             }
         };
 
         if (isClient) {
             window.addEventListener('scroll', handleScroll);
+            window.addEventListener("resize", handleScreenSize);
+
             handleScroll();
+            handleScreenSize();
 
             return () => {
                 window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener("resize", handleScreenSize);
             };
         }
     }, [isClient, isActive, sectionId]);
+
+    useEffect(() => {
+        if (isVisible) {
+            setIsAutoClicking(true);
+        } else {
+            setIsAutoClicking(false);
+        }
+    }, [isVisible]);
 
     useEffect(() => {
         if (isAutoClicking && containerRef.current) {
@@ -80,7 +105,7 @@ export function ParticlesBackground({ isActive = false, sectionId }) {
                 loaded={particlesLoaded}
                 ref={particlesRef}
                 options={{
-                    fpsLimit: 60,                                                                                         // Limite du nombre de frames par seconde
+                    fpsLimit: 30,                                                                                         // Limite du nombre de frames par seconde
                     interactivity: {
                         events: {
                             onClick: {
@@ -135,7 +160,7 @@ export function ParticlesBackground({ isActive = false, sectionId }) {
                         number: {
                             density: {
                                 enable: true,                        // Active la densité de particules
-                                area: 800                            // Surface sur laquelle les particules sont réparties
+                                area: 1200                           // Surface sur laquelle les particules sont réparties
                             },
                             value: 30                                // Nombre total de particules générées
                         },

@@ -49,12 +49,12 @@ export function ProjectDisplayCard({
                                 </div>
                             )}
                             <div className={`${styles.buttonContainer} ${!isVisible ? styles.hidden : ''}`} data-visible={visible}>
-                                <a href={ghLink} target="_blank" className={styles.button} data-visible={visible}>
+                                <a href={ghLink} target="_blank" className={styles.button} data-visible={visible} rel="noreferrer">
                                     <FontAwesomeIcon icon={faGithub} />
                                     GitHub
                                 </a>
                                 {!isBlog && demoLink && (
-                                    <a href={demoLink} target="_blank" className={styles.button} data-visible={visible}>
+                                    <a href={demoLink} target="_blank" className={styles.button} data-visible={visible} rel="noreferrer">
                                         <FontAwesomeIcon icon={faLink} />
                                         Demo
                                     </a>

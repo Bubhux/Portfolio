@@ -108,6 +108,10 @@
     @media (--mediaSpecificScreen3) {
         margin-right: 4px;
     }
+
+    @media (--mediaMobile), (--mediaMobileLS) {
+        margin-right: 2.5px;
+    }
 }
 
 .animate {

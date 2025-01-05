@@ -1,6 +1,6 @@
 // app/components/globe/app.jsx
 import * as THREE from 'three';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { OrbitControls } from 'three-stdlib';
 import dat from 'dat.gui';
 
@@ -41,7 +41,7 @@ class App extends Component {
     initRenderer = () => {
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setClearColor(0x000000, 0);
-        this.renderer.setSize(1500, 1000);
+        this.setRendererSize();
         this.renderer.setPixelRatio(window.devicePixelRatio * 1.5);
         this.renderer.shadowMap.enabled = true;
         this.renderer.antialias = true;
@@ -51,6 +51,17 @@ class App extends Component {
             container.appendChild(this.renderer.domElement);
         } else {
             console.error("Container for Three.js not found.");
+        }
+    }
+
+    setRendererSize = () => {
+        const mediaMobile = window.matchMedia('(max-width: 696px)');
+        const mediaMobileLS = window.matchMedia('(max-height: 696px)');
+
+        if (mediaMobile.matches || mediaMobileLS.matches) {
+            this.renderer.setSize(1200, 600);
+        } else {
+            this.renderer.setSize(1700, 1200);
         }
     }
 
@@ -157,7 +168,7 @@ class App extends Component {
             this.camera.aspect = width / height;
             this.camera.updateProjectionMatrix();
 
-            this.renderer.setSize(width, height);
+            this.setRendererSize();
         }
     };
 

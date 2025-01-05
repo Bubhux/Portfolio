@@ -1,7 +1,7 @@
 // app/root.jsx
 import { useEffect, useState } from 'react';
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, useNavigation, useRouteError } from '@remix-run/react';
 
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, useNavigation, useRouteError } from '@remix-run/react';
 import { Error } from '~/layouts/error';
 import { Navbar } from '~/layouts/navbar';
 import { Progress } from '~/components/progress';
@@ -48,7 +48,7 @@ export const loader = async ({ request }) => {
 
     return {
         canonicalUrl,
-        theme: 'dark', // Valeur par défaut
+        theme: 'dark',
     };
 };
 
@@ -56,8 +56,7 @@ export default function App() {
     const { canonicalUrl } = useLoaderData();
     const { state } = useNavigation();
 
-    // État du thème
-    const [theme, setTheme] = useState('dark'); // Valeur par défaut
+    const [theme, setTheme] = useState('dark');
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');

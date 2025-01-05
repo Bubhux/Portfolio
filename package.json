@@ -4,10 +4,12 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
+    "build": "npm run lint && echo 'Lint passed, starting build...' && remix vite:build",
     "dev": "remix vite:dev",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/server/index.js",
+    "postinstall": "node ./scripts/draco.cjs",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint",
+    "start": "wrangler pages dev ./build/client",
+    "deploy": "npm run build && wrangler pages deploy ./build/client --project-name portfolio",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -20,6 +22,8 @@
     "@mui/material": "^6.1.6",
     "@react-three/drei": "^9.114.3",
     "@react-three/fiber": "^8.17.9",
+    "@remix-run/cloudflare": "^2.15.0",
+    "@remix-run/cloudflare-pages": "^2.15.0",
     "@remix-run/node": "^2.12.1",
     "@remix-run/react": "^2.12.1",
     "@remix-run/serve": "^2.12.1",
@@ -40,6 +44,8 @@
     "react-tsparticles": "^2.12.0",
     "rehype-img-size": "^1.0.1",
     "rehype-slug": "^6.0.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.0.0",
     "three": "^0.169.0",
     "three-stdlib": "^2.33.0",
     "tsparticles": "^2.12.0",
@@ -49,7 +55,7 @@
   "devDependencies": {
     "@mapbox/rehype-prism": "^0.9.0",
     "@mdx-js/rollup": "^3.0.1",
-    "@remix-run/dev": "^2.12.1",
+    "@remix-run/dev": "^2.13.1",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
@@ -62,14 +68,16 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "postcss": "^8.4.38",
     "raw-loader": "^4.0.2",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.1.6",
-    "vite": "^5.4.8",
+    "vite": "^5.1.0",
     "vite-jsconfig-paths": "^2.0.1",
     "vite-plugin-svgr": "^4.2.0",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.2.1",
+    "wrangler": "^3.95.0"
   },
   "engines": {
     "node": ">=20.0.0"

@@ -85,12 +85,12 @@ export const Home = () => {
         );
 
         sections.forEach(section => {
-            if (section.current) {  // Vérification que le ref est bien défini
+            if (section.current) {
                 sectionObserver.observe(section.current);
             }
         });
 
-        if (intro.current) {  // Vérification que intro est bien défini
+        if (intro.current) {
             indicatorObserver.observe(intro.current);
         }
 
@@ -114,6 +114,7 @@ export const Home = () => {
                 title="Enhancing Skills for the Future"
                 description="My most frequently used tools for development, which help me stay productive and efficient in the field of software development and beyond."
                 buttonText="View official documentation"
+                particlesActive={true}
             />
             <ProjectSummary
                 id="project-1"

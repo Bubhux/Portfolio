@@ -1,5 +1,5 @@
 // app/components/cards/project-card.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { Transition } from '~/components/transition';
 import { media } from '~/utils/style';

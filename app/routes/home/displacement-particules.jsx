@@ -4,7 +4,7 @@ import { useTheme } from '~/components/theme-provider';
 import { Transition } from '~/components/transition';
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { useInViewport, useWindowSize } from '~/hooks';
-import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, SphereGeometry, PlaneGeometry, UniformsUtils, Vector2, WebGLRenderer, TextureLoader } from 'three';
+import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, PlaneGeometry, UniformsUtils, Vector2, WebGLRenderer, TextureLoader } from 'three';
 import { media } from '~/utils/style';
 import { throttle } from '~/utils/throttle';
 import { cleanRenderer, cleanScene, removeLights } from '~/utils/three';

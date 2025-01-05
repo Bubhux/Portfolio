@@ -1,5 +1,5 @@
 // app/routes/contact/contact.jsx
-import { Suspense, lazy, useEffect, useState, useRef, startTransition } from 'react';
+import React, { Suspense, lazy, useEffect, useState, useRef, startTransition } from 'react';
 
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';

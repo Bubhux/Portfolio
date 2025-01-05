@@ -28,7 +28,7 @@ module.exports = {
         // React
         {
             files: ["**/*.{js,jsx,ts,tsx}"],
-            plugins: ["react", "jsx-a11y", "unused-imports"],
+            plugins: ["react", "jsx-a11y"],
             extends: [
                 "plugin:react/recommended",
                 "plugin:react/jsx-runtime",
@@ -48,23 +48,12 @@ module.exports = {
                     typescript: {},
                 },
             },
-            rules: {
-                "react/display-name": "off",
-                "react/prop-types": "off",
-                "react-hooks/exhaustive-deps": "off",
-                "unused-imports/no-unused-imports": "error",
-                "react/require-render-return": "off",
-                "no-unused-vars": "off",
-                "no-redeclare": "off",
-                "no-undef": "off",
-                "no-empty": "off",
-            },
         },
 
         // Typescript
         {
             files: ["**/*.{ts,tsx}"],
-            plugins: ["@typescript-eslint", "import", "unused-imports"],
+            plugins: ["@typescript-eslint", "import"],
             parser: "@typescript-eslint/parser",
             settings: {
                 "import/internal-regex": "^~/",
@@ -82,17 +71,6 @@ module.exports = {
                 "plugin:import/recommended",
                 "plugin:import/typescript",
             ],
-            rules: {
-                "react/display-name": "off",
-                "react/prop-types": "off",
-                "react-hooks/exhaustive-deps": "off",
-                "unused-imports/no-unused-imports": "error",
-                "react/require-render-return": "off",
-                "no-unused-vars": "off",
-                "no-redeclare": "off",
-                "no-undef": "off",
-                "no-empty": "off",
-            },
         },
 
         // Node

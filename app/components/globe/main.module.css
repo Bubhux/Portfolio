@@ -75,10 +75,6 @@
     z-index: 10;
     display: flex;
     align-items: center;
-
-    @media (--mediaMobile),(--mediaMobileLS) {
-        margin-bottom: 100px;
-    }
 }
 
 .loader {
@@ -89,20 +85,12 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-right: 20px;
-
-    @media (--mediaMobile),(--mediaMobileLS) {
-        margin-bottom: 100px;
-    }
 }
 
 .loaderMessage {
     font-size: 1rem;
     color: #cccccc;
     white-space: nowrap;
-
-    @media (--mediaMobile), (--mediaMobileLS) {
-        margin-bottom: 100px;
-    }
 }
 
 @keyframes spin {

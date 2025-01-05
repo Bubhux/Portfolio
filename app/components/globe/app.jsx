@@ -1,6 +1,6 @@
 // app/components/globe/app.jsx
 import * as THREE from 'three';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { OrbitControls } from 'three-stdlib';
 import dat from 'dat.gui';
 
@@ -41,7 +41,7 @@ class App extends Component {
     initRenderer = () => {
         this.renderer = new THREE.WebGLRenderer({ alpha: true });
         this.renderer.setClearColor(0x000000, 0);
-        this.renderer.setSize(1700, 1200);
+        this.renderer.setSize(1500, 1000);
         this.renderer.setPixelRatio(window.devicePixelRatio * 1.5);
         this.renderer.shadowMap.enabled = true;
         this.renderer.antialias = true;

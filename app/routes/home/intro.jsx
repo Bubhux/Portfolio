@@ -13,7 +13,6 @@ import { useInterval, usePrevious, useScrollToHash } from '~/hooks';
 import { motion } from 'framer-motion';
 import { cssProps } from '~/utils/style';
 import { useHydrated } from '~/hooks/useHydrated';
-import { preloadDisplacementParticlesResources } from './displacement-particules';
 
 import config from '~/config.json';
 import styles from './intro.module.css';
@@ -40,12 +39,15 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
     const [preloadedResources, setPreloadedResources] = useState(null);
 
     useEffect(() => {
-        preloadDisplacementParticlesResources()
-            .then((resources) => {
-                setPreloadedResources(resources);
-                setIsReady(true);
-            })
-            .catch((error) => console.error('Failed to preload resources:', error));
+        import('./displacement-particules').then(module => {
+            const { preloadDisplacementParticlesResources } = module;
+            preloadDisplacementParticlesResources()
+                .then((resources) => {
+                    setPreloadedResources(resources);
+                    setIsReady(true);
+                })
+                .catch((error) => console.error('Failed to preload resources:', error));
+        });
     }, []);
 
     useInterval(

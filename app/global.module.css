@@ -6,7 +6,6 @@
 @custom-media --mediaDesktop (max-width: 2080px);
 @custom-media --mediaLaptop (max-width: 1680px);
 @custom-media --mediaTablet (max-width: 1040px);
-@custom-media --mediaMobileXLS (max-width: 768px);
 @custom-media --mediaMobile (max-width: 696px);
 @custom-media --mediaMobileLS (max-height: 696px);
 @custom-media --mediaMobileS (max-width: 400px);
@@ -14,11 +13,15 @@
 @custom-media --mediaReduceMotion (prefers-reduced-motion: reduce);
 @custom-media --mediaTouch (pointer: coarse);
 @custom-media --mediaNoTouch (pointer: fine);
-@custom-media --mediaSpecificScreen1 (min-width: 2732px);
-@custom-media --mediaSpecificScreen2 (max-width: 2732px);
-@custom-media --mediaSpecificScreen3 (max-width: 2049px);
-@custom-media --mediaSpecificScreen4 (max-width: 1518px);
-@custom-media --mediaSpecificScreen5 (max-width: 1366px);
+
+@custom-media --mediaMobileXXS (max-width: 375px);
+@custom-media --mediaMobileXS (max-width: 425px);
+@custom-media --mediaMobileM (max-width: 768px);
+@custom-media --mediaTablet (max-width: 1024px);
+@custom-media --mediaDesktopL (max-width: 1707px);
+@custom-media --mediaDesktopM (max-width: 2049px);
+@custom-media --mediaDesktopS (max-width: 2732px);
+@custom-media --mediaDesktopXL (min-width: 1707px);
 
 
 @layer base {

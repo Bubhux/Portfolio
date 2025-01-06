@@ -98,20 +98,16 @@
 
 .loaderWrapper {
     position: absolute;
-    top: 90%;
+    top: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
     display: flex;
     align-items: center;
+    padding: 10px;
 
-    @media (--mediaMobile),(--mediaMobileLS) {
-        margin-bottom: 200px;
-        padding-bottom: 60px;
-    }
-
-    @media (--mediaMobileXLS) {
-        margin-bottom: 150px;
+    @media (--mediaMobileM) {
+        top: 60%;
     }
 }
 
@@ -123,37 +119,12 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-right: 20px;
-
-    @media (--mediaMobile),(--mediaMobileLS) {
-        margin-bottom: 200px;
-    }
-
-    @media (--mediaMobileXLS) {
-        margin-top: 150px;
-    }
-
-    @media (--mediaTablet) {
-        margin-bottom: 110px;
-    }
 }
 
 .loaderMessage {
     font-size: 1rem;
     color: #cccccc;
     white-space: nowrap;
-
-    @media (--mediaMobile), (--mediaMobileLS) {
-        margin-bottom: 200px;
-        padding-bottom: 10px;
-    }
-
-    @media (--mediaMobileXLS) {
-        margin-top: 150px;
-    }
-
-    @media (--mediaTablet) {
-        margin-bottom: 110px;
-    }
 }
 
 @keyframes spin {

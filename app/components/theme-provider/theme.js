@@ -12,6 +12,7 @@ const baseTokens = {
     durationM: '400ms',
     durationL: '600ms',
     durationXL: '800ms',
+    durationXXL: '2000ms',
     systemFontStack:
         'system-ui, -apple-system, BlinkMacSystemFont, San Francisco, Roboto, Segoe UI, Ubuntu, Helvetica Neue, sans-serif',
     fontStack: `Gotham, var(--systemFontStack)`,

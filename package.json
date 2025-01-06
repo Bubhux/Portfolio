@@ -1,7 +1,12 @@
 {
   "name": "design-portfolio",
   "private": true,
-  "sideEffects": false,
+  "sideEffects": [
+      "*.js",
+      "*.mjs",
+      "*.ts",
+      "*.tsx"
+  ],
   "type": "module",
   "scripts": {
     "build": "npm run lint && echo 'Lint passed, starting build...' && remix vite:build",
@@ -9,7 +14,7 @@
     "postinstall": "node ./scripts/draco.cjs",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint",
     "start": "wrangler pages dev ./build/client",
-    "deploy": "npm run build && wrangler pages deploy ./build/client --project-name portfolio",
+    "deploy": "npm run build && wrangler pages deploy ./build/client --project-name portfolio --branch main",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -71,6 +76,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "postcss": "^8.4.38",
     "raw-loader": "^4.0.2",
+    "rollup-plugin-copy": "^3.5.0",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.1.6",
     "vite": "^5.1.0",

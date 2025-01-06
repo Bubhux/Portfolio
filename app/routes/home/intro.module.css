@@ -109,15 +109,11 @@
         margin-right: 4px;
     }
 
-    @media (--mediaTablet) {
-        margin-right: 3;
-    }
-
-    @media (--mediaMobileM) {
+    @media (--mediaTablet), (--mediaMobileM) {
         margin-right: 3px;
     }
 
-    @media (--mediaMobileXS) {
+    @media (--mediaMobileS), (--mediaMobileXS) {
         margin-right: 2.5px;
     }
 
@@ -169,6 +165,10 @@
                 top: 40px;
             }
 
+            @media (--mediaMobileS) {
+                top: 30px;
+            }
+
             @media (--mediaMobileXS) {
                 top: 25px;
             }
@@ -195,6 +195,10 @@
                 top: 70px;
             }
 
+            @media (--mediaMobileS) {
+                top: 55px;
+            }
+
             @media (--mediaMobileXS) {
                 top: 50px;
             }
@@ -214,6 +218,10 @@
 
             @media (--mediaMobileM), (--mediaTablet) {
                 top: 40px;
+            }
+
+            @media (--mediaMobileS) {
+                top: 30px;
             }
 
             @media (--mediaMobileXS) {
@@ -240,6 +248,10 @@
 
             @media (--mediaMobileM), (--mediaTablet) {
                 top: 70px;
+            }
+
+            @media (--mediaMobileS) {
+                top: 55px;
             }
 
             @media (--mediaMobileXS) {

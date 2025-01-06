@@ -137,6 +137,16 @@
     &[data-visible='true'] {
         opacity: 1;
     }
+
+    @media (--mediaMobileM) {
+        width: 10%;
+        right: -40;
+        bottom: 50px;
+    }
+
+    @media (--mediaMobileXXS), (--mediaMobileXS) {
+        right: -20px;
+    }
 }
 
 .button {

@@ -150,7 +150,7 @@ export const Contact = () => {
                                     as="h1"
                                     style={getDelay(tokens.base.durationXS, initDelay, 0.3)}
                                 >
-                                    <DecoderText text="Shoot a quick hello" start={status !== 'exited'} delay={1000} />
+                                    <DecoderText text="Send greetings" start={status !== 'exited'} delay={1000} />
                                 </Heading>
                                 <Divider
                                     lineWidth="60%"

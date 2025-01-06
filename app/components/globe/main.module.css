@@ -34,7 +34,7 @@
         box-shadow: 0 0 10px oklch(35.55% 0.006 205.48 / 0.5);
     }
 
-    @media (--mediaMobile) {
+    @media (--mediaMobile), (--mediaMobileLS) {
         &:hover {
             cursor: pointer;
             border: 2px solid rgba(105, 105, 105, 0.2);
@@ -43,13 +43,8 @@
         }
     }
 
-    @media (--mediaMobileLS) {
-        &:hover {
-            cursor: pointer;
-            border: 2px solid rgba(105, 105, 105, 0.2);
-            border-radius: 10px;
-            box-shadow: 0 0 10px oklch(35.55% 0.006 205.48 / 0.5);
-        }
+    @media (--mediaMobileXXS) {
+        margin-right: 20px;
     }
 }
 

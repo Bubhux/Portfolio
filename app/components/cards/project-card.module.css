@@ -17,6 +17,10 @@
     @media (--mediaDesktop) {
         margin: 0px;
     }
+
+    @media (--mediaMobileXXS) {
+        padding: 0px;
+    }
 }
 
 .projectCardsContent {
@@ -32,6 +36,10 @@
 
     @media (--mediaDesktop) {
         margin: -100px;
+    }
+
+    @media (--mediaMobileXXS) {
+        padding: 0px;
     }
 }
 
@@ -88,13 +96,15 @@
         top: calc(var(--spaceM) * -1);
     }
 
-    @media (--mediaDesktop),
-            (--mediaLaptop),
-            (--mediaMobile),
-            (--mediaMobileS),
-            (max-width: 820px) and (max-height: 420px) {
+    @media (--mediaDesktop), (--mediaLaptop), (--mediaMobile), (--mediaMobileS), (max-width: 820px) and (max-height: 420px) {
         &:hover {
             transform: scale(1.15) !important;
+        }
+    }
+
+    @media (--mediaMobileXXS) {
+        &:hover {
+            transform: scale(1.0) !important;
         }
     }
 
@@ -198,11 +208,7 @@
     /*text-overflow: ellipsis;*/
     margin-inline: 300px;
 
-    @media (--mediaDesktop),
-           (--mediaLaptop),
-           (--mediaMobile),
-           (--mediaMobileS),
-           (max-width: 820px) and (max-height: 420px) {
+    @media (--mediaDesktop), (--mediaLaptop), (--mediaMobile), (--mediaMobileS), (max-width: 820px) and (max-height: 420px) {
         white-space: normal;
     }
 }

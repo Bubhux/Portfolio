@@ -44,7 +44,7 @@ export default defineConfig({
         treeShaking: true,
     },
     build: {
-        assetsInlineLimit: 4096,
+        assetsInlineLimit: 1024,
         manifest: true,
         outDir: "build/client",
         rollupOptions: {

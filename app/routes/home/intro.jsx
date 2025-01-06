@@ -1,5 +1,5 @@
 // app/routes/home/intro.jsx
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState, startTransition } from 'react';
 
 import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
@@ -43,8 +43,11 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
             const { preloadDisplacementParticlesResources } = module;
             preloadDisplacementParticlesResources()
                 .then((resources) => {
-                    setPreloadedResources(resources);
-                    setIsReady(true);
+                    startTransition(() => {
+                        setPreloadedResources(resources);
+                        setIsReady(true);
+                        setIsAnimating(true);
+                    });
                 })
                 .catch((error) => console.error('Failed to preload resources:', error));
         });
@@ -98,7 +101,8 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                         )}
                         <header className={styles.text}>
                             <h1 className={styles.name} data-visible={visible} id={titleId}>
-                                <DecoderText text={config.name} delay={500} />
+                                {/* <DecoderText text={config.name} delay={500} /> */}
+                                <DecoderText key={disciplineIndex} text={config.name} delay={500} />
                             </h1>
                             <Heading level={0} as="h2" className={styles.title}>
                                 <VisuallyHidden className={styles.label}>

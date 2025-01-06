@@ -24,7 +24,6 @@ const springConfig = {
 export const preloadDisplacementParticlesResources = () => {
     return new Promise((resolve, reject) => {
         const textureLoader = new TextureLoader();
-
         const texture = textureLoader.load(
             '/static/img/particules.png',
             () => {
@@ -60,6 +59,7 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
     const rotationX = useSpring(0, springConfig);
     const rotationY = useSpring(0, springConfig);
     const [isReady, setIsReady] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         if (!texture) {
@@ -67,15 +67,9 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
         }
     }, [texture]);
 
-    if (!texture) {
-        return null;
-    }
-
     useEffect(() => {
-        const timer = setTimeout(() => setIsReady(true), 2000);
-
-        return () => clearTimeout(timer);
-    }, []);
+        setIsReady(true);
+    }, []);    
 
     useEffect(() => {
         const { innerWidth, innerHeight } = window;
@@ -99,11 +93,7 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
         material.current = new MeshPhongMaterial({
             map: texture,
             onBeforeCompile: shader => {
-                uniforms.current = UniformsUtils.merge([
-                    shader.uniforms,
-                    { time: { type: 'f', value: 0 } },
-                ]);
-
+                uniforms.current = UniformsUtils.merge([shader.uniforms, { time: { type: 'f', value: 0 } }]);
                 shader.uniforms = uniforms.current;
                 shader.vertexShader = vertexShader;
                 shader.fragmentShader = fragmentShader;
@@ -112,7 +102,6 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
 
         startTransition(() => {
             geometry.current = new PlaneGeometry(60, 40, 20, 20);
-
             sphere.current = new Mesh(geometry.current, material.current);
             sphere.current.position.z = 0;
             scene.current.add(sphere.current);
@@ -128,9 +117,7 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
         const dirLight = new DirectionalLight(0xffffff, theme === 'light' ? 1.4 : 1.5);
         const ambientLight = new AmbientLight(0xffffff, theme === 'light' ? 2.0 : 0.2);
 
-        dirLight.position.z = 200;
-        dirLight.position.x = 100;
-        dirLight.position.y = 100;
+        dirLight.position.set(100, 100, 200);
 
         lights.current = [dirLight, ambientLight];
         lights.current.forEach(light => scene.current.add(light));
@@ -143,25 +130,19 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
     useEffect(() => {
         const { width, height } = windowSize;
         const adjustedHeight = height + height * 0.3;
-
         renderer.current.setSize(width, adjustedHeight);
         camera.current.aspect = width / adjustedHeight;
         camera.current.updateProjectionMatrix();
 
-        // Render a single frame on resize when not animating
         if (reduceMotion) {
             renderer.current.render(scene.current, camera.current);
         }
-
         if (width <= media.mobile) {
-            sphere.current.position.x = 14;
-            sphere.current.position.y = 10;
+            sphere.current.position.set(14, 10, 0);
         } else if (width <= media.tablet) {
-            sphere.current.position.x = 18;
-            sphere.current.position.y = 14;
+            sphere.current.position.set(18, 14, 0);
         } else {
-            sphere.current.position.x = 22;
-            sphere.current.position.y = 16;
+            sphere.current.position.set(22, 16, 0);
         }
     }, [reduceMotion, windowSize]);
 
@@ -193,7 +174,6 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
 
         const animate = () => {
             const now = Date.now();
-
             if (now - lastRender < 1000 / 30) {
                 animation = requestAnimationFrame(animate);
                 return;
@@ -211,29 +191,14 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
             animation = requestAnimationFrame(animate);
         };
 
-        const startAnimation = () => {
-            if (!animation) {
-                animation = requestAnimationFrame(animate);
-            }
-        };
-
-        const stopAnimation = () => {
-            if (animation) {
-                cancelAnimationFrame(animation);
-                animation = null;
-            }
-        };
-
         const handleVisibilityChange = () => {
             if (document.visibilityState === "visible" && isInViewport && !reduceMotion) {
-                startAnimation();
-            } else {
-                stopAnimation();
+                animate();
             }
         };
 
         if (!reduceMotion && isInViewport && document.visibilityState === "visible") {
-            startAnimation();
+            animate();
         } else {
             renderer.current.render(scene.current, camera.current);
         }
@@ -241,22 +206,36 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
         document.addEventListener("visibilitychange", handleVisibilityChange);
 
         return () => {
-            stopAnimation();
+            cancelAnimationFrame(animation);
             document.removeEventListener("visibilitychange", handleVisibilityChange);
         };
     }, [isInViewport, reduceMotion, rotationX, rotationY]);
 
+    useEffect(() => {
+        if (isReady) {
+            setIsLoading(false);
+        }
+    }, [isReady]);
+
     return (
-        <Transition in={isReady} timeout={3000} nodeRef={canvasRef}>
-            {({ visible, nodeRef }) => (
-                <canvas
-                    aria-hidden
-                    className={styles.canvas}
-                    data-visible={visible}
-                    ref={nodeRef}
-                    {...props}
-                />
+        <>
+            {isLoading && (
+                <div className={styles.loaderWrapper}>
+                    <div className={styles.loader}></div>
+                    <p className={styles.loaderMessage}>Loading ...</p>
+                </div>
             )}
-        </Transition>
+            <Transition in={isReady} timeout={3000} nodeRef={canvasRef}>
+                {({ visible, nodeRef }) => (
+                    <canvas
+                        aria-hidden
+                        className={styles.canvas}
+                        data-visible={visible}
+                        ref={nodeRef}
+                        {...props}
+                    />
+                )}
+            </Transition>
+        </>
     );
 };

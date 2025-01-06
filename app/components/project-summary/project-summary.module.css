@@ -36,6 +36,11 @@
             margin-top: 1000px;
             margin-bottom: 400px;
         }
+
+        @media (--mediaMobileXXS) {
+            margin-top: 1000px;
+            margin-bottom: 40px;
+        }
     }
 }
 

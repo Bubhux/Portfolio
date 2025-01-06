@@ -2,6 +2,7 @@
 import profileImg from '~/assets/img-profile/profile.png';
 import profileImgLarge from '~/assets/img-profile/profile-large.png';
 import profileImgPlaceholder from '~/assets/img-profile/profile-placeholder.png';
+import totoroKatakana from '~/assets/img-profile/totoro-katakana.svg';
 
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
@@ -15,7 +16,6 @@ import { Transition } from '~/components/transition';
 import { Fragment, useState } from 'react';
 import { media } from '~/utils/style';
 
-import totoroKatakana from './totoro-katakana.svg';
 import styles from './profile.module.css';
 
 

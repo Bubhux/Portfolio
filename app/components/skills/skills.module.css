@@ -80,6 +80,10 @@
     overflow: hidden;
     max-width: 100%;
     padding: 1rem;
+
+    @media (--mediaMobileXXS) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .skillItem {
@@ -93,6 +97,10 @@
     /*margin: 0.5rem;*/
     border-radius: 0.5rem;
     cursor: pointer;
+
+    @media (--mediaMobileXXS) {
+        width: 100%;
+    }
 }
 
 .skillImage img {

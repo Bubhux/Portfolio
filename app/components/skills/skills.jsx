@@ -54,11 +54,11 @@ export function Skills({
                 <Text className={styles.description} data-visible={visible} as="p">
                     {description}
                 </Text>
-                <div className={styles.button} data-visible={visible}>
+                {/* <div className={styles.button} data-visible={visible}>
                     <Button iconHoverShift href={buttonLink} iconEnd="arrow-right">
                         {buttonText}
                     </Button>
-                </div>
+                </div> */}
             </div>
         );
     }

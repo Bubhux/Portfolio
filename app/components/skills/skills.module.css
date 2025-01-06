@@ -217,7 +217,7 @@
 
     @media (--mediaTablet) {
         flex: 0 0 auto;
-        max-width: 410px;
+        max-width: 270px;
         grid-row: 2;
         grid-column: 1;
         justify-self: center;

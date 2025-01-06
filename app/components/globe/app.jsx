@@ -29,9 +29,8 @@ class App extends Component {
         this.render();
         this.update();
 
-        // Configure le resize dynamique dès le début
         window.addEventListener('resize', this.handleResize);
-        this.handleResize();  // Appelle immédiatement pour la taille initiale
+        this.handleResize();
     }
 
     initScene = () => {
@@ -55,21 +54,22 @@ class App extends Component {
     }
 
     setRendererSize = () => {
-
         const mediaMobileXS = window.matchMedia('(max-width: 696px)');
         const mediaMobileXLS = window.matchMedia('(max-height: 696px)');
         const mediaMobile = window.matchMedia('(max-width: 768px)');
         const mediaMobileLS = window.matchMedia('(max-height: 768px)');
         const mediaTablet = window.matchMedia('(max-width: 1024px)');
 
-        if (mediaMobile.matches || mediaMobileLS.matches || mediaMobileXS.matches || mediaMobileXLS.matches) {
-            this.renderer.setSize(1100, 500);
+        if (mediaMobileXS.matches || mediaMobileXLS.matches) {
+            this.renderer.setSize(500, 500);
+        } else if (mediaMobile.matches || mediaMobileLS.matches) {
+            this.renderer.setSize(700, 700);
         } else if (mediaTablet.matches) {
-            this.renderer.setSize(1100, 600);
+            this.renderer.setSize(800, 800);
         } else {
-            this.renderer.setSize(1700, 1200);
+            this.renderer.setSize(1600, 1600);
         }
-    }
+    };
 
     initCamera = () => {
         this.ratio = window.innerWidth / window.innerHeight;

@@ -97,32 +97,32 @@
         opacity: 0.4;
     }
 
-    @media (--mediaSpecificScreen1) {
+    @media (--mediaDesktopXL) {
         margin-right: 6px;
     }
 
-    @media (--mediaSpecificScreen2) {
-        margin-right: 5.5px;
-    }
-
-    @media (--mediaSpecificScreen3) {
+    @media (--mediaDesktopM) {
         margin-right: 5px;
     }
 
-    @media (--mediaSpecificScreen4) {
+    @media (--mediaDesktopL) {
         margin-right: 4px;
     }
 
-    @media (--mediaMobile){
+    @media (--mediaTablet) {
+        margin-right: 3;
+    }
+
+    @media (--mediaMobileM) {
         margin-right: 3px;
     }
 
-    @media (--mediaMobileLS) {
-        margin-right: 4px;
+    @media (--mediaMobileXS) {
+        margin-right: 2.5px;
     }
 
-    @media (--mediaMobileXLS) {
-        margin-right: 4px;
+    @media (--mediaMobileXXS) {
+        margin-right: 1.5px;
     }
 }
 
@@ -149,25 +149,22 @@
         content: '';
         background: var(--accent);
         position: absolute;
-        inset: 0 -0.02em 0 0;
+        inset: 0 0 0 0;
         z-index: var(--zIndex1);
         will-change: transform, opacity;
         transform-origin: left;
         width: 50%;
-        height: 50px;
+        height: 50%;
+        top: 55px;
         animation: slideInFromLeftBar1 1.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 1.5s ease-in-out forwards;
 
-        @media (--mediaSpecificScreen1) {
-                top: 1px;
+        @media (--mediaMobileM), (--mediaTablet) {
+            top: 40px;
         }
 
-        @media (--mediaSpecificScreen3) {
-                top: -20px;
+        @media (--mediaMobileXS) {
+            top: 25px;
         }
-
-        @media (--mediaSpecificScreen4) {
-            top: -40px;
-    }
     }
 
     .bar1,
@@ -177,12 +174,12 @@
     .bar5 {
         position: absolute;
         bottom: 0;
-        width: 50%;
-        height: 50px;
+        height: 50%;
         z-index: var(--zIndex1);
 
         &.bar1 {
-            bottom: 40px;
+            left: 0;
+            top: 5px;
             width: 75%;
             background: var(--accent);
             transform-origin: left;
@@ -190,32 +187,45 @@
         }
 
         &.bar2 {
-            bottom: -10px;
+            left: 0;
+            top: 105px;
             width: 25%;
             background: var(--accent);
             transform-origin: left;
             animation: slideInFromLeftBar3 2.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 2.5s ease-in-out forwards;
 
-            @media (--mediaSpecificScreen1) {
-                bottom: -5px;
+            @media (--mediaMobileM), (--mediaTablet) {
+                top: 70px;
             }
 
-            @media (--mediaSpecificScreen3) {
-                bottom: -5px;
+            @media (--mediaMobileXS) {
+                top: 50px;
+            }
+
+            @media (--mediaMobileXXS) {
+                top: 40px;
             }
         }
 
         &.bar3 {
-            bottom: 90px;
             right: 0;
             width: 50%;
+            top:  55px;
             background: var(--accent);
             transform-origin: right;
             animation: slideInFromRightBar4 1.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 1.5s ease-in-out forwards;
+
+            @media (--mediaMobileM), (--mediaTablet) {
+                top: 40px;
+            }
+
+            @media (--mediaMobileXS) {
+                top: 25px;
+            }
         }
 
         &.bar4 {
-            bottom: 40px;
+            top: 5px;
             right: 0;
             width: 25%;
             background: var(--accent);
@@ -224,19 +234,23 @@
         }
 
         &.bar5 {
-            bottom: -10px;
+            top: 105px;
             right: 0;
             width: 75%;
             background: var(--accent);
             transform-origin: right;
             animation: slideInFromRightBar6 2.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 2.5s ease-in-out forwards;
 
-            @media (--mediaSpecificScreen1) {
-                bottom: -5px;
+            @media (--mediaMobileM), (--mediaTablet) {
+                top: 70px;
             }
 
-            @media (--mediaSpecificScreen3) {
-                bottom: -5px;
+            @media (--mediaMobileXS) {
+                top: 50px;
+            }
+
+            @media (--mediaMobileXXS) {
+                top: 40px;
             }
         }
     }

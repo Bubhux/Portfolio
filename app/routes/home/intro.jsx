@@ -94,11 +94,11 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
             <Transition in key={theme} timeout={3000}>
                 {({ visible, status }) => (
                     <>
-                        {isHydrated && isReady && preloadedResources && (
+                        {/* {isHydrated && isReady && preloadedResources && (
                             <Suspense fallback={null}>
                                 <DisplacementParticles preloadedResources={preloadedResources} />
                             </Suspense>
-                        )}
+                        )} */}
                         <header className={styles.text}>
                             <h1 className={styles.name} data-visible={visible} id={titleId}>
                                 {/* <DecoderText text={config.name} delay={500} /> */}
@@ -114,6 +114,31 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                                         data-status={status}
                                         style={cssProps({ delay: tokens.base.durationXS })}
                                     >
+                                        <span
+                                            className={styles.bar1}
+                                            data-status={status}
+                                            style={cssProps({ delay: tokens.base.durationXS })}
+                                        />
+                                        <span
+                                            className={styles.bar2}
+                                            data-status={status}
+                                            style={cssProps({ delay: tokens.base.durationXS })}
+                                        />
+                                        <span
+                                            className={styles.bar3}
+                                            data-status={status}
+                                            style={cssProps({ delay: tokens.base.durationXS })}
+                                        />
+                                        <span
+                                            className={styles.bar4}
+                                            data-status={status}
+                                            style={cssProps({ delay: tokens.base.durationXS })}
+                                        />
+                                        <span
+                                            className={styles.bar5}
+                                            data-status={status}
+                                            style={cssProps({ delay: tokens.base.durationXS })}
+                                        />
                                         {config.role}
                                     </span>
                                     <span className={styles.line} data-status={status} />
@@ -135,17 +160,42 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                                                     data-plus={true}
                                                     data-status={status}
                                                     style={cssProps({ delay: tokens.base.durationL })}
-                                                    initial={{ opacity: 0, scale: 0 }}
+                                                    initial={{ opacity: 1, scale: 0 }}
                                                     animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 0, scale: 0 }}
+                                                    exit={{ opacity: 1, scale: 0 }}
                                                     transition={{ duration: 0 }}
                                                 >
                                                     <motion.span
-                                                        className={`${styles.bar} ${isAnimating ? styles.animate : ''}`}
+                                                        className={styles.bar1}
+                                                        data-status={status}
+                                                        transition={{ duration: 1 }}
+                                                    />
+                                                    <motion.span
+                                                        className={styles.bar2}
+                                                        data-status={status}
+                                                        transition={{ duration: 1 }}
+                                                    />
+                                                    <motion.span
+                                                        className={styles.bar3}
+                                                        data-status={status}
+                                                        transition={{ duration: 1 }}
+                                                    />
+                                                    <motion.span
+                                                        className={styles.bar4}
+                                                        data-status={status}
+                                                        transition={{ duration: 1 }}
+                                                    />
+                                                    <motion.span
+                                                        className={styles.bar5}
+                                                        data-status={status}
+                                                        transition={{ duration: 1 }}
+                                                    />
+                                                    <motion.span
+                                                        className={`${styles.barVertical} ${isAnimating ? styles.animate : ''}`}
                                                         data-status={status}
                                                         transition={{ duration: 0.5 }}
                                                     />
-                                                    <span className={`${styles.bar} ${isAnimating ? styles.animate : ''}`} data-status={status} data-plus="true"></span>
+                                                    <span className={`${styles.barVertical} ${isAnimating ? styles.animate : ''}`} data-status={status} data-plus="true"></span>
                                                     {item}
                                                 </motion.span>
                                             )}

@@ -12,14 +12,69 @@ import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
 import glsl from 'vite-plugin-glsl';
 import svgr from 'vite-plugin-svgr';
+import copy from 'rollup-plugin-copy';
 
 
 export default defineConfig({
     assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl', '**/*.svg'],
+    optimizeDeps: {
+        include: [
+            "isbot",
+            "@remix-run/react",
+            "tsparticles",
+            "@fortawesome/free-brands-svg-icons",
+            "@fortawesome/free-solid-svg-icons",
+            "framer-motion",
+            "react-tsparticles"
+        ],
+        exclude: [],
+        ssr: {
+            noExternal: [
+                "isbot",
+                "@remix-run/react",
+                "tsparticles",
+                "@fortawesome/free-brands-svg-icons",
+                "@fortawesome/free-solid-svg-icons",
+                "framer-motion",
+                "react-tsparticles"
+            ]
+        },
+    },
+    esbuild: {
+        treeShaking: true,
+    },
     build: {
         assetsInlineLimit: 4096,
         manifest: true,
         outDir: "build/client",
+        rollupOptions: {
+            onwarn(warning, warn) {
+                if (warning.code === 'UNUSED_EXTERNAL_IMPORT' || warning.message.includes('sideEffects')) {
+                    return;
+                }
+                warn(warning);
+            },
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        if (id.includes('react') || id.includes('react-dom')) {
+                            return;
+                        }
+                        return 'vendor';
+                    }
+                },
+            },
+            plugins: [
+                copy({
+                    targets: [
+                        { src: 'public/static/robots.txt', dest: 'build/client/' },
+                    ],
+                    hook: 'writeBundle',
+                }),
+            ],
+        },
+        minify: 'terser',
+        chunkSizeWarningLimit: 4000,
     },
     resolve: {
         alias: {

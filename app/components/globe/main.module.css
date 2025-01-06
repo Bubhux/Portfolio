@@ -20,8 +20,37 @@
     margin: 0;
     position: relative;
     /*border: 2px solid #696969;*/
+    border: 2px solid transparent;
     border-radius: 10px;
+    transition: border-color 1.5s ease, box-shadow 1.5s ease;
     flex: 1;
+
+    &:hover {
+        border: 2px solid rgba(105, 105, 105, 0.2);
+        border-radius: 10px;
+        /*box-shadow: 0 4px 12px oklch(35.55% 0.006 205.48 / 0.5);*/
+        /*box-shadow: 2px 2px 5px oklch(35.55% 0.000 200.28 / 0.5), -2px -2px 5px oklch(35.55% 0.006 205.48 / 0.5);*/
+        /*box-shadow: 0 6px 15px oklch(35.55% 0.006 205.48 / 0.5);*/
+        box-shadow: 0 0 10px oklch(35.55% 0.006 205.48 / 0.5);
+    }
+
+    @media (--mediaMobile) {
+        &:hover {
+            cursor: pointer;
+            border: 2px solid rgba(105, 105, 105, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 10px oklch(35.55% 0.006 205.48 / 0.5);
+        }
+    }
+
+    @media (--mediaMobileLS) {
+        &:hover {
+            cursor: pointer;
+            border: 2px solid rgba(105, 105, 105, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 10px oklch(35.55% 0.006 205.48 / 0.5);
+        }
+    }
 }
 
 .app-wrapper {
@@ -77,7 +106,12 @@
     align-items: center;
 
     @media (--mediaMobile),(--mediaMobileLS) {
-        margin-bottom: 100px;
+        margin-bottom: 200px;
+        padding-bottom: 60px;
+    }
+
+    @media (--mediaMobileXLS) {
+        margin-bottom: 150px;
     }
 }
 
@@ -91,7 +125,15 @@
     margin-right: 20px;
 
     @media (--mediaMobile),(--mediaMobileLS) {
-        margin-bottom: 100px;
+        margin-bottom: 200px;
+    }
+
+    @media (--mediaMobileXLS) {
+        margin-top: 150px;
+    }
+
+    @media (--mediaTablet) {
+        margin-bottom: 110px;
     }
 }
 
@@ -101,7 +143,16 @@
     white-space: nowrap;
 
     @media (--mediaMobile), (--mediaMobileLS) {
-        margin-bottom: 100px;
+        margin-bottom: 200px;
+        padding-bottom: 10px;
+    }
+
+    @media (--mediaMobileXLS) {
+        margin-top: 150px;
+    }
+
+    @media (--mediaTablet) {
+        margin-bottom: 110px;
     }
 }
 

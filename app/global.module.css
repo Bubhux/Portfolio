@@ -16,7 +16,9 @@
 @custom-media --mediaNoTouch (pointer: fine);
 @custom-media --mediaSpecificScreen1 (min-width: 2732px);
 @custom-media --mediaSpecificScreen2 (max-width: 2732px);
-@custom-media --mediaSpecificScreen3 (max-width: 1518px);
+@custom-media --mediaSpecificScreen3 (max-width: 2049px);
+@custom-media --mediaSpecificScreen4 (max-width: 1518px);
+@custom-media --mediaSpecificScreen5 (max-width: 1366px);
 
 
 @layer base {

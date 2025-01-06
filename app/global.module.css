@@ -15,7 +15,7 @@
 
 @custom-media --mediaMobileXXS (max-width: 375px);
 @custom-media --mediaMobileXS (max-width: 425px);
-@custom-media --mediaMobileS (max-width: 600px);
+@custom-media --mediaMobileMS (max-width: 600px);
 @custom-media --mediaMobileM (max-width: 768px);
 @custom-media --mediaTablet (max-width: 1024px);
 @custom-media --mediaDesktopL (max-width: 1707px);

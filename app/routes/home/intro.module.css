@@ -160,7 +160,7 @@
             background: var(--accent);
             z-index: var(--zIndex1);
             transform-origin: left;
-            width: 50%;
+            width: 51%;
             top: 55px;
             left: 0;
             animation: slideInFromLeftBar1 1.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 1.5s ease-in-out forwards;
@@ -181,7 +181,7 @@
         &.bar1 {
             left: 0;
             top: 5px;
-            width: 75%;
+            width: 76%;
             background: var(--accent);
             transform-origin: left;
             animation: slideInFromLeftBar2 2s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 2s ease-in-out forwards;
@@ -190,7 +190,7 @@
         &.bar2 {
             left: 0;
             top: 105px;
-            width: 25%;
+            width: 26%;
             background: var(--accent);
             transform-origin: left;
             animation: slideInFromLeftBar3 2.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 2.5s ease-in-out forwards;

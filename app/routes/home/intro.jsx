@@ -101,7 +101,6 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                         )}
                         <header className={styles.text}>
                             <h1 className={styles.name} data-visible={visible} id={titleId}>
-                                {/* <DecoderText text={config.name} delay={500} /> */}
                                 <DecoderText key={disciplineIndex} text={config.name} delay={500} />
                             </h1>
                             <Heading level={0} as="h2" className={styles.title}>
@@ -153,7 +152,6 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                                         <Transition
                                             unmount
                                             in={item === currentDiscipline}
-                                            //timeout={{ enter: 3000, exit: 2000 }}
                                             timeout={{ enter: 2000, exit: 1000 }}
                                             key={item}
                                         >

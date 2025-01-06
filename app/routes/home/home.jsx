@@ -124,7 +124,6 @@ export const Home = () => {
                 title="Developing a Business CRM"
                 description="Creating a comprehensive CRM system to streamline business operations and enhance customer relationships"
                 buttonText="View project"
-                buttonLink="/projects/crm"
 
                 cardTitle="CRM Application"
                 imgPath={laptopCRM}
@@ -136,7 +135,7 @@ export const Home = () => {
                         <img src={svgDjango} alt="Django Logo" />
                     </>
                 }
-                ghLink="https://github.com/Bubhux/CRM-App"
+                ghLink="https://github.com/Bubhux/Projet-Epic-Events"
                 particlesActive={true}
             />
             <ProjectSummary
@@ -147,7 +146,6 @@ export const Home = () => {
                 title="Todo List with Calendar Integration"
                 description="Designing and developing a todo list app."
                 buttonText="View project"
-                buttonLink="https://todo-calendar.com"
 
                 cardTitle="Todo List Calendar Application"
                 imgPath={laptopTodo}
@@ -171,7 +169,6 @@ export const Home = () => {
                 title="Create an interactive 3D globe"
                 description="Design a visually appealing, interactive 3D globe to add to your creative work and professional projects."
                 buttonText="View project"
-                buttonLink="/projects/portfolio-design"
 
                 cardTitle="3D Globe Application"
                 imgPath={laptopGlobe}

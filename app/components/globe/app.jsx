@@ -55,11 +55,17 @@ class App extends Component {
     }
 
     setRendererSize = () => {
-        const mediaMobile = window.matchMedia('(max-width: 696px)');
-        const mediaMobileLS = window.matchMedia('(max-height: 696px)');
 
-        if (mediaMobile.matches || mediaMobileLS.matches) {
-            this.renderer.setSize(1200, 600);
+        const mediaMobileXS = window.matchMedia('(max-width: 696px)');
+        const mediaMobileXLS = window.matchMedia('(max-height: 696px)');
+        const mediaMobile = window.matchMedia('(max-width: 768px)');
+        const mediaMobileLS = window.matchMedia('(max-height: 768px)');
+        const mediaTablet = window.matchMedia('(max-width: 1024px)');
+
+        if (mediaMobile.matches || mediaMobileLS.matches || mediaMobileXS.matches || mediaMobileXLS.matches) {
+            this.renderer.setSize(1100, 500);
+        } else if (mediaTablet.matches) {
+            this.renderer.setSize(1100, 600);
         } else {
             this.renderer.setSize(1700, 1200);
         }

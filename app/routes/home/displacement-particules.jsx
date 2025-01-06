@@ -76,7 +76,7 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
         mouse.current = new Vector2(0.8, 0.5);
         renderer.current = new WebGLRenderer({
             canvas: canvasRef.current,
-            antialias: false,
+            antialias: true,
             alpha: true,
             powerPreference: 'low-power',
             failIfMajorPerformanceCaveat: true,
@@ -114,8 +114,8 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
     }, [texture]);
 
     useEffect(() => {
-        const dirLight = new DirectionalLight(0xffffff, theme === 'light' ? 1.4 : 1.5);
-        const ambientLight = new AmbientLight(0xffffff, theme === 'light' ? 2.0 : 0.2);
+        const dirLight = new DirectionalLight(0xffffff, theme === 'light' ? 1.6 : 1.8);
+        const ambientLight = new AmbientLight(0xffffff, theme === 'light' ? 2.5 : 0.2);
 
         dirLight.position.set(100, 100, 200);
 

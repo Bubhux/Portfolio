@@ -94,11 +94,11 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
             <Transition in key={theme} timeout={3000}>
                 {({ visible, status }) => (
                     <>
-                        {/* {isHydrated && isReady && preloadedResources && (
+                        {isHydrated && isReady && preloadedResources && (
                             <Suspense fallback={null}>
                                 <DisplacementParticles preloadedResources={preloadedResources} />
                             </Suspense>
-                        )} */}
+                        )}
                         <header className={styles.text}>
                             <h1 className={styles.name} data-visible={visible} id={titleId}>
                                 {/* <DecoderText text={config.name} delay={500} /> */}
@@ -114,6 +114,11 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                                         data-status={status}
                                         style={cssProps({ delay: tokens.base.durationXS })}
                                     >
+                                        <span
+                                            className={styles.bar}
+                                            data-status={status}
+                                            style={cssProps({ delay: tokens.base.durationXS })}
+                                        />
                                         <span
                                             className={styles.bar1}
                                             data-status={status}
@@ -165,6 +170,11 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
                                                     exit={{ opacity: 1, scale: 0 }}
                                                     transition={{ duration: 0 }}
                                                 >
+                                                    <motion.span
+                                                        className={styles.bar}
+                                                        data-status={status}
+                                                        transition={{ duration: 1 }}
+                                                    />
                                                     <motion.span
                                                         className={styles.bar1}
                                                         data-status={status}

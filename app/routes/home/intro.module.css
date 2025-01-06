@@ -145,28 +145,7 @@
     transition: opacity 1s ease var(--durationM);
     isolation: isolate;
 
-    &::after {
-        content: '';
-        background: var(--accent);
-        position: absolute;
-        inset: 0 0 0 0;
-        z-index: var(--zIndex1);
-        will-change: transform, opacity;
-        transform-origin: left;
-        width: 50%;
-        height: 50%;
-        top: 55px;
-        animation: slideInFromLeftBar1 1.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 1.5s ease-in-out forwards;
-
-        @media (--mediaMobileM), (--mediaTablet) {
-            top: 40px;
-        }
-
-        @media (--mediaMobileXS) {
-            top: 25px;
-        }
-    }
-
+    .bar,
     .bar1,
     .bar2,
     .bar3,
@@ -176,6 +155,24 @@
         bottom: 0;
         height: 50%;
         z-index: var(--zIndex1);
+
+        &.bar {
+            background: var(--accent);
+            z-index: var(--zIndex1);
+            transform-origin: left;
+            width: 50%;
+            top: 55px;
+            left: 0;
+            animation: slideInFromLeftBar1 1.5s cubic-bezier(0.42, 0, 0.58, 1) forwards, slideInFromBarOpacity 1.5s ease-in-out forwards;
+
+            @media (--mediaMobileM), (--mediaTablet) {
+                top: 40px;
+            }
+
+            @media (--mediaMobileXS) {
+                top: 25px;
+            }
+        }
 
         &.bar1 {
             left: 0;
@@ -262,7 +259,7 @@
     &[data-status='entered'] {
         color: var(--textTitle);
 
-        &::after,
+        .bar,
         .bar1,
         .bar2,
         .bar3,
@@ -316,7 +313,7 @@
 
 @keyframes slideInFromLeftBar1 {
     0% {
-        transform: translateX(-250%);
+        transform: translateX(-650%);
     }
 
     100% {
@@ -326,7 +323,7 @@
 
 @keyframes slideInFromLeftBar2 {
     0% {
-        transform: translateX(-250%);
+        transform: translateX(-450%);
     }
 
     100% {
@@ -336,7 +333,7 @@
 
 @keyframes slideInFromLeftBar3 {
     0% {
-        transform: translateX(-250%);
+        transform: translateX(-550%);
     }
 
     100% {
@@ -346,7 +343,7 @@
 
 @keyframes slideInFromRightBar4 {
     0% {
-        transform: translateX(250%);
+        transform: translateX(650%);
     }
 
     100% {
@@ -356,7 +353,7 @@
 
 @keyframes slideInFromRightBar5 {
     0% {
-        transform: translateX(250%);
+        transform: translateX(650%);
     }
 
     100% {
@@ -366,7 +363,7 @@
 
 @keyframes slideInFromRightBar6 {
     0% {
-        transform: translateX(250%);
+        transform: translateX(450%);
     }
 
     100% {

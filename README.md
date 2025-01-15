@@ -15,12 +15,12 @@
 ## Menu   
 
 1. **[Informations générales](#informations-générales)**   
-2. **[Liste pré-requis](#liste-pre-requis)**   
-3. **[Interface de l'application](#interface-application)**   
-4. **[Lancement de l'application](#lancement-application)**   
-5. **[Accès à la démonstration en ligne](#lien-application)**   
-6. **[Correction *renderToReadableStream*](#correction-application)**   
-7. **[Configuration du formulaire Contact](#formulaire-application)**    
+2. **[Interface de l'application](#interface-application)**   
+3. **[Accès à la démonstration en ligne](#lien-application)**   
+4. **[Configuration du formulaire Contact](#formulaire-application)**    
+5. **[Liste pré-requis](#liste-pre-requis)**   
+6. **[Lancement de l'application](#lancement-application)**   
+7. **[Correction *renderToReadableStream*](#correction-application)**   
 8. **[Auteur, contact et remerciements](#auteur-contact)**   
 
 <div id="informations-générales"></div>
@@ -32,31 +32,6 @@
 
 - Utilisation de **React**, **Vite.js** et **Remix**.   
 - Utilisation de **Three.js** et de **Tailwind CSS**.   
-  &nbsp;   
-
-
---------------------------------------------------------------------------------------------------------------------------------
-
-<div id="liste-pre-requis"></div>
-<a href="#top" style="float: right;">Retour en haut 🡅</a>
-
-### Liste pré-requis   
-
-- Aucun pré-requis n'est nécessaire.   
-
-- Application conçue avec les technologies suivantes :   
-  &nbsp;   
-
-  - **React** ``v18.3.1`` ➔ [Documentation React](https://fr.react.dev/)   
-  - **Vitejs** ``v5.1.0`` ➔ [Documentation Vitejs](https://vitejs.dev/)   
-  - **Remix** ``v2.13.1`` ➔ [Documentation Remix](https://remix.run/)   
-  - **Three.js** ``v0.169.0`` ➔ [Documentation Three.js](https://threejs.org/)   
-  - **Node.js** ``v.20.9.0`` ➔ [Documentation Node.js](https://nodejs.org/fr)   
-  - **Npm** ``v10.8.1`` ➔ [Documentation et téléchargement de Npm](https://www.npmjs.com/)   
-  - **Tailwind CSS** ``v3.4.4`` ➔ [Documentation Tailwind CSS](https://tailwindcss.com/)   
-  - **VSCode** ``v1.85.2`` ➔ [Documentation et téléchargement de VSCode](https://code.visualstudio.com/)   
-  - **Chrome** ``v.126.0.6478.114`` & **Firefox** ``v.127.0``     
-  - **Windows 10** ``Professionnel``   
 
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -82,6 +57,64 @@
 
 - Vous pouvez accéder à une démonstration du portfolio via **Cloudflare Pages**.   
 - En utilisant le lien suivant ➔ [Lien du portfolio en ligne](https://portfolio-8ym.pages.dev/)   
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+<div id="formulaire-application"></div>
+<a href="#top" style="float: right;">Retour en haut 🡅</a>
+
+### Configuration du formulaire Contact   
+
+<div style="display: flex; justify-content: flex-start; margin: 20px 0;">
+    <div style="border: 1px solid #8d8d8d; border-radius: 5px; padding: 10px; padding-bottom: 2px; display: inline-block; margin-right: 10px; margin-left: 20px;">
+        <img src="/public/static/img/screen-formulaire.png" alt="Screen formulaire" style="width: 1200px; height: auto;">
+    </div>
+</div>
+
+- Pour faire fonctionner le formulaire de contact, créez un compte **EmailJS** ➔ [Création d'un compte EmailJS](https://www.emailjs.com/) et le configurer.
+  Il faudra ensuite créer un fichier ``.env`` à la racine du projet.   
+
+- Exemple fichier ``.env`` :
+
+```bash   
+VITE_APP_EMAILJS_PUBLIC_KEY=VB6AFLYgeG81Kftru  # Clé publique
+VITE_APP_EMAILJS_SERVICE_ID=service_u2f80ks    # Identifiant de service
+VITE_APP_EMAILJS_TEMPLATEID=template_g18y085   # Identifiant de modèle
+```   
+
+- Si vous souhaitez utiliser **Cloudflare** pour le déploiement il faudra créer un fichier ``.dev.vars`` à la racine du projet.   
+
+- Exemple fichier ``.dev.vars`` :
+
+```bash   
+VITE_APP_EMAILJS_PUBLIC_KEY=VB6AFLYgeG81Kftru  # Clé publique
+VITE_APP_EMAILJS_SERVICE_ID=service_u2f80ks    # Identifiant de service
+VITE_APP_EMAILJS_TEMPLATEID=template_g18y085   # Identifiant de modèle
+```   
+- Vous devrez également les ajouter comme variables d'environnement dans le tableau de bord de **Cloudflare PAges** pour que cela fonctionne en production. 
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+<div id="liste-pre-requis"></div>
+<a href="#top" style="float: right;">Retour en haut 🡅</a>
+
+### Liste pré-requis   
+
+- Aucun pré-requis n'est nécessaire.   
+
+- Application conçue avec les technologies suivantes :   
+  &nbsp;   
+
+  - **React** ``v18.3.1`` ➔ [Documentation React](https://fr.react.dev/)   
+  - **Vitejs** ``v5.1.0`` ➔ [Documentation Vitejs](https://vitejs.dev/)   
+  - **Remix** ``v2.13.1`` ➔ [Documentation Remix](https://remix.run/)   
+  - **Three.js** ``v0.169.0`` ➔ [Documentation Three.js](https://threejs.org/)   
+  - **Node.js** ``v.20.9.0`` ➔ [Documentation Node.js](https://nodejs.org/fr)   
+  - **Npm** ``v10.8.1`` ➔ [Documentation et téléchargement de Npm](https://www.npmjs.com/)   
+  - **Tailwind CSS** ``v3.4.4`` ➔ [Documentation Tailwind CSS](https://tailwindcss.com/)   
+  - **VSCode** ``v1.85.2`` ➔ [Documentation et téléchargement de VSCode](https://code.visualstudio.com/)   
+  - **Chrome** ``v.126.0.6478.114`` & **Firefox** ``v.127.0``     
+  - **Windows 10** ``Professionnel``   
 
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -204,35 +237,6 @@ function isBotRequest(userAgent: string | null) {
     return false;
 }
 ```   
-
---------------------------------------------------------------------------------------------------------------------------------
-
-<div id="formulaire-application"></div>
-<a href="#top" style="float: right;">Retour en haut 🡅</a>
-
-### Configuration du formulaire Contact   
-
-- Pour faire fonctionner le formulaire de contact, créez un compte **EmailJS** ➔ [Création d'un compte EmailJS](https://www.emailjs.com/) et le configurer.
-  Il faudra ensuite créer un fichier ``.env`` à la racine du projet.   
-
-- Exemple fichier ``.env`` :
-
-```bash   
-VITE_APP_EMAILJS_PUBLIC_KEY=VB6AFLYgeG81Kftru  # Clé publique
-VITE_APP_EMAILJS_SERVICE_ID=service_u2f80ks    # Identifiant de service
-VITE_APP_EMAILJS_TEMPLATEID=template_g18y085   # Identifiant de modèle
-```   
-
-- Si vous souhaitez utiliser **Cloudflare** pour le déploiement il faudra créer un fichier ``.dev.vars`` à la racine du projet.   
-
-- Exemple fichier ``.dev.vars`` :
-
-```bash   
-VITE_APP_EMAILJS_PUBLIC_KEY=VB6AFLYgeG81Kftru  # Clé publique
-VITE_APP_EMAILJS_SERVICE_ID=service_u2f80ks    # Identifiant de service
-VITE_APP_EMAILJS_TEMPLATEID=template_g18y085   # Identifiant de modèle
-```   
-- Vous devrez également les ajouter comme variables d'environnement dans le tableau de bord de **Cloudflare PAges** pour que cela fonctionne en production. 
 
 --------------------------------------------------------------------------------------------------------------------------------
 

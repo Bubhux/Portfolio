@@ -63,6 +63,9 @@ export function Error({ error }) {
                                         level={0}
                                         weight="bold"
                                     >
+                                        <svg width="100" height="100" viewBox="0 0 100 100">
+                                            <use href={`${errorBenderSvg}#bender`} />
+                                        </svg>
                                         {error.status}
                                     </Heading>
                                 )}

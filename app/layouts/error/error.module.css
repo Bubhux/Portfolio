@@ -137,6 +137,9 @@
         }
 
         &[data-visible='true'] {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             transform: none;
             opacity: 1;
         }

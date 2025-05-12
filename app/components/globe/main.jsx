@@ -75,6 +75,8 @@ const Main = () => {
 
             const displayFolder = gui.addFolder('Display');
             controllers.push(displayFolder.add(config.display, 'map'));
+            controllers.push(displayFolder.add(config.display, 'lines'));
+            controllers.push(displayFolder.add(config.display, 'lineDots'));
             controllers.push(displayFolder.add(config.display, 'points'));
             controllers.push(displayFolder.add(config.display, 'markers'));
             controllers.push(displayFolder.add(config.display, 'markerLabel'));
@@ -85,14 +87,14 @@ const Main = () => {
             controllers.push(animationsFolder.add(animations, 'rotateGlobe'));
 
             sizeFolder.open();
-        });
+        }); */}
 
         controllers.forEach(controller => {
             controller.onChange(() => {
                 setControls(prevControls => ({ ...prevControls, changed: true }));
 
             });
-        }); */}
+        });
 
         app.camera.position.z = config.sizes.globe * 2.85;
         app.camera.position.y = config.sizes.globe * 0;
@@ -142,16 +144,26 @@ const Main = () => {
     const animate = (app) => {
         if (controls.changed) {
             const updateMaterial = (element, property, value) => {
-                if (element) {
+                if (element && element.material) {
                     element.material[property] = value;
                 }
             };
 
             const updateVisibility = (elements, visible) => {
-                elements.forEach(element => {
-                    if (element) element.visible = visible;
-                });
+                if (elements) {
+                    elements.forEach(element => {
+                        if (element) element.visible = visible;
+                    });
+                }
             };
+
+            if (groups.lines) {
+                groups.lines.visible = config.display.lines;
+            }
+
+            if (elements.lineDots && groups.lineDots) {
+                groups.lineDots.visible = config.display.lineDots;
+            }
 
             if (elements.atmosphere) {
                 elements.atmosphere.visible = config.display.atmosphere;
@@ -170,7 +182,9 @@ const Main = () => {
 
             if (elements.lines) {
                 elements.lines.forEach(line => {
-                    line.material.color.set(config.colors.globeLines);
+                    if (line && line.material) {
+                        line.material.color.set(config.colors.globeLines);
+                    }
                 });
             }
 
@@ -179,8 +193,13 @@ const Main = () => {
                 if (group) group.visible = config.display[configKeys[index]];
             });
 
-            updateVisibility(elements.markerLabel, config.display.markerLabel);
-            updateVisibility(elements.markerPoint, config.display.markerPoint);
+            if (elements.markerLabel) {
+                updateVisibility(elements.markerLabel, config.display.markerLabel);
+            }
+
+            if (elements.markerPoint) {
+                updateVisibility(elements.markerPoint, config.display.markerPoint);
+            }
 
             setControls(prevControls => ({ ...prevControls, changed: false }));
         }
@@ -214,11 +233,11 @@ const Main = () => {
         if (!groups.globe) {
             console.error("groups.globe is not initialized.");
         } else {
-            groups.globe.add(groups.atmosphere || new THREE.Group());
-            groups.globe.add(groups.lines || new THREE.Group());
-            groups.globe.add(groups.markers || new THREE.Group());
-            groups.globe.add(groups.points || new THREE.Group());
-            groups.globe.add(groups.map || new THREE.Group());
+            if (groups.atmosphere) groups.globe.add(groups.atmosphere);
+            if (groups.lines) groups.globe.add(groups.lines);
+            if (groups.markers) groups.globe.add(groups.markers);
+            if (groups.points) groups.globe.add(groups.points);
+            if (groups.map) groups.globe.add(groups.map);
 
             if (!app.renderer) {
                 console.error("Renderer is not initialized.");
@@ -229,7 +248,9 @@ const Main = () => {
             groups.globe.rotation.y -= 0.0025;
         }
 
-        app.renderer.render(app.scene, app.camera);
+        if (app.renderer) {
+            app.renderer.render(app.scene, app.camera);
+        }
     };
 
     useEffect(() => {

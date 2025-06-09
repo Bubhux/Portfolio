@@ -1,5 +1,5 @@
 // app/routes/home/intro.jsx
-import { Suspense, lazy, useEffect, useState, startTransition } from 'react';
+import { useEffect, useState } from 'react';
 
 import { DecoderText } from '~/components/decoder-text';
 import { Heading } from '~/components/heading';
@@ -17,10 +17,8 @@ import { useHydrated } from '~/hooks/useHydrated';
 import config from '~/config.json';
 import styles from './intro.module.css';
 
+import { DisplacementParticles, preloadDisplacementParticlesResources } from './displacement-particules';
 
-const DisplacementParticles = lazy(() =>
-    import('./displacement-particules').then(module => ({ default: module.DisplacementParticles }))
-);
 
 export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
     const { theme } = useTheme();
@@ -35,22 +33,12 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
     const scrollToHash = useScrollToHash();
     const isHydrated = useHydrated();
     const [isAnimating, setIsAnimating] = useState(false);
-    const [isReady, setIsReady] = useState(false);
-    const [preloadedResources, setPreloadedResources] = useState(null);
+    const [resources, setResources] = useState(null);
 
     useEffect(() => {
-        import('./displacement-particules').then(module => {
-            const { preloadDisplacementParticlesResources } = module;
-            preloadDisplacementParticlesResources()
-                .then((resources) => {
-                    startTransition(() => {
-                        setPreloadedResources(resources);
-                        setIsReady(true);
-                        setIsAnimating(true);
-                    });
-                })
-                .catch((error) => console.error('Failed to preload resources:', error));
-        });
+        preloadDisplacementParticlesResources()
+            .then(setResources)
+            .catch(error => console.error('Failed to preload resources:', error));
     }, []);
 
     useInterval(
@@ -94,10 +82,8 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
             <Transition in key={theme} timeout={3000}>
                 {({ visible, status }) => (
                     <>
-                        {isHydrated && isReady && preloadedResources && (
-                            <Suspense fallback={null}>
-                                <DisplacementParticles preloadedResources={preloadedResources} />
-                            </Suspense>
+                        {isHydrated && resources && (
+                            <DisplacementParticles preloadedResources={resources} />
                         )}
                         <header className={styles.text}>
                             <h1 className={styles.name} data-visible={visible} id={titleId}>

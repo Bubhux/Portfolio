@@ -1,14 +1,12 @@
 // app/routes/home/displacement-particules.jsx
-import { startTransition, useEffect, useRef, useState } from 'react';
-
+import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '~/components/theme-provider';
 import { Transition } from '~/components/transition';
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { useInViewport, useWindowSize } from '~/hooks';
-import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, PlaneGeometry, UniformsUtils, Vector2, WebGLRenderer, TextureLoader } from 'three';
+import { AmbientLight, DirectionalLight, LinearSRGBColorSpace, Mesh, MeshPhongMaterial, PerspectiveCamera, Scene, PlaneGeometry, UniformsUtils, WebGLRenderer, TextureLoader, LinearFilter } from 'three';
 import { media } from '~/utils/style';
 import { throttle } from '~/utils/throttle';
-import { cleanRenderer, cleanScene, removeLights } from '~/utils/three';
 
 import fragmentShader from './displacement-particules-fragment.glsl?raw';
 import vertexShader from './displacement-particules-vertex.glsl?raw';
@@ -21,18 +19,39 @@ const springConfig = {
     mass: 2,
 };
 
+const cleanUpThreeResources = (resources) => {
+    if (!resources) return;
+
+    try {
+        if (resources.scene?.dispose) resources.scene.dispose();
+        if (resources.renderer?.dispose) resources.renderer.dispose();
+        if (resources.geometry?.dispose) resources.geometry.dispose();
+        if (resources.material?.dispose) resources.material.dispose();
+        if (resources.texture?.dispose) resources.texture.dispose();
+        resources.lights?.forEach(light => {
+            if (light.dispose) light.dispose();
+        });
+    } catch (e) {
+        console.error('Error during cleanup:', e);
+    }
+};
+
 export const preloadDisplacementParticlesResources = () => {
     return new Promise((resolve, reject) => {
         const textureLoader = new TextureLoader();
         const texture = textureLoader.load(
-            '/static/img/particules.png',
-            () => {
+            '/static/img/particules.webp',
+            (texture) => {
                 texture.flipY = false;
                 texture.premultiplyAlpha = false;
+                texture.minFilter = LinearFilter;
+                texture.magFilter = LinearFilter;
+                texture.generateMipmaps = false;
                 resolve({ texture });
             },
             undefined,
-            error => {
+            (error) => {
+                console.error('Texture loading failed:', error);
                 reject(error);
             }
         );
@@ -42,112 +61,121 @@ export const preloadDisplacementParticlesResources = () => {
 export const DisplacementParticles = ({ preloadedResources, ...props }) => {
     const { texture } = preloadedResources;
     const { theme } = useTheme();
-    const start = useRef(Date.now());
+    const resources = useRef({
+        renderer: null,
+        scene: null,
+        camera: null,
+        lights: [],
+        uniforms: null,
+        material: null,
+        geometry: null,
+        sphere: null,
+        texture: null
+    });
+
+    const [isReady, setIsReady] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const canvasRef = useRef();
-    const mouse = useRef();
-    const renderer = useRef();
-    const camera = useRef();
-    const scene = useRef();
-    const lights = useRef();
-    const uniforms = useRef();
-    const material = useRef();
-    const geometry = useRef();
-    const sphere = useRef();
     const reduceMotion = useReducedMotion();
     const isInViewport = useInViewport(canvasRef);
     const windowSize = useWindowSize();
     const rotationX = useSpring(0, springConfig);
     const rotationY = useSpring(0, springConfig);
-    const [isReady, setIsReady] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const animationFrame = useRef(null);
+    const startTime = useRef(0);
 
     useEffect(() => {
-        if (!texture) {
-            console.error('Texture not loaded');
-        }
-    }, [texture]);
+        if (!texture) return;
 
-    useEffect(() => {
-        setIsReady(true);
-    }, []);    
+        const initThreeJS = () => {
+            resources.current.texture = texture;
 
-    useEffect(() => {
-        const { innerWidth, innerHeight } = window;
-        mouse.current = new Vector2(0.8, 0.5);
-        renderer.current = new WebGLRenderer({
-            canvas: canvasRef.current,
-            antialias: true,
-            alpha: true,
-            powerPreference: 'low-power',
-            failIfMajorPerformanceCaveat: true,
-        });
-        renderer.current.setSize(innerWidth, innerHeight);
-        renderer.current.setPixelRatio(1);
-        renderer.current.outputColorSpace = LinearSRGBColorSpace;
+            // Renderer
+            resources.current.renderer = new WebGLRenderer({
+                canvas: canvasRef.current,
+                antialias: false,
+                alpha: true,
+                powerPreference: 'high-performance'
+            });
+            resources.current.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            resources.current.renderer.outputColorSpace = LinearSRGBColorSpace;
 
-        camera.current = new PerspectiveCamera(54, innerWidth / innerHeight, 0.1, 100);
-        camera.current.position.z = 52;
+            // Camera
+            resources.current.camera = new PerspectiveCamera(54, window.innerWidth / window.innerHeight, 0.1, 100);
+            resources.current.camera.position.z = 52;
 
-        scene.current = new Scene();
+            // Scene
+            resources.current.scene = new Scene();
 
-        material.current = new MeshPhongMaterial({
-            map: texture,
-            onBeforeCompile: shader => {
-                uniforms.current = UniformsUtils.merge([shader.uniforms, { time: { type: 'f', value: 0 } }]);
-                shader.uniforms = uniforms.current;
-                shader.vertexShader = vertexShader;
-                shader.fragmentShader = fragmentShader;
-            },
-        });
+            // Material
+            resources.current.material = new MeshPhongMaterial({
+                map: texture,
+                onBeforeCompile: (shader) => {
+                    resources.current.uniforms = UniformsUtils.merge([
+                        shader.uniforms,
+                        { time: { type: 'f', value: 0 } }
+                    ]);
+                    shader.uniforms = resources.current.uniforms;
+                    shader.vertexShader = vertexShader;
+                    shader.fragmentShader = fragmentShader;
+                },
+            });
 
-        startTransition(() => {
-            geometry.current = new PlaneGeometry(60, 40, 20, 20);
-            sphere.current = new Mesh(geometry.current, material.current);
-            sphere.current.position.z = 0;
-            scene.current.add(sphere.current);
-        });
+            // Geometry
+            resources.current.geometry = new PlaneGeometry(60, 40, 20, 20);
+            resources.current.sphere = new Mesh(resources.current.geometry, resources.current.material);
+            resources.current.sphere.position.z = 0;
+            resources.current.scene.add(resources.current.sphere);
+
+            // Lights
+            const dirLight = new DirectionalLight(0xffffff, theme === 'light' ? 1.6 : 1.8);
+            const ambientLight = new AmbientLight(0xffffff, theme === 'light' ? 2.5 : 0.2);
+            dirLight.position.set(100, 100, 200);
+            resources.current.lights = [dirLight, ambientLight];
+            resources.current.lights.forEach(light => resources.current.scene.add(light));
+
+            // First render
+            resources.current.renderer.render(resources.current.scene, resources.current.camera);
+            setIsLoading(false);
+            setIsReady(true);
+            startTime.current = performance.now();
+        };
+
+        initThreeJS();
 
         return () => {
-            cleanScene(scene.current);
-            cleanRenderer(renderer.current);
+            if (animationFrame.current) {
+                cancelAnimationFrame(animationFrame.current);
+            }
+            cleanUpThreeResources(resources.current);
         };
-    }, [texture]);
+    }, [texture, theme]);
 
     useEffect(() => {
-        const dirLight = new DirectionalLight(0xffffff, theme === 'light' ? 1.6 : 1.8);
-        const ambientLight = new AmbientLight(0xffffff, theme === 'light' ? 2.5 : 0.2);
+        if (!windowSize.width || !windowSize.height || !resources.current.sphere) return;
 
-        dirLight.position.set(100, 100, 200);
-
-        lights.current = [dirLight, ambientLight];
-        lights.current.forEach(light => scene.current.add(light));
-
-        return () => {
-            removeLights(lights.current);
-        };
-    }, [theme]);
-
-    useEffect(() => {
         const { width, height } = windowSize;
         const adjustedHeight = height + height * 0.3;
-        renderer.current.setSize(width, adjustedHeight);
-        camera.current.aspect = width / adjustedHeight;
-        camera.current.updateProjectionMatrix();
+        resources.current.renderer.setSize(width, adjustedHeight);
+        resources.current.camera.aspect = width / adjustedHeight;
+        resources.current.camera.updateProjectionMatrix();
 
         if (reduceMotion) {
-            renderer.current.render(scene.current, camera.current);
+            resources.current.renderer.render(resources.current.scene, resources.current.camera);
         }
+
+        // Position responsive
         if (width <= media.mobile) {
-            sphere.current.position.set(14, 10, 0);
+            resources.current.sphere.position.set(14, 10, 0);
         } else if (width <= media.tablet) {
-            sphere.current.position.set(18, 14, 0);
+            resources.current.sphere.position.set(18, 14, 0);
         } else {
-            sphere.current.position.set(22, 16, 0);
+            resources.current.sphere.position.set(22, 16, 0);
         }
     }, [reduceMotion, windowSize]);
 
     useEffect(() => {
-        const sensitivity = 0.2;
+        const sensitivity = 1.0;
 
         const onMouseMove = throttle(event => {
             const position = {
@@ -169,61 +197,43 @@ export const DisplacementParticles = ({ preloadedResources, ...props }) => {
     }, [isInViewport, reduceMotion, rotationX, rotationY]);
 
     useEffect(() => {
-        let animation;
-        let lastRender = 0;
+        if (!isReady || !resources.current.uniforms || !resources.current.sphere) return;
 
-        const animate = () => {
-            const now = Date.now();
-            if (now - lastRender < 1000 / 30) {
-                animation = requestAnimationFrame(animate);
-                return;
-            }
-            lastRender = now;
+        const animate = (timestamp) => {
+            resources.current.uniforms.time.value = 0.00005 * (timestamp - startTime.current);
+            resources.current.sphere.rotation.z += 0.001;
+            resources.current.sphere.rotation.x = rotationX.get();
+            resources.current.sphere.rotation.y = rotationY.get();
 
-            if (uniforms.current) {
-                uniforms.current.time.value = 0.00005 * (now - start.current);
-            }
-            sphere.current.rotation.z += 0.001;
-            sphere.current.rotation.x = rotationX.get();
-            sphere.current.rotation.y = rotationY.get();
-
-            renderer.current.render(scene.current, camera.current);
-            animation = requestAnimationFrame(animate);
+            resources.current.renderer.render(resources.current.scene, resources.current.camera);
+            animationFrame.current = requestAnimationFrame(animate);
         };
 
         const handleVisibilityChange = () => {
             if (document.visibilityState === "visible" && isInViewport && !reduceMotion) {
-                animate();
+                animationFrame.current = requestAnimationFrame(animate);
+            } else if (animationFrame.current) {
+                cancelAnimationFrame(animationFrame.current);
             }
         };
 
-        if (!reduceMotion && isInViewport && document.visibilityState === "visible") {
-            animate();
-        } else {
-            renderer.current.render(scene.current, camera.current);
+        if (!reduceMotion && isInViewport) {
+            handleVisibilityChange();
+            document.addEventListener("visibilitychange", handleVisibilityChange);
         }
-
-        document.addEventListener("visibilitychange", handleVisibilityChange);
 
         return () => {
-            cancelAnimationFrame(animation);
+            if (animationFrame.current) {
+                cancelAnimationFrame(animationFrame.current);
+            }
             document.removeEventListener("visibilitychange", handleVisibilityChange);
         };
-    }, [isInViewport, reduceMotion, rotationX, rotationY]);
-
-    useEffect(() => {
-        if (isReady) {
-            setIsLoading(false);
-        }
-    }, [isReady]);
+    }, [isReady, isInViewport, reduceMotion, rotationX, rotationY]);
 
     return (
         <>
             {isLoading && (
-                <div className={styles.loaderWrapper}>
-                    <div className={styles.loader}></div>
-                    <p className={styles.loaderMessage}>Loading ...</p>
-                </div>
+                <div className={styles.canvas} aria-hidden style={{ background: 'transparent' }} />
             )}
             <Transition in={isReady} timeout={3000} nodeRef={canvasRef}>
                 {({ visible, nodeRef }) => (

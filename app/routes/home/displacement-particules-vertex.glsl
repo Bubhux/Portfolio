@@ -36,12 +36,12 @@ vec3 fade(vec3 t) {
 
 // Classic Perlin noise
 float cnoise(vec3 P) {
-    vec3 Pi0 = floor(P); // Integer part for indexing
-    vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1
+    vec3 Pi0 = floor(P);
+    vec3 Pi1 = Pi0 + vec3(1.0);
     Pi0 = mod289(Pi0);
     Pi1 = mod289(Pi1);
-    vec3 Pf0 = fract(P); // Fractional part for interpolation
-    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
+    vec3 Pf0 = fract(P);
+    vec3 Pf1 = Pf0 - vec3(1.0);
     vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
     vec4 iy = vec4(Pi0.yy, Pi1.yy);
     vec4 iz0 = Pi0.zzzz;
@@ -105,12 +105,12 @@ float cnoise(vec3 P) {
 
 // Classic Perlin noise, periodic variant
 float pnoise(vec3 P, vec3 rep) {
-    vec3 Pi0 = mod(floor(P), rep); // Integer part, modulo period
-    vec3 Pi1 = mod(Pi0 + vec3(1.0), rep); // Integer part + 1, mod period
+    vec3 Pi0 = mod(floor(P), rep);
+    vec3 Pi1 = mod(Pi0 + vec3(1.0), rep);
     Pi0 = mod289(Pi0);
     Pi1 = mod289(Pi1);
-    vec3 Pf0 = fract(P); // Fractional part for interpolation
-    vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
+    vec3 Pf0 = fract(P);
+    vec3 Pf1 = Pf0 - vec3(1.0);
     vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
     vec4 iy = vec4(Pi0.yy, Pi1.yy);
     vec4 iz0 = Pi0.zzzz;
@@ -172,12 +172,13 @@ float pnoise(vec3 P, vec3 rep) {
     return 2.2 * n_xyz;
 }
 
+// Fonction de turbulence allégée : on réduit ici le nombre d'itérations (par exemple, de 10 à 5)
 float turbulence(vec3 p) {
-    float w = 100.0;
     float t = -.5;
-    for(float f = 1.0; f <= 10.0; f++) {
+    // On boucle de 1 à 5 au lieu de 10
+    for(float f = 1.0; f <= 5.0; f++) {
         float power = pow(2.0, f);
-        t += abs(pnoise(vec3(power * p), vec3(10.0, 10.0, 10.0)) / power);
+        t += abs(pnoise(power * p, vec3(10.0)) / power);
     }
     return t;
 }
@@ -186,11 +187,9 @@ float turbulence(vec3 p) {
 uniform float time;
 varying vec2 vUv;
 varying float noise;
-
 varying vec3 vViewPosition;
 
 #include <common>
-#include <batching_pars_vertex>
 #include <uv_pars_vertex>
 #include <displacementmap_pars_vertex>
 #include <envmap_pars_vertex>
@@ -208,15 +207,10 @@ void main() {
 	#include <uv_vertex>
 	#include <color_vertex>
 	#include <morphcolor_vertex>
-	#include <batching_vertex>
-
 	#include <beginnormal_vertex>
 	#include <morphnormal_vertex>
-	#include <skinbase_vertex>
-	#include <skinnormal_vertex>
 	#include <defaultnormal_vertex>
 	#include <normal_vertex>
-
 	#include <begin_vertex>
 	#include <morphtarget_vertex>
 	#include <skinning_vertex>
@@ -226,14 +220,15 @@ void main() {
 	#include <clipping_planes_vertex>
 
     vViewPosition = -mvPosition.xyz;
+    #include <worldpos_vertex>
+    #include <envmap_vertex>
+    #include <shadowmap_vertex>
+    #include <fog_vertex>
 
-	#include <worldpos_vertex>
-	#include <envmap_vertex>
-	#include <shadowmap_vertex>
-	#include <fog_vertex>
-
+    // Passage de coordonnées UV
     vUv = uv;
 
+    // Calcul du bruit et de la turbulence pour la position
     noise = turbulence(0.01 * position + normal + time * 0.8);
     vec3 displacement = vec3((position.x) * noise, position.y * noise, position.z * noise);
     gl_Position = projectionMatrix * modelViewMatrix * vec4((position + normal) + displacement, 1.0);

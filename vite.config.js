@@ -16,7 +16,8 @@ import copy from 'rollup-plugin-copy';
 
 
 export default defineConfig({
-    assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl', '**/*.svg'],
+    base: process.env.NODE_ENV === 'production' ? '/' : '/',
+    assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl', '**/*.svg', '**/*.wasm', '**/*.webp'],
     optimizeDeps: {
         include: [
             "isbot",
@@ -44,6 +45,14 @@ export default defineConfig({
         treeShaking: true,
     },
     build: {
+        reportCompressedSize: false,
+        sourcemap: false,
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                pure_funcs: ['console.debug'],
+            },
+        },
         assetsInlineLimit: 1024,
         manifest: true,
         outDir: "build/client",
@@ -99,4 +108,12 @@ export default defineConfig({
         jsconfigPaths(),
         glsl(),
     ],
+    server: {
+        headers: {
+            'Cross-Origin-Opener-Policy': 'same-origin',
+            'Cross-Origin-Embedder-Policy': 'require-corp',
+            'Cross-Origin-Resource-Policy': 'cross-origin',
+            'Access-Control-Allow-Origin': '*'
+        }
+    },
 });

@@ -27,11 +27,12 @@ import styles from './home.module.css';
 export const links = () => {
     return [
         {
-            rel: 'prefetch',
-            href: '/draco/draco_wasm_wrapper.js',
-            as: 'script',
-            type: 'text/javascript',
-            importance: 'low',
+            rel: 'preload',
+            href: '/static/img/particules.webp',
+            as: 'image',
+            type: 'image/webp',
+            importance: 'high',
+            crossOrigin: 'anonymous'
         },
         {
             rel: 'prefetch',
@@ -39,6 +40,15 @@ export const links = () => {
             as: 'fetch',
             type: 'application/wasm',
             importance: 'low',
+            crossOrigin: 'anonymous'
+        },
+        {
+            rel: 'prefetch',
+            href: '/draco/draco_wasm_wrapper.js',
+            as: 'script',
+            type: 'text/javascript',
+            importance: 'low',
+            crossOrigin: 'anonymous'
         },
     ];
 };

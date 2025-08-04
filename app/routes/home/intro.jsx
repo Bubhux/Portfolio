@@ -34,11 +34,19 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
     const isHydrated = useHydrated();
     const [isAnimating, setIsAnimating] = useState(false);
     const [resources, setResources] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         preloadDisplacementParticlesResources()
-            .then(setResources)
-            .catch(error => console.error('Failed to preload resources:', error));
+            .then(res => {
+                setResources(res);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error('Failed to preload resources:', error);
+                setIsLoading(false);
+            });
     }, []);
 
     useInterval(
@@ -68,6 +76,15 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, ...rest }) {
         }, 5500);
         return () => clearTimeout(timer);
     }, []);
+
+    if (isLoading) {
+        return (
+            <div className={styles.loaderWrapper}>
+                <div className={styles.loader}></div>
+                <p className={styles.loaderMessage}>Loading ...</p>
+            </div>
+        );
+    }
 
     return (
         <Section

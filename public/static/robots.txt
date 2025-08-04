@@ -1,1 +1,4 @@
 User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-8ym.pages.dev/sitemap.xml
